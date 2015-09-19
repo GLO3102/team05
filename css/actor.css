@@ -1,0 +1,17 @@
+.actor-image-container {
+    text-align: center;
+}
+
+.actor-description {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .actor-image-container {
+        text-align: right;
+    }
+
+    .actor-description {
+        text-align: left;
+    }
+}
