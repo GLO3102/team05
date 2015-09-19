@@ -1,0 +1,10 @@
+
+.container #tvshow-image img{
+   width: 100%;
+}
+.container .panel {
+    margin-top: 10px;
+}
+.panel {
+    border-color: black;
+}
