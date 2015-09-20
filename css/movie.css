@@ -1,0 +1,33 @@
+.d-td{
+    display:inline-block;
+}
+
+#movie-pocket {
+    width:30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+#movie-trailer {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:67%;
+    margin-bottom: 10px;
+}
+
+.pad-5 {
+    padding-left:5%;
+    padding-right: 5%;
+}
+
+#movie-info {
+    vertical-align: top;
+    padding-left: 0;
+}
+
+#movie-rating-img{
+    width: 70px;
+    vertical-align: bottom;
+}

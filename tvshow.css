@@ -1,0 +1,33 @@
+
+.container #tvshow-image img{
+   width: 100%;
+}
+.container .panel {
+    margin-top: 10px;
+}
+.panel {
+    border-color: black;
+}
+
+#tvshow-title h1{
+    font-size: 2.85em;
+    line-height: 1;
+}
+
+#tvshow-release-date{
+    font-size: 1.2em;
+    margin-bottom: 6px;
+}
+
+#tvshow-image img{
+    height: 400px;
+}
+
+.panel{
+    border-color:   #ddd;
+    margin-top
+}
+
+.thumbnail img{
+    height: 250px;
+}
