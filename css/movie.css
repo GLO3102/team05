@@ -1,12 +1,8 @@
-.d-td{
-    display:inline-block;
-}
-
-.m-top-10{
+.movie-infos{
     margin-top: 10px;
 }
 
-.no-pad {
+.cover-container {
     padding-left: 0px !important;
     padding-right: 0px !important;
 }
@@ -19,7 +15,7 @@
     margin-bottom: 10px;
 }
 
-.pad-5 {
+.movie-general-container {
     padding-left:5%;
     padding-right: 5%;
 }
