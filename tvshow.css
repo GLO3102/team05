@@ -20,14 +20,16 @@
 }
 
 #tvshow-image img{
-    height: 400px;
+    height: auto;
 }
 
 .panel{
     border-color:   #ddd;
-    margin-top
 }
 
 .thumbnail img{
     height: 250px;
+}
+.caption h3{
+    font-size: 18px;
 }
