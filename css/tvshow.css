@@ -27,8 +27,8 @@
     border-color:   #ddd;
 }
 
-.thumbnail img{
-    height: 250px;
+#app-content .thumbnail img{
+    height: auto;
 }
 .caption h3{
     font-size: 18px;
