@@ -1,13 +1,13 @@
-
-.container #tvshow-image img{
+#app-content #tvshow-image img{
    width: 100%;
 }
-.container .panel {
+#app-content .panel {
     margin-top: 10px;
 }
-.panel {
+
+/*#app-content .panel {
     border-color: black;
-}
+}*/
 
 #tvshow-title h1{
     font-size: 2.85em;
@@ -27,8 +27,8 @@
     border-color:   #ddd;
 }
 
-.thumbnail img{
-    height: 250px;
+#app-content .thumbnail img{
+    height: auto;
 }
 .caption h3{
     font-size: 18px;
