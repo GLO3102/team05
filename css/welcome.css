@@ -30,3 +30,7 @@
 .feature-card {
     display: inline-block;
 }
+
+.mdl-card_supporting-text {
+    color: #8b0b65;
+}
