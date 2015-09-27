@@ -6,69 +6,67 @@
     <meta name = "viewport" content = "device-width, initial-scale=1"> 
     <title>Umovie - Home</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./css/index.css">
-
 </head>
 <body>
-        <nav class="navbar navbar-default um-navbar-search">
-            <div class="navbar-header">
-                <a class="navbar-brand hidden-xs um-navbar-brand" href="#">
-                        <img src="./images/logo.png"/>
-                </a>  
-            </div>
-
-            <form class="form-inline navbar-form um-navbar-search-form" role="search">
-                <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <i class="glyphicon glyphicon-search form-control-feedback"></i>
-                </div>
-            </form>
-
-            <ul class="nav navbar-nav navbar-right um-navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle um-user-profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img class="um-profile-picture" src= "./images/user-placeholder.jpg" />
-                        <span class="um-username"> John Doe </span>  
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"> Settings </a> </li>
-                        <li><a href="#"> Logout </a> </li>
-                    </ul>  
-                </li>
-            </ul>
-
-        </nav>
-        <nav class="navbar navbar-default um-navbar">
-
-            <div class="navbar-header um-navbar-header">
-                <ul class="nav nav-stacked um-navbar-list">
-                    <li> <a href="#"><span class="glyphicon glyphicon-home um-navbar-icon"> </span> <span class="um-navbar-label"> Home </span></a> </li>
-                    <li> <a href="#"><span class="glyphicon glyphicon-list um-navbar-icon"> </span> <span class="um-navbar-label"> Watchlists </span></a> </li>
-                    <li> <a href="#"><span class="glyphicon glyphicon-film um-navbar-icon"> </span> <span class="um-navbar-label"> Movies </span></a> </li>
-                    <li> <a href="#"><span class="glyphicon glyphicon-star-empty um-navbar-icon"></span> <span class="um-navbar-label"> Movies Stars </span></a></li>
-                    <li class="um-navbar-user-more">
-                        <a href="#" data-toggle="collapse" data-target="#um-user-navigation-menu" aria-expanded="false">
-                            <span class="glyphicon glyphicon-user um-navbar-icon"></span>
-                        </a>
-                    </li> 
-                </ul>
-            </div>
-            <div class="collapse navbar-collapse" id="um-user-navigation-menu">
-                <ul class="nav navbar-nav">
-                    <li><a span="um-username"> John Doe </a></li>
-                    <li><a href="#"> Settings </a> </li>
-                    <li><a href="#"> Logout </a> </li>
-                </ul>
-            </div>
-        </nav>
-
-        <div id="app-content">
-            YOLO-CONTENT
+    <div id="welcome-carousel">
+        <div class="sign-in-box">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Sign in</button>
         </div>
+        <div class="caption-box">
+            <img class="logo" src="./images/logo.png" />
+            <h1> <span class="caption-u">U</span>r <span class="caption-m">M</span>ovie library </h1>
+        </div>
+        <div class="features-box">
+            <a href="./movie.html">
+                <div class="mdl-card mdl-shadow--2dp feature-card">
+                    <div class="mdl-card_title">
+                        <h2 class="mdl-card_supporting-text"> Ur Movies </h2>
+                    </div>
+                    <div class="mdl-card_media">
+                        <img src="http://blogs-images.forbes.com/scottmendelson/files/2015/08/LwoaE.jpg"/>
+                    </div>
+                    <div class="mdl-card_supporting-text"> 
+                    </div>
+                </div>
+            </a>
+            <a href="./serie.html">
+                <div class="mdl-card mdl-shadow--2dp feature-card">
+                    <div class="mdl-card_title">
+                        <h2 class="mdl-card_supporting-text"> Ur Series </h2>
+                    </div>
+                    <div class="mdl-card_media">
+                        <img src="http://images.amcnetworks.com/amctvasia.com/wp-content/uploads/2015/01/how.jpg" />
+                    </div>
+                    <div class="mdl-card_supporting-text">
+                        
+                    </div>
+                </div>
+            </a>
+            <a href="./actor.html">
+                <div class="mdl-card mdl-shadow--2dp feature-card">
+                    
+                    <div class="mdl-card_title">
+                        <h2 class="mdl-card_supporting-text"> Ur Stars </h2>
+                    </div>
+                    <div class="mdl-card_media">
+                        <img src="https://images.susu.org/unionfilms/films/backgrounds/hd/some-like-it-hot.jpg" />
+                    </div>
+                    <div class="mdl-card_supporting-text">
+                       
+                    </div>
+
+                </div>
+            </a>
+        </div>
+    </div>
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
 </body>
 </html>
