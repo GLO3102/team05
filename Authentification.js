@@ -2,30 +2,39 @@
  * Created by Nate on 15-10-27.
  */
 
-class Authentication {
-    function constructor(token) {
-        this.Login(token)
+Token = Backbone.Model.extend({
+    urlRoot: 'https://umovie.herokuapp.com/tokenInfo',
+    defaults: {
+        email: '',
+        token: '',
+        name: ''
+    }
+});
+
+function Authentication() {
+    this.GetTokenId = function () {
+        return (new Token().fetch());
     }
 
-    function GetToken() {
+    this.GetUserAndTokenInfo = function () {
         return localStorage.getItem("token");
     }
 
-    function IsLoggedIn() {
-        return localStorage.getItem("token") != null;
+    this.IsLoggedIn = function () {
+        return this.GetTokenId() != null;
     }
 
-    function Login(token) {
+    this.Login = function (token) {
         localStorage.setItem("token", token);
         return this;
     }
 
-    function Logout() {
+    this.Logout = function () {
         localStorage.removeItem("token")
         return this;
     }
 
-    function SetHeaders() {
+    this.SetHeaders = function () {
         if (this.IsLoggedIn())
             $.ajaxSetup({
                 headers: {'Authorization': this.GetToken()}
@@ -37,4 +46,3 @@ class Authentication {
 // Hard Coded Authentication
 new Authentication()
     .Login("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1NjJmZjdhODJiYmRmNTAzMDA2OGViOTIiLCJleHAiOjE0NDYwNzIyOTMyNTZ9.LM2Mzd0ZUP_UAZ45VfEhWgRGzO6Tzg3KPYuQIF2tJbw").SetHeaders();
-
