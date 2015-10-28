@@ -7,7 +7,8 @@ Token = Backbone.Model.extend({
     defaults: {
         email: '',
         token: '',
-        name: ''
+        name: '',
+        id: ''
     }
 });
 
