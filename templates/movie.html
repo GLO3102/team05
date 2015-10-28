@@ -1,0 +1,52 @@
+<script type="text/template" id="movie-template">
+    <div class=".container-fluid movie-general-container">
+
+        <h1><%=trackName%>
+        </h1>
+        <div>
+            <a href="<%=trackViewUrl%>"
+               style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a>
+        </div>
+        <div class="container-fluid cover-container">
+            <div>
+                <img class="img-responsive center-block"
+                     src="<%=artworkUrl100%>"/>
+            </div>
+        </div>
+        <div class="thumbnail movie-infos">
+            <div id="movie-info" class="container-fluid">
+                <div>
+                    <h4>Genre</h4>
+
+                    <div><span><%=primaryGenreName%></span></div>
+                </div>
+                <div>
+                    <h4>Release date</h4>
+
+                    <div><span><%=releaseDate.toLocaleDateString()%></span></div>
+                </div>
+                <div>
+                    <h4>MPAA rating</h4>
+
+                    <div><span><%=contentAdvisoryRating%></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="thumbnail">
+            <h4>Summary</h4>
+
+            <div class="d-td">
+                <%=longDescription%>
+            </div>
+        </div>
+        <div class="thumbnail">
+            <h4>Trailer</h4>
+            <div>
+                <video id="movie-trailer" controls>
+                    <source src="<%=previewUrl%>" type="video/webm">
+                </video>
+            </div>
+        </div>
+
+    </div>
+</script>

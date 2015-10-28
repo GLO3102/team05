@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/movie.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone.js" type="text/javascript"></script>
+    <title>test</title>
+</head>
+<script type="text/template" id="movie-template">
+    <div class=".container-fluid movie-general-container">
+
+        <h1><%=trackName%>
+        </h1>
+        <div>
+            <a href="<%=trackViewUrl%>"
+               style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a>
+        </div>
+        <div class="container-fluid cover-container">
+            <div>
+                <img class="img-responsive center-block"
+                     src="<%=artworkUrl100%>"/>
+            </div>
+        </div>
+        <div class="thumbnail movie-infos">
+            <div id="movie-info" class="container-fluid">
+                <div>
+                    <h4>Genre</h4>
+
+                    <div><span><%=primaryGenreName%></span></div>
+                </div>
+                <div>
+                    <h4>Release date</h4>
+
+                    <div><span><%=releaseDate.toLocaleDateString()%></span></div>
+                </div>
+                <div>
+                    <h4>MPAA rating</h4>
+
+                    <div><span><%=contentAdvisoryRating%></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="thumbnail">
+            <h4>Summary</h4>
+
+            <div class="d-td">
+                <%=longDescription%>
+            </div>
+        </div>
+        <div class="thumbnail">
+            <h4>Trailer</h4>
+            <div>
+                <video id="movie-trailer" controls>
+                    <source src="<%=previewUrl%>" type="video/webm">
+                </video>
+            </div>
+        </div>
+
+    </div>
+</script>
+<script type="text/template" id="actor-template">
+    <div class="container-fluid" id="wrapper">
+        <div class="row well">
+
+            <div class="col-sm-6 col-xs-12 actor-image-container">
+                <img src="<%=artworkUrl%>">
+            </div>
+            <div class="col-sm-6 col-xs-12 actor-description">
+                <h1><%=artistName%></h1>
+
+                <p><%=primaryGenreName%></p>
+
+                <div>
+                    <a href="<%=artistLinkUrl%>"
+                       style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:110px;height:40px;"></a>
+                </div>
+
+            </div>
+        </div>
+        <div class="actor-movie-list row">
+            <% _.each(movies.models, function(movie) { %><!--to modify-->
+            <div class="movie-item col-md-12 col-lg-6">
+                <div class="thumbnail media">
+                    <div class="movie-description">
+                        <div class="media-left movie-container">
+                            <img class="media-object movie-image"
+                                 src="<%= movie.get("movie.artworkUrl100") %>">
+                        </div>
+                        <div class="media-body movie-container">
+                            <h3 class="media-heading"><%= movie.get("trackName") %></h3>
+                            <%= movie.get("releaseDate").toLocaleDateString() %>
+                            <iframe width="100%" height="250" src="<%= movie.get("previewUrl") %>"
+                                    frameborder="0"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+</script>
+<body>
+    <div id="app-content"/>
+    <script src="Authentification.js"></script>
+    <script src="views/MovieView.js"></script>
+    <script src="movie.js"></script>
+    <script src="views/ActorView.js"></script>
+    <script src="actor.js"></script>
+    <script src="test-bootstrap.js"></script>
+</body>
+</html>
