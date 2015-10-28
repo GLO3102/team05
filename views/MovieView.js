@@ -17,3 +17,9 @@ var MovieView = Backbone.View.extend({
         this.$el.append(this.template(data));
     }
 });
+
+function showMovie(id){
+    var movie = new Movie({'id':id});
+    var movieView = new MovieView({el : $('#app-content'), model:movie});
+    movie.fetch({});
+}

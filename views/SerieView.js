@@ -1,6 +1,7 @@
-var ActorView = Backbone.View.extend({
+
+var SerieView = Backbone.View.extend({
     tagName:'div',
-    template: _.template($('#actor-template').html(), {}),
+    template: _.template($('#serie-template').html(), {}),
 
     initialize: function () {
         var self = this;
@@ -15,8 +16,8 @@ var ActorView = Backbone.View.extend({
     }
 });
 
-function showActor(id){
-    var actor = new Actor({'id':id});
-    var actorView = new ActorView({el : $('#app-content'), model:actor});
-    actor.fetch({});
+function showSerie(id){
+    var serie = new Serie({'id':id});
+    var serieView = new SerieView({el : $('#app-content'), model:serie});
+    serie.fetch({});
 }
