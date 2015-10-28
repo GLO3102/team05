@@ -11,27 +11,30 @@
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./node_modules/backbone/node_modules/underscore/underscore-min.js"></script>
     <script src="./node_modules/backbone/backbone-min.js"></script>
-    <script src=" Authentification.js"></script>
-    <script src="watchList.js"></script>
-    <script src="watchLists.js"></script>
-    <script src="js/moviejs.js"></script>
+
     <link rel="stylesheet" href="css/watchList.css">
 </head>
 <body>
-<div class="accordion">
+<div id="accordion">
 
 </div>
 
     <script type="text/template" id="watchLists-template">
         <% _.each(watchLists.models, function(watchList) { %>
+        <h3><%= watchList.get("name") %></h3>
         <a href="#" watchList-id="<%= watchList.id %>" class="thumbnail">
-            <h3><%= watchList.get("name") %></h3>
-            <div></div>
+            <div class="col-xs-10 col-md-2">
+            </div>
         </a>
 
         <% }); %>
 
     </script>
+    <script src=" Authentification.js"></script>
+    <script src="watchList.js"></script>
+    <script src="watchLists.js"></script>
+    <script src="watchListsView.js"></script>
+    <script src="js/moviejs.js"></script>
 
 
     <!--           <div class="col-xs-10 col-md-2">
