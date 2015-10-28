@@ -3,7 +3,7 @@ WatchListsView = Backbone.View.extend(
 
     template: _.template($('#watchLists-template').html()),
 
-    el: '.accordion',
+    el: '#accordion',
 
     initialize: function () {
     var self = this;
