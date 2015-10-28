@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./node_modules/backbone/node_modules/underscore/underscore-min.js"></script>
     <script src="./node_modules/backbone/backbone-min.js"></script>
@@ -15,26 +14,35 @@
     <link rel="stylesheet" href="css/watchList.css">
 </head>
 <body>
-<div id="accordion">
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
 </div>
 
     <script type="text/template" id="watchLists-template">
         <% _.each(watchLists.models, function(watchList) { %>
-        <h3><%= watchList.get("name") %></h3>
-        <a href="#" watchList-id="<%= watchList.id %>" class="thumbnail">
-            <div class="col-xs-10 col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading<%= watchList.id %>">
+                    <h4 class="panel-title">
+                        <a role="button" watchList-id="<%= watchList.id %>" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= watchList.id %>" aria-expanded="true" aria-controls="collapse<%= watchList.id %>">
+                            <%= watchList.get("name") %>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse<%= watchList.id %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading<%= watchList.id %>">
+                    <div class="panel-body">
+                        
+                    </div>
+                </div>
             </div>
-        </a>
 
-        <% }); %>
+              <% }); %>
 
-    </script>
-    <script src=" Authentification.js"></script>
+          </script>
+    <script src="Authentification.js"></script>
     <script src="watchList.js"></script>
     <script src="watchLists.js"></script>
     <script src="watchListsView.js"></script>
-    <script src="js/moviejs.js"></script>
+
 
 
     <!--           <div class="col-xs-10 col-md-2">
