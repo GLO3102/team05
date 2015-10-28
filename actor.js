@@ -6,6 +6,10 @@
 
 Actor = Backbone.Model.extend({
     urlRoot: 'https://umovie.herokuapp.com/actors/',
+    defaults: {
+        artworkUrl: '',
+        movies: []
+    },
     parse: function (response) {
         if (response.resultCount != 1) {
             alert("Actor not found");
@@ -29,8 +33,6 @@ Actor = Backbone.Model.extend({
     },
     setActorPicture: function (picture) {
         this.set("artworkUrl", picture);
-        $(document).trigger("artworkUrlLoad", picture);
-        // event listener :
-        //$( document ).on( "artworkUrlLoad",function(event,picture){alert(picture)});
+        this.trigger("sync", this);
     }
 });
