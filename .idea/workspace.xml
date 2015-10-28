@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="19de67f2-632c-401e-8ea1-a783f4347530" name="Default" comment="mit le menu dans la page de movie">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/images/The-Godfather.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/images/episode-1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/images/episode-2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/images/episode-3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/images/hell-on-wheels.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/images/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/images/user-placeholder.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/actor.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/views/app.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gulpfile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/layout.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/movie.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/serie.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movie.html" afterPath="$PROJECT_DIR$/movie.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="19de67f2-632c-401e-8ea1-a783f4347530" name="Default" comment="mit le menu dans la page de movie" />
     <ignored path="team05.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
