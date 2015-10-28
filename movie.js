@@ -6,11 +6,8 @@ Movie = Backbone.Model.extend({
     urlRoot: 'https://umovie.herokuapp.com/movies/',
     idAttribute: 'trackId',
     parse: function (response) {
-        if (response.resultCount != 1) {
-            alert("Movie not found");
-            return;
-        }
-        response = response.results[0];
+        if (response.hasOwnProperty("results"))
+            response = response.results;
         response.releaseDate = new Date(response.releaseDate);
         return response;
     }

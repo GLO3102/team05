@@ -3,9 +3,6 @@
  */
 
 ActorsMovies = Backbone.Collection.extend({
-    url: function () {
-        return 'https://umovie.herokuapp.com/actors/' + this.artistId + '/movies';
-    },
     model: Movie,
     parse: function (response) {
         return response.results;
@@ -26,14 +23,18 @@ Actor = Backbone.Model.extend({
         }
         response = response.results[0];
         this.getActorPicture(response.artistName);
+        this.getActorMovies();
         return response;
     },
     getActorMovies: function () {
         var self = this;
-        var movies = new ActorsMovies([], {artistId: this.get(idAttribute)});
-        movies.fetch().success(function (data) {
-            setActorMovies(data.models);
-        })
+        var movies = new ActorsMovies();
+        movies.url = this.urlRoot + this.get(this.idAttribute) + '/movies';
+        movies.fetch({
+            success: function (data) {
+                self.setActorMovies(data)
+            }
+        });
     },
     getActorPicture: function (actorName) {
         var self = this;
