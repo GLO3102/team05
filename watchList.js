@@ -7,6 +7,5 @@ WatchList = Backbone.Model.extend({
             "name": "",
             "id": ""
         },
-        "id": ""
     }
 });

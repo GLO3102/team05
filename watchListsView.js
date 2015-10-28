@@ -1,4 +1,4 @@
 WatchListsView = Backbone.View.extend(
-    
+
 
 )
