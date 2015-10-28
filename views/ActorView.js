@@ -16,7 +16,7 @@ var ActorView = Backbone.View.extend({
 });
 
 function showActor(id){
-    var actor = new Actor({'id':id});
+    var actor = new Actor({'artistId':id});
     var actorView = new ActorView({el : $('#app-content'), model:actor});
     actor.fetch({});
 }
