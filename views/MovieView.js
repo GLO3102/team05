@@ -12,6 +12,7 @@ var MovieView = Backbone.View.extend({
         });
     },
     render: function(){
+        this.$el.empty();
         var data = this.model.toJSON();
         this.$el.append(this.template(data));
     }

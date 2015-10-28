@@ -1,6 +1,6 @@
-var MovieView = Backbone.View.extend({
+var ActorView = Backbone.View.extend({
     tagName:'div',
-    template: _.template($('#movie-template').html(), {}),
+    template: _.template($('#actor-template').html(), {}),
 
     initialize: function () {
         var self = this;
@@ -9,6 +9,7 @@ var MovieView = Backbone.View.extend({
         });
     },
     render: function(){
+        this.$el.empty();
         var data = this.model.toJSON();
         this.$el.append(this.template(data));
     }

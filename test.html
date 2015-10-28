@@ -63,11 +63,55 @@
 
     </div>
 </script>
+<script type="text/template" id="actor-template">
+    <div class="container-fluid" id="wrapper">
+        <div class="row well">
+
+            <div class="col-sm-6 col-xs-12 actor-image-container">
+                <img src="<%=artworkUrl%>">
+            </div>
+            <div class="col-sm-6 col-xs-12 actor-description">
+                <h1><%=artistName%></h1>
+
+                <p><%=primaryGenreName%></p>
+
+                <div>
+                    <a href="<%=artistLinkUrl%>"
+                       style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:110px;height:40px;"></a>
+                </div>
+
+            </div>
+        </div>
+        <div class="actor-movie-list row">
+            <% _.each(movies, function(movie) { %><!--to modify-->
+            <div class="movie-item col-md-12 col-lg-6">
+                <div class="thumbnail media">
+                    <div class="movie-description">
+                        <div class="media-left movie-container">
+                            <img class="media-object movie-image"
+                                 src="<%=artworkUrl100%>">
+                        </div>
+                        <div class="media-body movie-container">
+                            <h3 class="media-heading"><%=trackName%></h3>
+                            <%=releaseDate.toLocaleDateString()%>
+                            <iframe width="100%" height="250" src="<%=previewUrl%>"
+                                    frameborder="0"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+</script>
 <body>
     <div id="app-content"/>
     <script src="Authentification.js"></script>
     <script src="views/MovieView.js"></script>
     <script src="movie.js"></script>
+    <script src="views/ActorView.js"></script>
+    <script src="actor.js"></script>
     <script src="test-bootstrap.js"></script>
 </body>
 </html>
