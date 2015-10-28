@@ -89,13 +89,12 @@
                     <div class="movie-description">
                         <div class="media-left movie-container">
                             <img class="media-object movie-image"
-                                 src="<%= movie.get(" movie.artworkUrl100") %>">
+                                 src="<%= movie.get("movie.artworkUrl100") %>">
                         </div>
                         <div class="media-body movie-container">
                             <h3 class="media-heading"><%= movie.get("trackName") %></h3>
                             <%= movie.get("releaseDate").toLocaleDateString() %>
-                            <iframe width="100%" height="250" src="<%= movie.get(" previewUrl
-                            ") %>"
+                            <iframe width="100%" height="250" src="<%= movie.get("previewUrl") %>"
                                     frameborder="0"
                                     allowfullscreen></iframe>
                         </div>
