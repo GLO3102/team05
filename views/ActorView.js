@@ -1,10 +1,7 @@
-/**
- * Created by marvin on 2015-10-28.
- */
-
 var MovieView = Backbone.View.extend({
     tagName:'div',
     template: _.template($('#movie-template').html(), {}),
+
     initialize: function () {
         var self = this;
         this.model.bind("sync", function () {
