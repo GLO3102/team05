@@ -13,11 +13,11 @@ Token = Backbone.Model.extend({
 
 function Authentication() {
     this.GetTokenId = function () {
-        return (new Token().fetch());
+        return localStorage.getItem("token");
     }
 
     this.GetUserAndTokenInfo = function () {
-        return localStorage.getItem("token");
+        return (new Token().fetch());
     }
 
     this.IsLoggedIn = function () {
