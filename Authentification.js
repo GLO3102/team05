@@ -37,7 +37,7 @@ function Authentication() {
     this.SetHeaders = function () {
         if (this.IsLoggedIn())
             $.ajaxSetup({
-                headers: {'Authorization': this.GetToken()}
+                headers: {'Authorization': this.GetTokenId()}
             });
         return this;
     }
