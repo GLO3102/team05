@@ -21,9 +21,11 @@
     <script type="text/template" id="watchLists-template">
         <% _.each(watchLists.models, function(watchList) { %>
             <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="heading<%= watchList.id %>">
+                <div class="panel-heading" watchList-id="<%= watchList.id %>" role="tab" id="heading<%= watchList.id %>">
+                    <div class="glyphicon glyphicon-pencil" ></div>
+                    <div class="glyphicon glyphicon-remove" ></div>
                     <h4 class="panel-title">
-                        <a role="button" watchList-id="<%= watchList.id %>" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= watchList.id %>" aria-expanded="true" aria-controls="collapse<%= watchList.id %>">
+                        <a role="button"  data-toggle="collapse" data-parent="#accordion" href="#collapse<%= watchList.id %>" aria-expanded="true" aria-controls="collapse<%= watchList.id %>">
                             <%= watchList.get("name") %>
                         </a>
                     </h4>
@@ -44,5 +46,6 @@
     <script src="watchList.js"></script>
     <script src="watchLists.js"></script>
     <script src="watchListsView.js"></script>
+    <script src="test-bootstrap.js"></script>
 </body>
 </html>

@@ -4,3 +4,13 @@
     width: 200px;
     border: solid black;
 }
+
+.glyphicon-pencil:hover {
+    color: greenyellow;
+}
+
+.glyphicon-remove:hover {
+    color: red;
+}
+
+
