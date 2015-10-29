@@ -1,0 +1,37 @@
+#welcome-carousel {
+    text-align: center;
+    width: 100%;
+    height:100%;
+    padding: 2%;
+}
+
+.caption-box {
+    margin-top: 10%;;
+}
+.caption-u {
+    color: #000;
+}
+.caption-m {
+    color: #8b0b65;
+}
+
+.sign-in-box {
+    float: right;
+    margin-right: 3%;
+
+}
+.sign-in-box .sign-in-button {
+    background-color: #8b0b65;
+    color: #fff;
+}
+.mdl-card_media img {
+    width: 100%;
+}
+.feature-card {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.mdl-card_supporting-text {
+    color: #8b0b65;
+}
