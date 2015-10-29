@@ -30,7 +30,9 @@
                 </div>
                 <div id="collapse<%= watchList.id %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading<%= watchList.id %>">
                     <div class="panel-body">
-                        
+                        <% if (watchList.get("movies").length == 0) { %>
+                        <div class="alert alert-danger" role="alert">This WatchList doesn't contain any movies.</div>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -42,98 +44,5 @@
     <script src="watchList.js"></script>
     <script src="watchLists.js"></script>
     <script src="watchListsView.js"></script>
-
-
-
-    <!--           <div class="col-xs-10 col-md-2">
-                   <a href="#" class="thumbnail">
-                       <img src="images/Movie.png" width="171px" height="180px">
-                   </a>
-               </div>
-
-               <div class="col-xs-10 col-md-2">
-                   <a href="#" class="thumbnail">
-                       <img src="images/Movie.png" width="171px" height="180px">
-                   </a>
-               </div>
-
-               <div class="col-xs-10 col-md-2">
-                   <a href="#" class="thumbnail">
-                       <img src="images/Movie.png" width="171px" height="180px">
-                   </a>
-               </div>
-
-
-               <div class="col-xs-10 col-md-2">
-                   <a href="#" class="thumbnail">
-                       <img src="images/Movie.png" width="171px" height="180px">
-                   </a>
-               </div>
-
-               <div class="col-xs-10 col-md-2">
-                   <a href="#" class="thumbnail">
-                       <img src="images/Movie.png" width="171px" height="180px">
-                   </a>
-               </div>
-
-               <div class="col-xs-10 col-md-2">
-                   <a href="#" class="thumbnail">
-                       <img src="images/Movie.png" width="171px" height="180px">
-                   </a>
-               </div>
-
-               <div class="col-xs-10 col-md-2">
-                   <a href="#" class="thumbnail">
-                       <img src="images/Movie.png" width="171px" height="180px">
-                   </a>
-               </div>
-
-               <div class="col-xs-10 col-md-2">
-                   <a href="#" class="thumbnail">
-                       <img src="images/Movie.png" width="171px" height="180px">
-                   </a>
-               </div>
-
-           </div>
-
-       </div>
-       <h3>Section 2</h3>
-       <div>
-
-           <div class="col-xs-10 col-md-2">
-               <a href="#" class="thumbnail">
-                   <img src="images/Movie.png" width="171px" height="180px">
-               </a>
-           </div>
-
-           <div class="col-xs-10 col-md-2">
-               <a href="#" class="thumbnail">
-                   <img src="images/Movie.png" width="171px" height="180px">
-               </a>
-           </div>
-
-           <div class="col-xs-10 col-md-2">
-               <a href="#" class="thumbnail">
-                   <img src="images/Movie.png" width="171px" height="180px">
-               </a>
-           </div>
-
-       </div>
-       <h3>Section 3</h3>
-       <div>
-
-           <div class="col-xs-10 col-md-2">
-               <a href="#" class="thumbnail">
-                   <img src="images/Movie.png" width="171px" height="180px">
-               </a>
-           </div>
-
-       </div>
-       <h3>Section 4</h3>
-       <div>
-           <div class="alert alert-danger" role="alert">This WatchList doesn't contain any movie.</div>
-       </div>-->
-
-
 </body>
 </html>

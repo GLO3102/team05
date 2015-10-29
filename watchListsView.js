@@ -14,6 +14,10 @@ WatchListsView = Backbone.View.extend(
     render: function () {
     this.$el.html(this.template({watchLists: this.collection}));
     return this;
+    },
+    addWatchList: function() {
+        new WatchList({name: "New watchList");
+        this.collection.create({'watchList':'this'})
     }
-
-    })
+    }
+);
