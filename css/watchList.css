@@ -13,4 +13,14 @@
     color: red;
 }
 
+.watchListOptions {
+    display: inline-block;
+    float: right;
+}
+
+#AddButton {
+    margin-bottom: 5px;
+}
+
+
 

@@ -6,7 +6,10 @@ WatchListsView = Backbone.View.extend(
         el: '#accordion',
 
         events: {
-            "click .glyphicon-remove": "deleteWatchList"
+            "click .glyphicon-remove": "deleteWatchList",
+            "click .glyphicon-pencil": "editWatchList",
+            "click  #AddButton": "addWatchList"
+
         },
 
         initialize: function () {
@@ -16,19 +19,37 @@ WatchListsView = Backbone.View.extend(
             });
         },
         render: function () {
+            var owner = auth.GetOwner();
             this.$el.html(this.template({watchLists: this.collection}));
             return this;
         },
         addWatchList: function () {
-            new WatchList({name: "New watchList"});
-            this.collection.create({'watchList': 'this'});
+            var watchList = new WatchList({movies:[], owner: auth.GetOwner()});
+            this.collection.create({});
+        },
+        deleteWatchList: function(event) {
+            var watchList = getSelectedWatchList(event, this.collection);
+            watchList.destroy();
         },
 
-        deleteWatchList: function (event) {
-            var watchListId = $(event.target).parent().attr("watchList-id");
-            var watchList = this.collection.get(watchListId);
-            watchList.destroy();
+        editWatchList: function(event) {
+            var watchListId = $(event.target).parent().parent().attr("watchList-id");
+            var watchList = $("#Title"+watchListId);
+            watchList.attr("contentEditable", true);
+            watchList.focus();
+            var self = this;
+            watchList.one("focusout", function () {
+                watchList.attr("contentEditable", false);
+                var myWatchList = self.collection.get(watchListId);
+                myWatchList.set('name',$(this).text());
+                myWatchList.save();
+            });
         }
+
+
     }
 );
-
+function getSelectedWatchList(event,collection) {
+    var watchListId = $(event.target).parent().parent().attr("watchList-id");
+    return  collection.get(watchListId);
+}
