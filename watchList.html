@@ -46,10 +46,15 @@
                         <% if (watchList.get("movies").length == 0) { %>
                         <div class="alert alert-danger" role="alert">This WatchList doesn't contain any movies.</div>
                         <% } %>
+
                         <% if (watchList.get("movies").length != 0) { %>
-                            <% _.each(watchList.get("movies"), function(movie) { %>
-                                <img src="<%= movie.artworkUrl100 %>">
-                            <% }); %>
+                            <div class ="movies">
+                                <% _.each(watchList.get("movies"), function(movie) { %>
+                                <div class ="movie">
+                                    <img src="<%= movie.artworkUrl100 %>">
+                                </div>
+                                <% }); %>
+                            </div>
                         <% } %>
 
                     </div>

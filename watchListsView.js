@@ -8,7 +8,7 @@ WatchListsView = Backbone.View.extend(
         events: {
             "click .glyphicon-remove": "deleteWatchList",
             "click .glyphicon-pencil": "editWatchList",
-            "click  #AddButton": "addWatchList"
+            "click  #AddButton": "addWatchList",
 
         },
 
@@ -19,13 +19,13 @@ WatchListsView = Backbone.View.extend(
             });
         },
         render: function () {
-            var owner = auth.GetOwner();
+            var owner = auth.GetUserAndTokenInfo().name;
             this.$el.html(this.template({watchLists: this.collection}));
             return this;
         },
         addWatchList: function () {
-            var watchList = new WatchList({movies:[], owner: auth.GetOwner()});
-            this.collection.create({});
+            var watchList = new WatchList({name:"MoonMoonCollection",movies:[], owner: auth.GetOwner()});
+            this.collection.create({watchList});
         },
         deleteWatchList: function(event) {
             var watchList = getSelectedWatchList(event, this.collection);
@@ -41,10 +41,13 @@ WatchListsView = Backbone.View.extend(
             watchList.one("focusout", function () {
                 watchList.attr("contentEditable", false);
                 var myWatchList = self.collection.get(watchListId);
-                myWatchList.set('name',$(this).text());
+                var newText = ($(this).text()).replace(/(\r\n|\n|\r)/gm,"");
+                myWatchList.set('name',newText);
                 myWatchList.save();
             });
-        }
+        },
+
+
 
 
     }
