@@ -17,10 +17,14 @@ function Authentication() {
         return localStorage.getItem("token");
     }
 
-    this.GetUserAndTokenInfo = function () {
+    this.GetUserAndTokenInfoWithCallback = function (callback) {
         var token = new Token();
-        token.fetch();
-        return token;
+        if (typeof(callback) == "function")
+            return token.fetch({
+                success: function(){callback(token)}
+            });
+        else
+            return token.fetch();
     }
     this.IsLoggedIn = function () {
         return this.GetTokenId() != null;
@@ -47,4 +51,4 @@ function Authentication() {
 
 // Hard Coded Authentication
 auth = new Authentication()
-    .Login("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1NjJmZjdhYzJiYmRmNTAzMDA2OGViOTMiLCJleHAiOjE0NDY1ODY4MzQwNTB9.UPX5Re8WDgGe0A44zc5M5K59nqRWUR5Kes4qWeP6LFY").SetHeaders();
+    .Login("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1NjJmZjdhODJiYmRmNTAzMDA2OGViOTIiLCJleHAiOjE0NDY1ODY3NDg5Mjh9.7qZTPuzrTtkIrALJeSZ4wgeM2J56ItQlFw_M3AmUPFM").SetHeaders();
