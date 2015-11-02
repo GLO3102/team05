@@ -1,7 +1,7 @@
 <script type="text/template" id="serie-template">
     <div id="tvshow-details">
         <div id="tvshow-title">
-            <h1><%=collectionName=></h1>
+            <h1><%=collectionName%></h1>
         </div>
         <div id="tvshow-release-date">
             <%=releaseDate.toLocaleDateString()%>
@@ -41,13 +41,13 @@
 
                     <div class="tvshow-information-title"> <h3>Episodes list</h3></div>
                     <div class="row">
-                        <% _.each(movies.episodes, function(episode) { %> <!--to modify-->
+                        <% _.each(episodes.model, function(episode) { %> <!--to modify-->
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="<%=artworkUrl100%>">
+                                <img src="<%=episode.get('artworkUrl100')%>">
 
                                 <div class="caption">
-                                    <h3><%=trackName%></h3>
+                                    <h3><%=episode.get('trackName')%></h3>
                                 </div>
                             </div>
                         </div>

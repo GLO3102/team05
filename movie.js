@@ -7,7 +7,7 @@ Movie = Backbone.Model.extend({
     idAttribute: 'trackId',
     parse: function (response) {
         if (response.hasOwnProperty("results"))
-            response = response.results;
+            response = response.results[0];
         response.releaseDate = new Date(response.releaseDate);
         return response;
     }

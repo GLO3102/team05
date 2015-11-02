@@ -17,7 +17,7 @@ var SerieView = Backbone.View.extend({
 });
 
 function showSerie(id){
-    var serie = new Serie({'id':id});
+    var serie = new Serie({'collectionId':id});
     var serieView = new SerieView({el : $('#app-content'), model:serie});
     serie.fetch({});
 }
