@@ -11,7 +11,6 @@ WatchListsView = Backbone.View.extend(
             "click  #AddButton": "addWatchList",
 
         },
-
         initialize: function () {
             var self = this;
             this.collection.bind("sync add remove", function () {

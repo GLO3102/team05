@@ -25,22 +25,6 @@ function searchImage(search, callback){
         })
 }
 
-function searchTrailer(search, callback){
-    if (typeof(callback) == "function")
-        return $.ajax({
-            data: 'v=1.0&q=' + encodeURI(search + " trailer"),
-            url: 'https://ajax.googleapis.com/ajax/services/search/video',
-            dataType: 'jsonp',
-            success: callback
-        })
-    else
-        return $.ajax({
-            data: 'v=1.0&q=' + encodeURI(search + " trailer"),
-            url: 'https://ajax.googleapis.com/ajax/services/search/video',
-            dataType: 'jsonp'
-        })
-}
-
 Actor = Backbone.Model.extend({
     urlRoot: 'https://umovie.herokuapp.com/actors/',
     defaults: {
@@ -73,8 +57,6 @@ Actor = Backbone.Model.extend({
         searchImage(actorName, function (response) {
             self.setActorPicture(response.responseData.results[0].unescapedUrl)
         });
-
-
     },
     setActorPicture: function (picture) {
         this.set("artworkUrl", picture);
