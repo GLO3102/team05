@@ -24,7 +24,7 @@ WatchListsView = Backbone.View.extend(
             return this;
         },
         addWatchList: function () {
-            var watchList = new WatchList({name:"MoonMoonCollection",movies:[], owner: auth.GetOwner()});
+            var watchList = new WatchList({name:"MoonMoonCollection",movies:[]});
             this.collection.create({watchList});
         },
         deleteWatchList: function(event) {

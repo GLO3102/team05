@@ -59,6 +59,10 @@
     right:0;
 }
 
+.panel-heading .panel-title {
+    min-height: 18px;
+}
+
 
 
 
