@@ -32,7 +32,7 @@
                     <div class="tvshow-information-title"><h3>Trailer</h3></div>
 
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="<%=previewUrl%>"></iframe><!-- pas preview de base, doit etre changer dans modele pour etre celui du premier episode-->
+                        <iframe class="embed-responsive-item" src="<%=parseYoutubeWatchLinkToEmbed(trailerUrl)%>"></iframe>
                     </div>
 
                 </div>
@@ -41,7 +41,7 @@
 
                     <div class="tvshow-information-title"> <h3>Episodes list</h3></div>
                     <div class="row">
-                        <% _.each(episodes.model, function(episode) { %> <!--to modify-->
+                        <% _.each(episodes.models, function(episode) { %>
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
                                 <img src="<%=episode.get('artworkUrl100')%>">
