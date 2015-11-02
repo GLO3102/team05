@@ -18,16 +18,10 @@ function Authentication() {
     }
 
     this.GetUserAndTokenInfo = function () {
-        return (new Token().fetch());
+        var token = new Token();
+        token.fetch();
+        return token;
     }
-    this.GetOwner= function(){
-        var token = new Token().fetch();
-        var ownerName = token.name;
-        var ownerEmail = token.email;
-        var ownerId = token.id;
-        return {name: ownerName, email: ownerEmail, ownerId: ownerId };
-    }
-
     this.IsLoggedIn = function () {
         return this.GetTokenId() != null;
     }
@@ -53,4 +47,4 @@ function Authentication() {
 
 // Hard Coded Authentication
 auth = new Authentication()
-    .Login("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1NjJmZjdhYzJiYmRmNTAzMDA2OGViOTMiLCJleHAiOjE0NDY0OTA1NjIyMzN9.9QSh246yCJb3Asc5yKGuDmXQsZBdupVr0ekrYBjyT2A").SetHeaders();
+    .Login("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1NjJmZjdhYzJiYmRmNTAzMDA2OGViOTMiLCJleHAiOjE0NDY1ODY4MzQwNTB9.UPX5Re8WDgGe0A44zc5M5K59nqRWUR5Kes4qWeP6LFY").SetHeaders();

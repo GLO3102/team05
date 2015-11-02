@@ -19,7 +19,7 @@ WatchListsView = Backbone.View.extend(
             });
         },
         render: function () {
-            var owner = auth.GetUserAndTokenInfo().name;
+            var owner = auth.GetUserAndTokenInfo().get('name');
             this.$el.html(this.template({watchLists: this.collection}));
             return this;
         },
