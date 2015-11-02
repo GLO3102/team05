@@ -1,21 +1,30 @@
-/**
- * Created by didia on 15-10-27.
- */
-
-define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
+define(['jquery', 'underscore', 'backbone', 'views/welcome', 'views/home'], function($, _,  Backbone, WelcomeView, HomeView) {
 
     var AppView = Backbone.View.extend({
         el: '#container',
-        template: _.template($("#container-template").html()),
+        userLoggedIn: false,
+
 
         initialize: function() {
+
             this.render();
         },
 
         render: function() {
-            this.$el.html(this.template());
+            this.showWelcomeView();
+        },
+
+        showWelcomeView: function() {
+            var welcomeView = new WelcomeView();
+            this.listenTo(welcomeView, 'goto-login', this.showHomeView);
+            this.$el.html(welcomeView.$el);
+        },
+
+        showHomeView: function() {
+            var homeView = new HomeView();
+            this.$el.html(homeView.$el);
         }
-    })
+    });
 
     return AppView;
 })

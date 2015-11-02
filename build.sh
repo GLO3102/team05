@@ -1,1 +1,2 @@
-gulp build
+npm install;
+gulp build;

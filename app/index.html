@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="styles/layout.css">
         <link rel="stylesheet" href="styles/main.css">
     </head>
     <body>
@@ -16,15 +17,78 @@
 
         </div>
 
-        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
-        <script data-main="scripts/app" src="lib/requirejs/require.js"></script>
+        <script type="text/template" id="menu-template">
+            <nav class="navbar navbar-default um-navbar-search">
+                <div class="navbar-header">
+                    <a class="navbar-brand hidden-xs um-navbar-brand" href="./index.html">
+                        <img src="./images/logo.png"/>
+                    </a>
+                </div>
 
-        <!-- Container template -->
+                <form class="form-inline navbar-form um-navbar-search-form" role="search">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                    </div>
+                </form>
 
-        <script type="text/template" id="container-template">
+                <ul class="nav navbar-nav navbar-right um-navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle um-user-profile" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img class="um-profile-picture" src="./images/user-placeholder.jpg" />
+                            <span class="um-username"> John Doe </span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"> Settings </a></li>
+                            <li><a href="#"> Logout </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="navbar navbar-default um-navbar">
+
+                <div class="navbar-header um-navbar-header">
+                    <ul class="nav nav-stacked um-navbar-list">
+                        <li><a href="./index.html"><span class="glyphicon glyphicon-home um-navbar-icon"> </span> <span
+                            class="um-navbar-label"> Home </span></a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-list um-navbar-icon"> </span> <span
+                            class="um-navbar-label"> Watchlists </span></a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-film um-navbar-icon"> </span> <span
+                            class="um-navbar-label"> Movies </span></a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-star-empty um-navbar-icon"></span> <span
+                            class="um-navbar-label"> Movies Stars </span></a></li>
+                        <li class="um-navbar-user-more">
+                            <a href="#" data-toggle="collapse" data-target="#um-user-navigation-menu" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user um-navbar-icon"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse" id="um-user-navigation-menu">
+                    <ul class="nav navbar-nav">
+                        <li><a span="um-username"> John Doe </a></li>
+                        <li><a href="#"> Settings </a></li>
+                        <li><a href="#"> Logout </a></li>
+                    </ul>
+                </div>
+            </nav>
+        </script>
+        <script type="text/template" id="home-page-template">
+            <div id="menu-content">
+
+            </div>
+
+            <div id="app-content">
+
+            </div>
+
+        </script>
+        <script type="text/template" id="welcome-page-template">
             <div id="welcome-carousel">
                 <div class="sign-in-box">
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Sign in</button>
+                    <button  id="sign-in-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Sign in</button>
                 </div>
                 <div class="caption-box">
                     <img class="logo" src="./images/logo.png" />
@@ -74,6 +138,10 @@
                 </div>
             </div>
         </script>
+
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+        <script data-main="scripts/app" src="lib/requirejs/require.js"></script>
+
 
 
 </body>
