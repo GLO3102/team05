@@ -1,4 +1,17 @@
 WatchListCollection = Backbone.Collection.extend({
     url: 'https://umovie.herokuapp.com/watchlists',
     model: WatchList,
+
+    filterByOwner: function(owner){
+        var watchListCollection = new Array();
+        this.each(function(watchList){
+            var myOwner = watchList.get("owner");
+            if( myOwner.id == owner.id )
+            {
+                watchListCollection.push(watchList);
+            }
+        })
+        this.reset(watchListCollection);
+        return this;
+    }
 });

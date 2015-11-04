@@ -5,6 +5,8 @@ WatchListsView = Backbone.View.extend(
 
         el: '#accordion',
 
+        token: null,
+
         events: {
             "click .glyphicon-remove": "deleteWatchList",
             "click .glyphicon-pencil": "editWatchList",
@@ -14,13 +16,22 @@ WatchListsView = Backbone.View.extend(
 
         initialize: function () {
             var self = this;
+
             this.collection.bind("sync add remove", function () {
                 self.render();
             });
+            auth.GetUserAndTokenInfoWithCallback(function(token){
+                self.token = token ;
+                self.trigger("sync", this);});
         },
+
+
         render: function () {
-            var owner = auth.GetUserAndTokenInfo().get('name');
-            this.$el.html(this.template({watchLists: this.collection}));
+            if(this.token != null){
+            var owner = {email: this.token.get("email"), name: this.token.get("name"),  id: this.token.id};
+                this.$el.html(this.template({watchLists: this.collection.filterByOwner(owner)}));
+                alert(this.collection.filterByOwner(owner).length);
+            }
             return this;
         },
         addWatchList: function () {
