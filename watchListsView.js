@@ -15,7 +15,7 @@ WatchListsView = Backbone.View.extend(
         },
         initialize: function () {
             var self = this;
-
+            _.bindAll(this, 'render' );
             this.collection.bind("sync add remove", function () {
                 self.render();
             });
@@ -29,7 +29,6 @@ WatchListsView = Backbone.View.extend(
             if(this.token != null){
             var owner = {email: this.token.get("email"), name: this.token.get("name"),  id: this.token.id};
                 this.$el.html(this.template({watchLists: this.collection.filterByOwner(owner)}));
-                alert(this.collection.filterByOwner(owner).length);
             }
             return this;
         },

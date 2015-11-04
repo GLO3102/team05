@@ -51,4 +51,4 @@ function Authentication() {
 
 // Hard Coded Authentication
 auth = new Authentication()
-    .Login("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1NjJmZjdhODJiYmRmNTAzMDA2OGViOTIiLCJleHAiOjE0NDY1ODY3NDg5Mjh9.7qZTPuzrTtkIrALJeSZ4wgeM2J56ItQlFw_M3AmUPFM").SetHeaders();
+    .Login("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1NjJmZjdhYzJiYmRmNTAzMDA2OGViOTMiLCJleHAiOjE0NDY2OTY2MTMzOTl9.gN7DpnBC5Z0K9N5tmiu5g2Nl3XEmPRf7b98LmOqGnHY").SetHeaders();
