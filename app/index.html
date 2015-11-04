@@ -8,7 +8,11 @@
         <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="styles/layout.css">
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/movie.css">
+        <link rel="stylesheet" href="styles/serie.css">
+        <link rel="stylesheet" href="styles/actor.css">
     </head>
     <body>
 
@@ -16,15 +20,74 @@
 
         </div>
 
-        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
-        <script data-main="scripts/app" src="lib/requirejs/require.js"></script>
+        <script type="text/template" id="menu-template">
+            <nav class="navbar navbar-default um-navbar-search">
+                <div class="navbar-header">
+                    <a class="navbar-brand hidden-xs um-navbar-brand" href="./index.html">
+                        <img src="./images/logo.png"/>
+                    </a>
+                </div>
 
-        <!-- Container template -->
+                <form class="form-inline navbar-form um-navbar-search-form" role="search">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                    </div>
+                </form>
 
-        <script type="text/template" id="container-template">
+                <ul class="nav navbar-nav navbar-right um-navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle um-user-profile" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img class="um-profile-picture" src="./images/user-placeholder.jpg" />
+                            <span class="um-username"> John Doe </span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"> Settings </a></li>
+                            <li><a href="#"> Logout </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="navbar navbar-default um-navbar">
+
+                <div class="navbar-header um-navbar-header">
+                    <ul class="nav nav-stacked um-navbar-list">
+                        <li><a href="./index.html"><span class="glyphicon glyphicon-home um-navbar-icon"> </span> <span
+                            class="um-navbar-label"> Home </span></a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-list um-navbar-icon"> </span> <span
+                            class="um-navbar-label"> Watchlists </span></a></li>
+                        <li><a href="#" class="movie-page-link" data-movie-id="265727087"><span class="glyphicon glyphicon-film um-navbar-icon"> </span> <span
+                            class="um-navbar-label"> Movies </span></a></li>
+                        <li><a href="#" class="actor-page-link" data-actor-id="272994458"><span class="glyphicon glyphicon-star-empty um-navbar-icon"></span> <span
+                            class="um-navbar-label"> Movies Stars </span></a></li>
+                        <li class="um-navbar-user-more">
+                            <a href="#" data-toggle="collapse" data-target="#um-user-navigation-menu" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user um-navbar-icon"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse" id="um-user-navigation-menu">
+                    <ul class="nav navbar-nav">
+                        <li><a span="um-username"> John Doe </a></li>
+                        <li><a href="#"> Settings </a></li>
+                        <li><a href="#"> Logout </a></li>
+                    </ul>
+                </div>
+            </nav>
+        </script>
+
+        <script type="text/template" id="home-page-template">
+            <div id="menu-content"></div>
+            <div id="app-content"></div>
+        </script>
+
+        <script type="text/template" id="welcome-page-template">
             <div id="welcome-carousel">
                 <div class="sign-in-box">
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Sign in</button>
+                    <button  id="sign-in-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Sign in</button>
                 </div>
                 <div class="caption-box">
                     <img class="logo" src="./images/logo.png" />
@@ -74,6 +137,168 @@
                 </div>
             </div>
         </script>
+
+        <script type="text/template" id="actor-page-template">
+            <div class="container-fluid" id="wrapper">
+                <div class="row well">
+
+                    <div class="col-sm-6 col-xs-12 actor-image-container">
+                        <img src="<%=artworkUrl%>">
+                    </div>
+                    <div class="col-sm-6 col-xs-12 actor-description">
+                        <h1><%=artistName%></h1>
+
+                        <p><%=primaryGenreName%></p>
+
+                        <div>
+                            <a href="<%=artistLinkUrl%>"
+                               style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:110px;height:40px;"></a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="actor-movie-list row">
+                    <% _.each(movies.models, function(movie) { %><!--to modify-->
+                    <div class="movie-item col-md-12 col-lg-6">
+                        <div class="thumbnail media">
+                            <div class="movie-description">
+                                <div class="media-left movie-container">
+                                    <img class="media-object movie-image"
+                                         src="<%= movie.get('movie.artworkUrl100') %>">
+                                </div>
+                                <div class="media-body movie-container">
+                                    <h3 class="media-heading"><%= movie.get("trackName") %></h3>
+                                    <%= movie.get("releaseDate").toLocaleDateString() %>
+                                    <iframe width="100%" height="250" src="<%= parseYoutubeWatchLinkToEmbed(movie.get('previewUrl')) %>"
+                                            frameborder="0"
+                                            allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/template" id="movie-page-template">
+            <div class=".container-fluid movie-general-container">
+
+                <h1><%=trackName%>
+                </h1>
+                <div>
+                    <a href="<%=trackViewUrl%>"
+                       style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a>
+                </div>
+                <div class="container-fluid cover-container">
+                    <div>
+                        <img class="img-responsive center-block"
+                             src="<%=artworkUrl100%>"/>
+                    </div>
+                </div>
+                <div class="thumbnail movie-infos">
+                    <div id="movie-info" class="container-fluid">
+                        <div>
+                            <h4>Genre</h4>
+
+                            <div><span><%=primaryGenreName%></span></div>
+                        </div>
+                        <div>
+                            <h4>Release date</h4>
+
+                            <div><span><%=releaseDate.toLocaleDateString()%></span></div>
+                        </div>
+                        <div>
+                            <h4>MPAA rating</h4>
+
+                            <div><span><%=contentAdvisoryRating%></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumbnail">
+                    <h4>Summary</h4>
+
+                    <div class="d-td">
+                        <%=longDescription%>
+                    </div>
+                </div>
+                <div class="thumbnail">
+                    <h4>Trailer</h4>
+                    <div>
+                        <iframe width="100%" height="250" src="<%= parseYoutubeWatchLinkToEmbed(movie.get('previewUrl')) %>"
+                                frameborder="0"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </script>
+
+        <script type="text/template" id="serie-page-template">
+            <div id="tvshow-details">
+                <div id="tvshow-title">
+                    <h1><%=collectionName%></h1>
+                </div>
+                <div id="tvshow-release-date">
+                    <%=releaseDate.toLocaleDateString()%>
+                </div>
+
+                <a href="<%=collectionViewUrl%>" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a>
+
+                <div id="tvshow-image">
+                    <img src="<%=artworkUrl100%>">
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="tvshow-information-title"><h3>Genre</h3></div>
+
+                        <div class="tvshow-informations">
+                            <%=primaryGenreName%>
+                        </div>
+
+                        <div class="tvshow-information-title"><h3>Description</h3></div>
+
+                        <div class="tvshow-informations">
+                            <%=longDescription%>
+                        </div>
+                        <hr>
+                        <div id="tvshow-preview">
+
+                            <div class="tvshow-information-title"><h3>Trailer</h3></div>
+
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="<%=parseYoutubeWatchLinkToEmbed(trailerUrl)%>"></iframe>
+                            </div>
+
+                        </div>
+
+                        <div id="tvshow-series">
+
+                            <div class="tvshow-information-title"> <h3>Episodes list</h3></div>
+                            <div class="row">
+                                <% _.each(episodes.models, function(episode) { %>
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <img src="<%=episode.get('artworkUrl100')%>">
+
+                                        <div class="caption">
+                                            <h3><%=episode.get('trackName')%></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }); %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+        <script data-main="scripts/app" src="lib/requirejs/require.js"></script>
+
 
 
 </body>

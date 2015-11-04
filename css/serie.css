@@ -31,8 +31,9 @@
     height: auto;
 }
 #app-content .thumbnail{
-    min-height: 150px;
-    max-height: 150px;
+    min-height: 180px;
+    max-height: 180px;
+    overflow-y: hidden;
 }
 .caption h3{
     font-size: 18px;

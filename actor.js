@@ -9,6 +9,22 @@ ActorsMovies = Backbone.Collection.extend({
     }
 });
 
+function searchImage(search, callback){
+    if (typeof(callback) == "function")
+        return $.ajax({
+            data: 'imgsz=medium&v=1.0&q=' + encodeURI(search + " actor"),
+            url: 'https://ajax.googleapis.com/ajax/services/search/images',
+            dataType: 'jsonp',
+            success: callback
+        })
+    else
+        return $.ajax({
+            data: 'imgsz=medium&v=1.0&q=' + encodeURI(search + " actor"),
+            url: 'https://ajax.googleapis.com/ajax/services/search/images',
+            dataType: 'jsonp'
+        })
+}
+
 Actor = Backbone.Model.extend({
     urlRoot: 'https://umovie.herokuapp.com/actors/',
     defaults: {
@@ -38,13 +54,8 @@ Actor = Backbone.Model.extend({
     },
     getActorPicture: function (actorName) {
         var self = this;
-        $.ajax({
-            data: 'imgsz=medium&v=1.0&q=' + encodeURI(actorName + " actor"),
-            url: 'https://ajax.googleapis.com/ajax/services/search/images',
-            dataType: 'jsonp',
-            success: function (response) {
-                self.setActorPicture(response.responseData.results[0].unescapedUrl)
-            }
+        searchImage(actorName, function (response) {
+            self.setActorPicture(response.responseData.results[0].unescapedUrl)
         });
     },
     setActorPicture: function (picture) {

@@ -13,7 +13,6 @@ WatchListsView = Backbone.View.extend(
             "click  #AddButton": "addWatchList",
 
         },
-
         initialize: function () {
             var self = this;
 
