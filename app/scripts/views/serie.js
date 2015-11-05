@@ -6,7 +6,7 @@ define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
 
     var SerieView = Backbone.View.extend({
         tagName:'div',
-        template: _.template($('#serie-page-template').html(), {}),
+        template: _.template($('#serie-page-template').html()),
 
         initialize: function () {
             var self = this;

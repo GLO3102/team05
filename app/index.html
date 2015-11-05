@@ -58,7 +58,7 @@
                             class="um-navbar-label"> Home </span></a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-list um-navbar-icon"> </span> <span
                             class="um-navbar-label"> Watchlists </span></a></li>
-                        <li><a href="#" class="movie-page-link" data-movie-id="265727087"><span class="glyphicon glyphicon-film um-navbar-icon"> </span> <span
+                        <li><a href="#" class="movie-page-link" data-movie-id="380040080"><span class="glyphicon glyphicon-film um-navbar-icon"> </span> <span
                             class="um-navbar-label"> Movies </span></a></li>
                         <li><a href="#" class="actor-page-link" data-actor-id="272994458"><span class="glyphicon glyphicon-star-empty um-navbar-icon"></span> <span
                             class="um-navbar-label"> Movies Stars </span></a></li>
@@ -238,10 +238,10 @@
         <script type="text/template" id="serie-page-template">
             <div id="tvshow-details">
                 <div id="tvshow-title">
-                    <h1><%=collectionName%></h1>
+                    <h1><%= collectionName %></h1>
                 </div>
                 <div id="tvshow-release-date">
-                    <%=releaseDate.toLocaleDateString()%>
+                    <%= releaseDate.toLocaleDateString() %>
                 </div>
 
                 <a href="<%=collectionViewUrl%>" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a>
@@ -255,13 +255,13 @@
                         <div class="tvshow-information-title"><h3>Genre</h3></div>
 
                         <div class="tvshow-informations">
-                            <%=primaryGenreName%>
+                            <%= primaryGenreName %>
                         </div>
 
                         <div class="tvshow-information-title"><h3>Description</h3></div>
 
                         <div class="tvshow-informations">
-                            <%=longDescription%>
+                            <%= longDescription %>
                         </div>
                         <hr>
                         <div id="tvshow-preview">
@@ -284,7 +284,7 @@
                                         <img src="<%=episode.get('artworkUrl100')%>">
 
                                         <div class="caption">
-                                            <h3><%=episode.get('trackName')%></h3>
+                                            <h3><%= episode.get('trackName' )%></h3>
                                         </div>
                                     </div>
                                 </div>

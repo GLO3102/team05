@@ -1,4 +1,4 @@
-define(['underscore', 'backbone'], function(_, Backbone) {
+define(['underscore', 'backbone', 'models/movie'], function(_, Backbone, Movie) {
 
     var ActorsMovies = Backbone.Collection.extend({
         model: Movie,
