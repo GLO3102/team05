@@ -84,10 +84,7 @@
 
                             <div class="col-md-8">
 
-                                <select>
-                                    <% _.each(watchLists.models, function(watchList) { %>
-                                    <option value="volvo">watchList.get("name")</option>
-                                    <% }); %>
+                                <select id="WatchListSelector">
                                 </select>
 
                             </div>
@@ -214,6 +211,7 @@
     <script src="actor.js"></script>
     <script src="views/SerieView.js"></script>
     <script src="serie.js"></script>
+    <script src="watchList.js"></script>
     <script src="watchLists.js"></script>
     <script src="test-bootstrap.js"></script>
 </body>
