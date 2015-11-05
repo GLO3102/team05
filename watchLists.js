@@ -13,5 +13,8 @@ WatchListCollection = Backbone.Collection.extend({
         })
         this.reset(watchListCollection);
         return this;
+    },
+    getWatchListById(id){
+        return this.findWhere({id:id});
     }
 });
