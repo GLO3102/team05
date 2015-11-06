@@ -8,5 +8,10 @@ WatchList = Backbone.Model.extend({
             "name": "",
             "id": ""
         },
-    }
+    },
+    addMovie: function(movie){
+        this.get('movies').push(movie);
+        this.save();
+    },
+
 });
