@@ -44,14 +44,15 @@
                 <div id="collapse<%= watchList.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= watchList.id %>">
                     <div class="panel-body">
                         <% if (watchList.get("movies").length == 0) { %>
-                        <div class="alert alert-danger" role="alert">This WatchList doesn't contain any movies.</div>
+                            <div class="alert alert-danger" role="alert">This WatchList doesn't contain any movies.</div>
                         <% } %>
 
                         <% if (watchList.get("movies").length != 0) { %>
                             <div class ="movies">
                                 <% _.each(watchList.get("movies"), function(movie) { %>
                                 <div class ="movie">
-                                    <img src="<%= movie.artworkUrl100 %>">
+                                    <a role="button"><span type="button" class="glyphicon glyphicon-trash delete-button" aria-hidden="true"></span></a>
+                                    <img src="<%= movie.artworkUrl100 %>" width="180px" height="200px">
                                 </div>
                                 <% }); %>
                             </div>

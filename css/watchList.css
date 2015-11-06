@@ -45,24 +45,25 @@
     -webkit-animation-timing-function: linear;
 }
 
-
-
 .movie {
     position: relative;
-
 }
+
 .movie {
     margin-right: 10px;
 }
-.movie .glyphicon-trash {
+
+.movie .delete-button{
     position: absolute;
-    right:0;
+    top: -90px;
+    right: 6px;
+    z-index: 200;
+}
+
+.movie .delete-button:hover{
+    color : red;
 }
 
 .panel-heading .panel-title {
     min-height: 18px;
 }
-
-
-
-
