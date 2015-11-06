@@ -48,7 +48,7 @@ var MovieView = Backbone.View.extend({
     addMovieToWatchList: function(){
         var id = $('#WatchListSelector :selected').attr("value");
         var watchList = this.watchLists.getWatchListById(id);
-        watchList.save();
+        watchList.addMovie(this.model);
 
     }
 });
