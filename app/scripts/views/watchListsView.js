@@ -38,7 +38,7 @@ WatchListsView = Backbone.View.extend(
 
             if($('.watchListName').val().trim().length == 0){
                 $('.add-watchList-alert').show("slow");
-                //setTimeout(function() { $(".add-watchList-alert").hide("slow"); }, 5000)
+                setTimeout(function() { $(".add-watchList-alert").hide("slow"); }, 5000)
             }
             else{
                 var owner = {
@@ -63,11 +63,15 @@ WatchListsView = Backbone.View.extend(
             watchList.focus();
             var self = this;
             watchList.one("focusout", function () {
-                watchList.attr("contentEditable", false);
                 var myWatchList = self.collection.get(watchListId);
                 var newText = ($(this).text()).replace(/(\r\n|\n|\r)/gm,"");
-                myWatchList.set('name',newText);
-                myWatchList.save();
+                if(newText.trim().length !== 0){
+                    myWatchList.set('name',newText);
+                    myWatchList.save();
+                    watchList.attr("contentEditable", false);
+                }else{
+                    self.render();
+                }
             });
         },
         deleteMovieFromWatchList: function(event){
