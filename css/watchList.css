@@ -67,3 +67,7 @@
 .panel-heading .panel-title {
     min-height: 18px;
 }
+
+.add-watchList-alert{
+    display: none;
+}

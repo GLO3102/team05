@@ -20,7 +20,7 @@
 </div>
 
     <script type="text/template" id="watchLists-template">
-        <button type="button" id ="AddButton" class="btn btn-danger">Add Watchlist</button>
+        <button type="button" id ="AddButton" class="btn btn-danger" data-toggle="modal" data-target="#newWatchList">Add Watchlist</button>
         <% _.each(watchLists.models, function(watchList) { %>
             <div class="panel panel-default">
                 <div class="panel-heading"  role="tab" id="heading<%= watchList.id %>">
@@ -37,8 +37,6 @@
                             <div class="glyphicon glyphicon-pencil" ></div>
                             <div class="glyphicon glyphicon-remove" ></div>
                         </div>
-
-
                     </h4>
                 </div>
                 <div id="collapse<%= watchList.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= watchList.id %>">
@@ -59,14 +57,36 @@
                                 <% }); %>
                             </div>
                         <% } %>
-
                     </div>
                 </div>
             </div>
 
               <% }); %>
 
-          </script>
+        <div class="modal fade" id="newWatchList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add WatchList</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4"><h4>New watchList name</h4></div>
+                            <div class="col-md-6"><input type="text" class="form-control watchListName"></div>
+                        </div>
+                        <div class="alert alert-danger add-watchList-alert" role="alert">Add WatchList name</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary watchListSaveButton">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </script>
+
     <script src="Authentification.js"></script>
     <script src="app/scripts/models/watchList.js"></script>
     <script src="app/scripts/collections/watchLists.js"></script>
