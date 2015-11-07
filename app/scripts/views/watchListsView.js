@@ -38,7 +38,7 @@ WatchListsView = Backbone.View.extend(
 
             if($('.watchListName').val().trim().length == 0){
                 $('.add-watchList-alert').show("slow");
-                setTimeout(function() { $(".add-watchList-alert").hide("slow"); }, 5000)
+                //setTimeout(function() { $(".add-watchList-alert").hide("slow"); }, 5000)
             }
             else{
                 var owner = {
