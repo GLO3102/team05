@@ -333,25 +333,25 @@
         </script>
 
         <script type="text/template" id="watchLists-template">
-            <button type="button" id ="AddButton" class="btn btn-danger">Add Watchlist</button>
+            <button type="button" id ="AddButton" class="btn btn-danger" data-toggle="modal" data-target="#newWatchList">Add Watchlist</button>
             <% _.each(watchLists.models, function(watchList) { %>
             <div class="panel panel-default">
                 <div class="panel-heading"  role="tab" id="heading<%= watchList.id %>">
                     <h4 class="panel-title"   watchList-id="<%= watchList.id %>"  >
-                        <a role="button" id="Title<%= watchList.id %>" contenteditable="false" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= watchList.id %>" aria-expanded="false" aria-controls="collapse<%= watchList.id %>">
+                        <div id="Title<%= watchList.id %>" contenteditable="false">
                             <% if (watchList.get("name").length == 0) { %>
                             Name your watch List
                             <% } %>
                             <% if (watchList.get("name").length != 0) { %>
                             <%= watchList.get("name") %>
                             <% } %>
-                        </a>
-                        <div class="watchListOptions" >
-                            <div class="glyphicon glyphicon-pencil" ></div>
-                            <div class="glyphicon glyphicon-remove" ></div>
                         </div>
 
-
+                        <div class="watchListOptions" >
+                            <a class="glyphicon glyphicon-collapse-down" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= watchList.id %>" aria-expanded="false" aria-controls="collapse<%= watchList.id %>">Open</a>
+                            <a class="glyphicon glyphicon-pencil" href="#">Edit</a>
+                            <a class="glyphicon glyphicon-remove" href="#">Remove</a>
+                        </div>
                     </h4>
                 </div>
                 <div id="collapse<%= watchList.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= watchList.id %>">
@@ -372,11 +372,31 @@
                             <% }); %>
                         </div>
                         <% } %>
-
                     </div>
                 </div>
             </div>
+
             <% }); %>
+
+            <div class="modal fade" id="newWatchList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Add WatchList</h4>
+                        </div>
+                        <div class="modal-body">
+                                <h4>Name:</h4> <input type="text" class="form-control watchListName">
+                            <div class="alert alert-danger add-watchList-alert" role="alert">Enter WatchList name</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary watchListSaveButton">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </script>
 
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>

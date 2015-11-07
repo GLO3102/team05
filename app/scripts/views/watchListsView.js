@@ -9,8 +9,6 @@ define(['jquery', 'underscore', 'backbone', 'libraries/Authentification'], funct
 
         template: _.template($('#watchLists-template').html()),
 
-        el: '#accordion',
-
         token: null,
 
         events: {

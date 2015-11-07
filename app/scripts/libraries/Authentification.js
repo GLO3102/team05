@@ -29,9 +29,9 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
             }
             else {
                 var token = new Token({
-                    email: 'bill@gates.com',
-                    name: 'Bill',
-                    id: '123'
+                    email: 'aziz@gmail.com',
+                    name: 'moahmed',
+                    id: '562ff7ac2bbdf5030068eb93'
                 });
                 if (typeof(callback) == "function")
                     callback(token);
@@ -62,6 +62,6 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
         }
     }
 
-    return new Authentication();
+    return new Authentication().Logout();
 })
 ;

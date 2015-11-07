@@ -22,7 +22,7 @@ define('gapi', ['async!https://apis.google.com/js/client.js!onload'], function()
 });
 
 require([
-    'backbone', 'views/app'
+    'backbone', 'views/app', 'bootstrap'
 ], function (Backbone, AppView) {
     Backbone.history.start();
     new AppView();
