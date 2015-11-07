@@ -27,11 +27,16 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
                 else
                     return token.fetch();
             }
-            return new Token({
-                email: 'bill@gates.com',
-                name: 'Bill',
-                id: '123'
-            });
+            else {
+                var token = new Token({
+                    email: 'bill@gates.com',
+                    name: 'Bill',
+                    id: '123'
+                });
+                if (typeof(callback) == "function")
+                    callback(token);
+                else return token
+            }
         }
 
         this.IsLoggedIn = function () {
@@ -58,4 +63,5 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
     }
 
     return new Authentication();
-});
+})
+;
