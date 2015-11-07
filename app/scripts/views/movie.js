@@ -44,6 +44,7 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
             var id = $('#WatchListSelector :selected').attr("value");
             var watchList = this.watchLists.getWatchListById(id);
             watchList.addMovie(this.model);
+            $('#myModal').modal('hide');
         }
     });
 
