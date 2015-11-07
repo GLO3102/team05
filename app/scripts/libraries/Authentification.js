@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
+define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
 
     Token = Backbone.Model.extend({
         urlRoot: 'https://umovie.herokuapp.com/tokenInfo',
@@ -16,15 +16,22 @@ define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
         }
 
         this.GetUserAndTokenInfoWithCallback = function (callback) {
-            var token = new Token();
-            if (typeof(callback) == "function")
-                return token.fetch({
-                    success: function () {
-                        callback(token)
-                    }
-                });
-            else
-                return token.fetch();
+            if (this.IsLoggedIn()) {
+                var token = new Token();
+                if (typeof(callback) == "function")
+                    return token.fetch({
+                        success: function () {
+                            callback(token)
+                        }
+                    });
+                else
+                    return token.fetch();
+            }
+            return new Token({
+                email: 'bill@gates.com',
+                name: 'Bill',
+                id: '123'
+            });
         }
 
         this.IsLoggedIn = function () {
@@ -50,6 +57,5 @@ define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
         }
     }
 
-    return new Authentication()
-        .Login("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1NjJmZjdhYzJiYmRmNTAzMDA2OGViOTMiLCJleHAiOjE0NDY5NDc0MDc5Mjl9.LKKOLqt4t8KY-Tf7VatecjsKbjt69iUzNTn7a8xMGSI").SetHeaders();
+    return new Authentication();
 });
