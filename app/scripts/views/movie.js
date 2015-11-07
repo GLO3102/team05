@@ -49,12 +49,5 @@ define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
         }
     });
 
-    function showMovie(id){
-        var movie = new Movie({'trackId':id});
-        var movieView = new MovieView({el : $('#app-content'), model:movie});
-        movie.fetch({});
-    }
-
-
     return MovieView;
 });
