@@ -30,6 +30,12 @@
 #app-content .thumbnail img{
     height: auto;
 }
+
+#app-content .serie-episode-thumbnail{
+    min-height: 180px;
+    max-height: 180px;
+    overflow-y: hidden;
+}
 .caption h3{
     font-size: 18px;
 }

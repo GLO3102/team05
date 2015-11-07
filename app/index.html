@@ -96,48 +96,7 @@
                     <img class="logo" src="./images/logo.png" />
                     <h1> <span class="caption-u">U</span>r <span class="caption-m">M</span>ovie library </h1>
                 </div>
-                <div class="features-box">
-                    <a href="./movie.html">
-                        <div class="mdl-card mdl-shadow--2dp feature-card">
-                            <div class="mdl-card_title">
-                                <h2 class="mdl-card_supporting-text"> Ur Movies </h2>
-                            </div>
-                            <div class="mdl-card_media">
-                                <img src="http://blogs-images.forbes.com/scottmendelson/files/2015/08/LwoaE.jpg"/>
-                            </div>
-                            <div class="mdl-card_supporting-text">
-                            </div>
-                        </div>
-                    </a>
-                    <a href="./serie.html">
-                        <div class="mdl-card mdl-shadow--2dp feature-card">
-                            <div class="mdl-card_title">
-                                <h2 class="mdl-card_supporting-text"> Ur Series </h2>
-                            </div>
-                            <div class="mdl-card_media">
-                                <img src="http://images.amcnetworks.com/amctvasia.com/wp-content/uploads/2015/01/how.jpg" />
-                            </div>
-                            <div class="mdl-card_supporting-text">
 
-                            </div>
-                        </div>
-                    </a>
-                    <a href="./actor.html">
-                        <div class="mdl-card mdl-shadow--2dp feature-card">
-
-                            <div class="mdl-card_title">
-                                <h2 class="mdl-card_supporting-text"> Ur Stars </h2>
-                            </div>
-                            <div class="mdl-card_media">
-                                <img src="https://images.susu.org/unionfilms/films/backgrounds/hd/some-like-it-hot.jpg" />
-                            </div>
-                            <div class="mdl-card_supporting-text">
-
-                            </div>
-
-                        </div>
-                    </a>
-                </div>
             </div>
         </script>
 
@@ -228,8 +187,8 @@
                 </div>
                 <div class="thumbnail">
                     <h4>Trailer</h4>
-                    <div>
-                        <iframe width="100%" height="250" src="<%= youtubeUrl%>"
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="<%= youtubeUrl%>"
                                 frameborder="0"
                                 allowfullscreen></iframe>
                     </div>
@@ -316,7 +275,7 @@
                             <div class="row">
                                 <% _.each(episodes.models, function(episode) { %>
                                 <div class="col-sm-6 col-md-4">
-                                    <div class="thumbnail">
+                                    <div class="thumbnail serie-episode-thumbnail">
                                         <img src="<%=episode.get('artworkUrl100')%>">
 
                                         <div class="caption">
