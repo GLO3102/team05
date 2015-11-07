@@ -1,4 +1,4 @@
-define(['underscore', 'backbone'], function(_, Backbone) {
+define(['underscore', 'backbone', 'libraries/youtube'], function(_, Backbone, Youtube) {
 
     var SerieEpisode = Backbone.Model.extend({
         defaults: {}
@@ -14,7 +14,7 @@ define(['underscore', 'backbone'], function(_, Backbone) {
     var Serie = Backbone.Model.extend({
         urlRoot: 'https://umovie.herokuapp.com/unsecure/tvshows/season/',
         defaults: {
-            trailerUrl: '',
+            youtubeUrl: '',
             episodes: []
         },
         idAttribute: "collectionId",
@@ -40,18 +40,14 @@ define(['underscore', 'backbone'], function(_, Backbone) {
             });
         },
         getSerieTrailer: function (serieName) {
-            var self = this;//to do plug youtube API
-            /*$.ajax({
-             data: 'imgsz=medium&v=1.0&q=' + encodeURI((serieName) + " actor"),
-             url: 'https://ajax.googleapis.com/ajax/services/search/images',
-             dataType: 'jsonp',
-             success: function (response) {
-             self.setActorPicture(response.responseData.results[0].unescapedUrl);
-             }
-             });*/
+            var self = this;
+            var query = serieName + " trailer";
+            Youtube.findFirstVideoUrl(query, function(url) {
+               self.setYoutubeUrl(url);
+            });
         },
-        setActorPicture: function (trailerUrl) {
-            this.set("trailerUrl", trailerUrl);
+        setYoutubeUrl: function (trailerUrl) {
+            this.set("youtubeUrl", trailerUrl);
             this.trigger("sync", this);
         },
         setSerieEpisodes: function (episodes) {
