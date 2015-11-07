@@ -7,6 +7,8 @@ WatchListsView = Backbone.View.extend(
 
         token: null,
 
+        owner:{},
+
         events: {
             "click .glyphicon-remove": "deleteWatchList",
             "click .glyphicon-pencil": "editWatchList",
@@ -27,9 +29,10 @@ WatchListsView = Backbone.View.extend(
 
         render: function () {
             if(this.token != null){
-            var owner = {email: this.token.get("email"), name: this.token.get("name"),  id: this.token.id};
-                this.$el.html(this.template({watchLists: this.collection.filterByOwner(owner)}));
+                this.owner = {email: this.token.get("email"), name: this.token.get("name"),  id: this.token.id};
+                this.$el.html(this.template({watchLists: this.collection.filterByOwner(this.owner)}));
             }
+
             return this;
         },
         addWatchList: function () {
@@ -40,7 +43,6 @@ WatchListsView = Backbone.View.extend(
             var watchList = getSelectedWatchList(event, this.collection);
             watchList.destroy();
         },
-
         editWatchList: function(event) {
             var watchListId = $(event.target).parent().parent().attr("watchList-id");
             var watchList = $("#Title"+watchListId);
@@ -72,6 +74,6 @@ function getSelectedWatchList(event,collection) {
 function showWatchLists(){
     var myWatchLists = new WatchListCollection();
     myWatchLists.fetch();
-    var myWatchListView = new WatchListsView({collection:myWatchLists});
+    var myWatchListView = new WatchListsView({collection:myWatchLists.filterByOwner(owner)});
     myWatchListView.render();
 }

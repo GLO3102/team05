@@ -26,6 +26,7 @@ function Authentication() {
         else
             return token.fetch();
     }
+
     this.IsLoggedIn = function () {
         return this.GetTokenId() != null;
     }
@@ -51,4 +52,4 @@ function Authentication() {
 
 // Hard Coded Authentication
 auth = new Authentication()
-    .Login("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1NjJmZjdhYzJiYmRmNTAzMDA2OGViOTMiLCJleHAiOjE0NDY4MzM2NTk3OTV9.hNSq-GncervobcZdlo8oL50_1yN4_VhbH1u4x5PaL6c").SetHeaders();
+    .Login("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1NjJmZjdhYzJiYmRmNTAzMDA2OGViOTMiLCJleHAiOjE0NDY5NDc0MDc5Mjl9.LKKOLqt4t8KY-Tf7VatecjsKbjt69iUzNTn7a8xMGSI").SetHeaders();
