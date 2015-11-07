@@ -61,7 +61,9 @@ define(['underscore', 'backbone', 'models/movie'], function(_, Backbone, Movie) 
             this.trigger("sync", this);
         },
         setActorMovies: function (movies) {
+            var self = this;
             this.set("movies", movies);
+            movies.on("sync",function(){self.trigger("sync", this)})
             this.trigger("sync", this);
         }
     });
