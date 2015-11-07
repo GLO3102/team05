@@ -14,4 +14,19 @@ WatchList = Backbone.Model.extend({
         this.save();
     },
 
+    deleteMovie: function(movieId){
+        var movies = this.get('movies');
+        var indexOfMovieToBeRemoved;
+        for(var i =0; i< movies.length; i++) {
+            if (movies[i].trackId == movieId) {
+                indexOfMovieToBeRemoved = i;
+            }
+        }
+         if(indexOfMovieToBeRemoved >=0)
+         {
+             movies.splice(indexOfMovieToBeRemoved,1);
+         }
+        this.save();
+    }
+
 });

@@ -50,8 +50,10 @@
                         <% if (watchList.get("movies").length != 0) { %>
                             <div class ="movies">
                                 <% _.each(watchList.get("movies"), function(movie) { %>
-                                <div class ="movie">
-                                    <a role="button"><span type="button" class="glyphicon glyphicon-trash delete-button" aria-hidden="true"></span></a>
+                                <div class ="movie" >
+                                    <a role="button" class="delete-movie" watchList-id="<%= watchList.id %>" movie-id="<%= movie.trackId %>">
+                                        <span class="glyphicon glyphicon-trash delete-movie-button" aria-hidden="true"></span>
+                                    </a>
                                     <img src="<%= movie.artworkUrl100 %>" width="180px" height="200px">
                                 </div>
                                 <% }); %>

@@ -11,7 +11,7 @@ WatchListsView = Backbone.View.extend(
             "click .glyphicon-remove": "deleteWatchList",
             "click .glyphicon-pencil": "editWatchList",
             "click  #AddButton": "addWatchList",
-
+            "click  .delete-movie" : "deleteMovieFromWatchList"
         },
         initialize: function () {
             var self = this;
@@ -34,7 +34,7 @@ WatchListsView = Backbone.View.extend(
         },
         addWatchList: function () {
             var watchList = new WatchList({name:"MoonMoonCollection",movies:[]});
-            this.collection.create({watchList});
+            this.collection.create({watchList:watchList});
         },
         deleteWatchList: function(event) {
             var watchList = getSelectedWatchList(event, this.collection);
@@ -55,9 +55,12 @@ WatchListsView = Backbone.View.extend(
                 myWatchList.save();
             });
         },
-
-
-
+        deleteMovieFromWatchList: function(event){
+            var movieId = $(event.target).parent().attr("movie-id");
+            var watchListId = $(event.target).parent().attr("watchList-id");
+            var watchList = this.collection.getWatchListById(watchListId);
+            watchList.deleteMovie(movieId);
+        }
 
     }
 );
