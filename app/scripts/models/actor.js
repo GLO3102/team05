@@ -24,7 +24,7 @@ define(['underscore', 'backbone', 'models/movie'], function(_, Backbone, Movie) 
     }
 
     var Actor = Backbone.Model.extend({
-        urlRoot: 'https://umovie.herokuapp.com/actors/',
+        urlRoot: 'https://umovie.herokuapp.com/unsecure/actors/',
         defaults: {
             artworkUrl: '',
             movies: []

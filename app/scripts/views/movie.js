@@ -2,7 +2,7 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
 
     var MovieView = Backbone.View.extend({
         tagName:'div',
-        template: _.template($('#movie-template').html(), {}),
+        template: _.template($('#movie-page-template').html()),
         token: null,
         watchLists: new WatchListCollection(),
         events: {

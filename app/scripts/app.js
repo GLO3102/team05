@@ -12,8 +12,13 @@ require.config({
         jquery: '../lib/jquery/dist/jquery',
         backbone: '../lib/backbone/backbone',
         underscore: '../lib/lodash/dist/lodash',
-        bootstrap: '../lib/bootstrap/dist/js/bootstrap'
+        bootstrap: '../lib/bootstrap/dist/js/bootstrap',
+        async: '../lib/requirejs-plugins/src/async'
     }
+});
+
+define('gapi', ['async!https://apis.google.com/js/client.js!onload'], function() {
+    return gapi.client;
 });
 
 require([

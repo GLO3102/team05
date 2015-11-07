@@ -1,7 +1,3 @@
-/**
- * Created by didia on 15-11-03.
- */
-
 define(['underscore', 'backbone'], function(_, Backbone) {
 
     var SerieEpisode = Backbone.Model.extend({
@@ -16,7 +12,7 @@ define(['underscore', 'backbone'], function(_, Backbone) {
     });
 
     var Serie = Backbone.Model.extend({
-        urlRoot: 'https://umovie.herokuapp.com/tvshows/season/',
+        urlRoot: 'https://umovie.herokuapp.com/unsecure/tvshows/season/',
         defaults: {
             trailerUrl: '',
             episodes: []

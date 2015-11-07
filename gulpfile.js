@@ -11,4 +11,4 @@ gulp.task('bower', function() {
 
 gulp.task('build', ['bower']);
 
-
+gulp.task('default', ['build'])

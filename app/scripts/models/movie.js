@@ -1,8 +1,7 @@
-
-define(['underscore', 'backbone'], function(_, Backbone) {
+define(['underscore', 'backbone', 'libraries/youtube'], function(_, Backbone, Youtube) {
 
     var Movie = Backbone.Model.extend({
-        urlRoot: 'https://umovie.herokuapp.com/movies/',
+        urlRoot: 'https://umovie.herokuapp.com/unsecure/movies/',
         idAttribute: 'trackId',
         defaults: {
             youtubeUrl: ''
@@ -16,8 +15,9 @@ define(['underscore', 'backbone'], function(_, Backbone) {
         },
         getMovieVideoURL: function (trackName) {
             var self = this;
-            searchTrailer(trackName, function (response) {
-                self.setMovieVideoURL(response.responseData.results[0].url)
+            var query = trackName + " " + "trailer";
+            Youtube.findFirstVideoUrl(query, function(url) {
+               self.setMovieVideoURL(url);
             });
         },
         setMovieVideoURL: function (trailer) {
