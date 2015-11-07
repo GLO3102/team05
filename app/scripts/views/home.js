@@ -22,7 +22,7 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         },
 
         goToMovie: function(event) {
-            var movie_id = $(event.target).data('movie-id');
+            var movie_id = $(event.target).closest('a').data('movie-id');
             var movie = new Movie({'trackId': movie_id});
             var movieView = new MovieView({model: movie});
             movie.fetch({});
@@ -30,15 +30,14 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         },
 
         goToActor: function(event) {
-            var actor_id = $(event.target).data('actor-id');
+            var actor_id = $(event.target).closest('a').data('actor-id');
             var actor = new Actor({'artistId':actor_id});
             var actorView = new ActorView({model:actor});
             actor.fetch({});
             this.$(this.bodyEl).html(actorView.$el);
         },
-
         goToSerie: function(event) {
-            var serie_id = $(event.target).data('serie-id');
+            var serie_id = $(event.target).closest('a').data('serie-id');
             var serie = new Serie({'collectionId':serie_id});
             var serieView = new SerieView({el : $('#app-content'), model:serie});
             serie.fetch({});

@@ -1,18 +1,14 @@
-define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
+define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/Authentification'], function($, _,  Backbone, WatchListCollection, auth) {
 
     var MovieView = Backbone.View.extend({
         tagName:'div',
         template: _.template($('#movie-template').html(), {}),
-
         token: null,
-
         watchLists: new WatchListCollection(),
-
         events: {
             "click  #addToWatchListButton": "loadWatchLists",
             "click  #SaveMovie": "addMovieToWatchList"
         },
-
         initialize: function () {
             var self = this;
             this.model.bind("sync", function () {
@@ -26,7 +22,7 @@ define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
         render: function(){
             this.$el.empty();
             var data = this.model.toJSON();
-            this.$el.append(this.template(data));
+            this.$el.html(this.template(data));
 
         },
         loadWatchLists:function(){
@@ -48,13 +44,6 @@ define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
             watchList.addMovie(this.model);
         }
     });
-
-    function showMovie(id){
-        var movie = new Movie({'trackId':id});
-        var movieView = new MovieView({el : $('#app-content'), model:movie});
-        movie.fetch({});
-    }
-
 
     return MovieView;
 });
