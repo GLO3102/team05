@@ -290,7 +290,12 @@
         </script>
 
         <script type="text/template" id="watchLists-template">
-            <button type="button" id ="AddButton" class="btn btn-danger" data-toggle="modal" data-target="#newWatchList">Add Watchlist</button>
+            <div class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control watchListName">
+                <button type="button" class="btn btn-primary watchListSaveButton">Add Watchlist</button>
+            </div>
+            </div>
             <% _.each(watchLists.models, function(watchList) { %>
             <div class="panel panel-default">
                 <div class="panel-heading"  role="tab" id="heading<%= watchList.id %>">
@@ -334,25 +339,6 @@
             </div>
 
             <% }); %>
-
-            <div class="modal fade" id="newWatchList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Add WatchList</h4>
-                        </div>
-                        <div class="modal-body">
-                                <h4>Name:</h4> <input type="text" class="form-control watchListName">
-                            <div class="alert alert-danger add-watchList-alert" role="alert">Enter WatchList name</div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary watchListSaveButton">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </script>
 
