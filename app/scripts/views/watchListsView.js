@@ -68,3 +68,10 @@ function getSelectedWatchList(event,collection) {
     var watchListId = $(event.target).parent().parent().attr("watchList-id");
     return  collection.get(watchListId);
 }
+
+function showWatchLists(){
+    var myWatchLists = new WatchListCollection();
+    myWatchLists.fetch();
+    var myWatchListView = new WatchListsView({collection:myWatchLists});
+    myWatchListView.render();
+}
