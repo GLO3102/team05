@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor'], function($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView) {
+define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'bootstrap'], function($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, bootstrap) {
 
     var HomeView = Backbone.View.extend({
         tagName: 'div',

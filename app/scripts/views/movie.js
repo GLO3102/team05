@@ -27,6 +27,7 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
         },
         loadWatchLists:function(){
             $('#WatchListSelector').empty();
+
             if(this.token != null){
                 var owner = {email: this.token.get("email"), name: this.token.get("name"),  id: this.token.id};
             }
@@ -37,6 +38,7 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
                     $('#WatchListSelector').append($('<option>', { value : watchList.id }).text(watchList.get("name")));
                 })
             });
+            setTimeout(function(){$('#myModal').modal();},50);
         },
         addMovieToWatchList: function(){
             var id = $('#WatchListSelector :selected').attr("value");
