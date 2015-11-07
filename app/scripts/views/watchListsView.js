@@ -85,7 +85,7 @@ define(['jquery', 'underscore', 'backbone', 'libraries/Authentification'], funct
                 }
             });
         },
-        
+
         deleteMovieFromWatchList: function (event) {
             var movieId = $(event.target).parent().attr("movie-id");
             var watchListId = $(event.target).parent().attr("watchList-id");

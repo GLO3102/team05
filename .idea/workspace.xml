@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19de67f2-632c-401e-8ea1-a783f4347530" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/libraries/Authentification.js" afterPath="$PROJECT_DIR$/app/scripts/libraries/Authentification.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/models/actor.js" afterPath="$PROJECT_DIR$/app/scripts/models/actor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/views/home.js" afterPath="$PROJECT_DIR$/app/scripts/views/home.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/models/serie.js" afterPath="$PROJECT_DIR$/app/scripts/models/serie.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/collections/watchLists.js" afterPath="$PROJECT_DIR$/app/scripts/collections/watchLists.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/views/movie.js" afterPath="$PROJECT_DIR$/app/scripts/views/movie.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/views/watchListsView.js" afterPath="$PROJECT_DIR$/app/scripts/views/watchListsView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="team05.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/app/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="5.7058825">
-              <caret line="272" column="47" selection-start-line="272" selection-start-column="41" selection-end-line="272" selection-end-column="47" />
+              <caret line="273" column="47" selection-start-line="273" selection-start-column="41" selection-end-line="273" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -44,6 +44,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="72" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -69,16 +79,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="serie.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/serie.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -89,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="home.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/views/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="57" column="31" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.056710776">
+              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -119,11 +119,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="watchListsView.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="watchListsView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/views/watchListsView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.9640832">
-              <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -174,8 +174,8 @@
         <option value="$PROJECT_DIR$/app/scripts/collections/watchLists.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/scripts/models/serie.js" />
-        <option value="$PROJECT_DIR$/app/scripts/views/home.js" />
         <option value="$PROJECT_DIR$/app/scripts/views/watchListsView.js" />
+        <option value="$PROJECT_DIR$/app/scripts/views/home.js" />
       </list>
     </option>
   </component>
@@ -711,14 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="82" selection-start-line="19" selection-start-column="82" selection-end-line="19" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/views/movie.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -802,7 +794,7 @@
     <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="5.7058825">
-          <caret line="272" column="47" selection-start-line="272" selection-start-column="41" selection-end-line="272" selection-end-column="47" />
+          <caret line="273" column="47" selection-start-line="273" selection-start-column="41" selection-end-line="273" selection-end-column="47" />
           <folding />
         </state>
       </provider>
@@ -831,18 +823,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/views/home.js">
+    <entry file="file://$PROJECT_DIR$/app/scripts/views/watchListsView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="31" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
+          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/views/watchListsView.js">
+    <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.9640832">
-          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/views/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.056710776">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
           <folding />
         </state>
       </provider>
