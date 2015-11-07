@@ -1,7 +1,7 @@
 define(['gapi'], function(gapi) {
 
         var API_KEY = "AIzaSyCcpnMFLYcKVv2tIceMlUWX-1MD6UxQdeM";
-        var YOUTUBE_URL_PRE = "https://www.youtube.com/watch?v=";
+        var YOUTUBE_URL_PRE = "https://www.youtube.com/embed/";
         gapi.setApiKey(API_KEY);
 
         function buildRequest(query) {
