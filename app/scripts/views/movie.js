@@ -22,7 +22,7 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
         render: function(){
             this.$el.empty();
             var data = this.model.toJSON();
-            this.$el.append(this.template(data));
+            this.$el.html(this.template(data));
 
         },
         loadWatchLists:function(){
