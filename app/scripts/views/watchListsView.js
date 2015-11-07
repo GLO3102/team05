@@ -7,12 +7,10 @@ WatchListsView = Backbone.View.extend(
 
         token: null,
 
-        owner:{},
-
         events: {
             "click .glyphicon-remove": "deleteWatchList",
             "click .glyphicon-pencil": "editWatchList",
-            "click  #AddButton": "addWatchList",
+            "click .watchListSaveButton ": "addWatchList",
             "click  .delete-movie" : "deleteMovieFromWatchList"
         },
         initialize: function () {
@@ -29,20 +27,35 @@ WatchListsView = Backbone.View.extend(
 
         render: function () {
             if(this.token != null){
-                this.owner = {email: this.token.get("email"), name: this.token.get("name"),  id: this.token.id};
-                this.$el.html(this.template({watchLists: this.collection.filterByOwner(this.owner)}));
+            var owner = {email: this.token.get("email"), name: this.token.get("name"),  id: this.token.id};
+                this.$el.html(this.template({watchLists: this.collection.filterByOwner(owner)}));
             }
-
             return this;
         },
+
         addWatchList: function () {
-            var watchList = new WatchList({name:"MoonMoonCollection",movies:[]});
-            this.collection.create({watchList:watchList});
+            var self = this;
+
+            if($('.watchListName').val().trim().length == 0){
+                $('.add-watchList-alert').show("slow");
+                //setTimeout(function() { $(".add-watchList-alert").hide("slow"); }, 5000)
+            }
+            else{
+                var owner = {
+                    email: this.token.get("email"),
+                    name: this.token.get("name"),
+                    id: this.token.id
+                };
+                self.collection.create({name:$('.watchListName').val(),movies:[],owner: owner});
+                $('.modal-backdrop').remove();
+            }
         },
+
         deleteWatchList: function(event) {
             var watchList = getSelectedWatchList(event, this.collection);
             watchList.destroy();
         },
+
         editWatchList: function(event) {
             var watchListId = $(event.target).parent().parent().attr("watchList-id");
             var watchList = $("#Title"+watchListId);
@@ -63,7 +76,6 @@ WatchListsView = Backbone.View.extend(
             var watchList = this.collection.getWatchListById(watchListId);
             watchList.deleteMovie(movieId);
         }
-
     }
 );
 function getSelectedWatchList(event,collection) {
@@ -71,9 +83,15 @@ function getSelectedWatchList(event,collection) {
     return  collection.get(watchListId);
 }
 
+function validateWatchListInputName(){
+
+
+
+}
+
 function showWatchLists(){
     var myWatchLists = new WatchListCollection();
     myWatchLists.fetch();
-    var myWatchListView = new WatchListsView({collection:myWatchLists.filterByOwner(owner)});
+    var myWatchListView = new WatchListsView({collection:myWatchLists});
     myWatchListView.render();
 }
