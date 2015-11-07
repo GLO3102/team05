@@ -1,18 +1,14 @@
-define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
+define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/Authentification'], function($, _,  Backbone, WatchListCollection, auth) {
 
     var MovieView = Backbone.View.extend({
         tagName:'div',
         template: _.template($('#movie-template').html(), {}),
-
         token: null,
-
         watchLists: new WatchListCollection(),
-
         events: {
             "click  #addToWatchListButton": "loadWatchLists",
             "click  #SaveMovie": "addMovieToWatchList"
         },
-
         initialize: function () {
             var self = this;
             this.model.bind("sync", function () {
