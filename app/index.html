@@ -231,6 +231,39 @@
                                 allowfullscreen></iframe>
                     </div>
                 </div>
+                <button id="addToWatchListButton" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                    Add To WatchList
+                </button>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">WatchLists List</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        WatchLists
+                                    </div>
+
+                                    <div class="col-md-8">
+
+                                        <select id="WatchListSelector">
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" id ="SaveMovie" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 
             </div>
         </script>
@@ -294,6 +327,53 @@
                     </div>
                 </div>
             </div>
+        </script>
+
+        <script type="text/template" id="watchLists-template">
+            <button type="button" id ="AddButton" class="btn btn-danger">Add Watchlist</button>
+            <% _.each(watchLists.models, function(watchList) { %>
+            <div class="panel panel-default">
+                <div class="panel-heading"  role="tab" id="heading<%= watchList.id %>">
+                    <h4 class="panel-title"   watchList-id="<%= watchList.id %>"  >
+                        <a role="button" id="Title<%= watchList.id %>" contenteditable="false" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= watchList.id %>" aria-expanded="false" aria-controls="collapse<%= watchList.id %>">
+                            <% if (watchList.get("name").length == 0) { %>
+                            Name your watch List
+                            <% } %>
+                            <% if (watchList.get("name").length != 0) { %>
+                            <%= watchList.get("name") %>
+                            <% } %>
+                        </a>
+                        <div class="watchListOptions" >
+                            <div class="glyphicon glyphicon-pencil" ></div>
+                            <div class="glyphicon glyphicon-remove" ></div>
+                        </div>
+
+
+                    </h4>
+                </div>
+                <div id="collapse<%= watchList.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= watchList.id %>">
+                    <div class="panel-body">
+                        <% if (watchList.get("movies").length == 0) { %>
+                        <div class="alert alert-danger" role="alert">This WatchList doesn't contain any movies.</div>
+                        <% } %>
+
+                        <% if (watchList.get("movies").length != 0) { %>
+                        <div class ="movies">
+                            <% _.each(watchList.get("movies"), function(movie) { %>
+                            <div class ="movie" >
+                                <a role="button" class="delete-movie" watchList-id="<%= watchList.id %>" movie-id="<%= movie.trackId %>">
+                                    <span class="glyphicon glyphicon-trash delete-movie-button" aria-hidden="true"></span>
+                                </a>
+                                <img src="<%= movie.artworkUrl100 %>" width="180px" height="200px">
+                            </div>
+                            <% }); %>
+                        </div>
+                        <% } %>
+
+                    </div>
+                </div>
+            </div>
+            <% }); %>
         </script>
 
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>

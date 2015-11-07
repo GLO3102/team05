@@ -53,14 +53,14 @@
     margin-right: 10px;
 }
 
-.movie .delete-button{
+.movie .delete-movie-button{
     position: absolute;
     top: -90px;
     right: 6px;
     z-index: 200;
 }
 
-.movie .delete-button:hover{
+.movie .delete-movie-button:hover{
     color : red;
 }
 

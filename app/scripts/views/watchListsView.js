@@ -7,11 +7,13 @@ WatchListsView = Backbone.View.extend(
 
         token: null,
 
+        owner:{},
+
         events: {
             "click .glyphicon-remove": "deleteWatchList",
             "click .glyphicon-pencil": "editWatchList",
             "click  #AddButton": "addWatchList",
-
+            "click  .delete-movie" : "deleteMovieFromWatchList"
         },
         initialize: function () {
             var self = this;
@@ -27,20 +29,20 @@ WatchListsView = Backbone.View.extend(
 
         render: function () {
             if(this.token != null){
-            var owner = {email: this.token.get("email"), name: this.token.get("name"),  id: this.token.id};
-                this.$el.html(this.template({watchLists: this.collection.filterByOwner(owner)}));
+                this.owner = {email: this.token.get("email"), name: this.token.get("name"),  id: this.token.id};
+                this.$el.html(this.template({watchLists: this.collection.filterByOwner(this.owner)}));
             }
+
             return this;
         },
         addWatchList: function () {
             var watchList = new WatchList({name:"MoonMoonCollection",movies:[]});
-            this.collection.create({watchList});
+            this.collection.create({watchList:watchList});
         },
         deleteWatchList: function(event) {
             var watchList = getSelectedWatchList(event, this.collection);
             watchList.destroy();
         },
-
         editWatchList: function(event) {
             var watchListId = $(event.target).parent().parent().attr("watchList-id");
             var watchList = $("#Title"+watchListId);
@@ -55,13 +57,23 @@ WatchListsView = Backbone.View.extend(
                 myWatchList.save();
             });
         },
-
-
-
+        deleteMovieFromWatchList: function(event){
+            var movieId = $(event.target).parent().attr("movie-id");
+            var watchListId = $(event.target).parent().attr("watchList-id");
+            var watchList = this.collection.getWatchListById(watchListId);
+            watchList.deleteMovie(movieId);
+        }
 
     }
 );
 function getSelectedWatchList(event,collection) {
     var watchListId = $(event.target).parent().parent().attr("watchList-id");
     return  collection.get(watchListId);
+}
+
+function showWatchLists(){
+    var myWatchLists = new WatchListCollection();
+    myWatchLists.fetch();
+    var myWatchListView = new WatchListsView({collection:myWatchLists.filterByOwner(owner)});
+    myWatchListView.render();
 }
