@@ -22,8 +22,8 @@ define('gapi', ['async!https://apis.google.com/js/client.js!onload'], function()
 });
 
 require([
-    'backbone', 'views/app', 'bootstrap'
-], function (Backbone, AppView) {
+    'backbone', 'views/app', 'bootstrap','collections/searchMovies', 'collections/searchActors'
+], function (Backbone, AppView, Bootstrap, SearchMovies, SearchActors) {
     Backbone.history.start();
     new AppView();
 });
