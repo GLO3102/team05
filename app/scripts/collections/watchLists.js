@@ -1,7 +1,7 @@
-define(['jquery', 'underscore', 'backbone','models/watchList'], function($, _,  Backbone, WatchList) {
+define(['jquery', 'underscore', 'backbone','models/watchList', 'libraries/Authentification'], function($, _,  Backbone, WatchList) {
 
     WatchListCollection = Backbone.Collection.extend({
-        url: 'https://umovie.herokuapp.com/unsecure/watchlists',
+        url: 'https://umovie.herokuapp.com/watchlists',
         model: WatchList,
 
         filterByOwner: function (owner) {

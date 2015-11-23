@@ -90,7 +90,20 @@
         <script type="text/template" id="welcome-page-template">
             <div id="welcome-carousel">
                 <div class="sign-in-box">
-                    <button  id="sign-in-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Sign in</button>
+
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label class="sr-only" for="email-input">Email address</label>
+                            <input type="email" class="form-control" id="email-input" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="password-input">Password</label>
+                            <input type="password" class="form-control" id="password-input" placeholder="Password">
+                        </div>
+                        <button  id="sign-in-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Sign in</button>
+                    </div>
+
+
                 </div>
                 <div class="caption-box">
                     <img class="logo" src="./images/logo.png" />

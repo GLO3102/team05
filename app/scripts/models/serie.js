@@ -1,4 +1,4 @@
-define(['underscore', 'backbone', 'libraries/youtube'], function(_, Backbone, Youtube) {
+define(['underscore', 'backbone', 'libraries/youtube', 'libraries/Authentification'], function(_, Backbone, Youtube) {
 
     var SerieEpisode = Backbone.Model.extend({
         defaults: {}
@@ -12,7 +12,7 @@ define(['underscore', 'backbone', 'libraries/youtube'], function(_, Backbone, Yo
     });
 
     var Serie = Backbone.Model.extend({
-        urlRoot: 'https://umovie.herokuapp.com/unsecure/tvshows/season/',
+        urlRoot: 'https://umovie.herokuapp.com/tvshows/season/',
         defaults: {
             youtubeUrl: '',
             episodes: []
