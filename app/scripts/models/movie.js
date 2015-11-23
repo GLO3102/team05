@@ -1,7 +1,7 @@
-define(['underscore', 'backbone', 'libraries/youtube'], function(_, Backbone, Youtube) {
+define(['underscore', 'backbone', 'libraries/youtube', 'libraries/Authentification'], function(_, Backbone, Youtube) {
 
     var Movie = Backbone.Model.extend({
-        urlRoot: 'https://umovie.herokuapp.com/unsecure/movies/',
+        urlRoot: 'https://umovie.herokuapp.com/movies/',
         idAttribute: 'trackId',
         defaults: {
             youtubeUrl: ''

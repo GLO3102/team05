@@ -1,4 +1,4 @@
-define(['underscore', 'backbone', 'models/movie'], function(_, Backbone, Movie) {
+define(['underscore', 'backbone', 'models/movie', 'libraries/Authentification'], function(_, Backbone, Movie) {
 
     var ActorsMovies = Backbone.Collection.extend({
         model: Movie,
@@ -24,7 +24,7 @@ define(['underscore', 'backbone', 'models/movie'], function(_, Backbone, Movie) 
     }
 
     var Actor = Backbone.Model.extend({
-        urlRoot: 'https://umovie.herokuapp.com/unsecure/actors/',
+        urlRoot: 'https://umovie.herokuapp.com/actors/',
         defaults: {
             artworkUrl: '',
             movies: []

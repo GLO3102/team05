@@ -28,14 +28,7 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
                     return token.fetch();
             }
             else {
-                var token = new Token({
-                    email: 'aziz@gmail.com',
-                    name: 'moahmed',
-                    id: '562ff7ac2bbdf5030068eb93'
-                });
-                if (typeof(callback) == "function")
-                    callback(token);
-                else return token
+                alert("User not logged in")
             }
         }
 
@@ -60,8 +53,12 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
                 });
             return this;
         }
+
+        // constructor
+
+        this.SetHeaders();
     }
 
-    return new Authentication().Logout();
+    return new Authentication();
 })
 ;

@@ -1,6 +1,6 @@
-define(['underscore', 'backbone'], function(_, Backbone) {
+define(['underscore', 'backbone', 'libraries/Authentification'], function(_, Backbone) {
     WatchList = Backbone.Model.extend({
-        urlRoot: 'https://umovie.herokuapp.com/unsecure/watchlists',
+        urlRoot: 'https://umovie.herokuapp.com/watchlists',
         defaults: {
             "name": "",
             "movies": [],
