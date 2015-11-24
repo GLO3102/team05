@@ -9,7 +9,9 @@ define(['jquery', 'underscore', 'backbone', 'libraries/Authentification'], funct
 
         template: _.template($('#watchLists-template').html()),
 
-        token: null,
+        userEmail: null,
+        userName: null,
+        userId: null,
 
         events: {
             "click .glyphicon-remove": "deleteWatchList",
@@ -20,23 +22,22 @@ define(['jquery', 'underscore', 'backbone', 'libraries/Authentification'], funct
         initialize: function () {
             var self = this;
             _.bindAll(this, 'render');
-
             this.collection.bind("sync add remove", function () {
                 self.render();
             });
-
-            auth.GetUserAndTokenInfoWithCallback(function (token) {
-                self.token = token;
-                self.trigger("sync", this);
-            });
+            this.userEmail = auth.GetEmail();
+            this.userName = auth.GetName()
+            this.userId = auth.GetId();
         },
 
 
         render: function () {
-            if (this.token != null) {
-                var owner = {email: this.token.get("email"), name: this.token.get("name"), id: this.token.id};
-                this.$el.html(this.template({watchLists: this.collection.filterByOwner(owner)}));
-            }
+            var owner = {
+                email: this.userEmail,
+                name: this.userName,
+                id: this.userId
+            };
+            this.$el.html(this.template({watchLists: this.collection.filterByOwner(owner)}));
             return this;
         },
 
@@ -51,9 +52,9 @@ define(['jquery', 'underscore', 'backbone', 'libraries/Authentification'], funct
             }
             else {
                 var owner = {
-                    email: this.token.get("email"),
-                    name: this.token.get("name"),
-                    id: this.token.id
+                    email: this.userEmail,
+                    name: this.userName,
+                    id: this.userId
                 };
                 self.collection.create({name: $('.watchListName').val(), movies: [], owner: owner});
                 $('.modal-backdrop').remove();

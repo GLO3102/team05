@@ -40,13 +40,13 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle um-user-profile" data-toggle="dropdown" role="button"
                            aria-haspopup="true" aria-expanded="false">
-                            <img class="um-profile-picture" src="./images/user-placeholder.jpg" />
-                            <span class="um-username"> John Doe </span>
+                            <img class="um-profile-picture" src="https://www.gravatar.com/avatar/<%=emailHash %>?d=identicon&s=40" />
+                            <span class="um-username"> <%=name %> </span>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#"> Settings </a></li>
-                            <li><a href="#"> Logout </a></li>
+                            <li><a href="#" id="log-out"> Logout </a></li>
                         </ul>
                     </li>
                 </ul>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="um-user-navigation-menu">
                     <ul class="nav navbar-nav">
-                        <li><a span="um-username"> John Doe </a></li>
+                        <li><a span="um-username"> <%=name %> </a></li>
                         <li><a href="#"> Settings </a></li>
                         <li><a href="#"> Logout </a></li>
                     </ul>
@@ -92,6 +92,9 @@
                 <div class="sign-in-box">
 
                     <div class="form-inline">
+                        <% if (isLoggedIn) { %>
+                        <button  id="go-to-login" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Get in</button>
+                        <% } else { %>
                         <div class="form-group">
                             <label class="sr-only" for="email-input">Email address</label>
                             <input type="email" class="form-control" id="email-input" placeholder="Email">
@@ -101,6 +104,7 @@
                             <input type="password" class="form-control" id="password-input" placeholder="Password">
                         </div>
                         <button  id="sign-in-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Sign in</button>
+                        <% } %>
                     </div>
 
 

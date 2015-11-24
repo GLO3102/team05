@@ -1,27 +1,29 @@
-define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView) {
+define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/Authentification',  'libraries/crypto'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto) {
 
     var HomeView = Backbone.View.extend({
         tagName: 'div',
         menuEl: '#menu-content',
         bodyEl: '#app-content',
         template: _.template($("#home-page-template").html()),
-
         events: {
             'click a.movie-page-link': 'goToMovie',
             'click a.actor-page-link': 'goToActor',
             'click a.serie-page-link': 'goToSerie',
             'click a.home-page-link': 'goToHome',
-            'click a.watchlist-page-link': 'goToWatchList'
+            'click a.watchlist-page-link': 'goToWatchList',
+            'click a#log-out': 'logOut'
         },
 
         initialize: function () {
             this.render();
-
         },
 
         render: function () {
             this.$el.html(this.template());
-            this.$(this.menuEl).html(_.template($("#menu-template").html()));
+            this.$(this.menuEl).html(_.template($("#menu-template").html())({
+                name:Authentification.GetName(),
+                emailHash:crypto.md5(Authentification.GetEmail())
+            }));
         },
 
         goToMovie: function (event) {
@@ -38,6 +40,10 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             var actorView = new ActorView({model: actor});
             actor.fetch();
             this.$(this.bodyEl).html(actorView.$el);
+        },
+        logOut: function (event) {
+            Authentification.Logout().SetHeaders();
+            location.reload();
         },
 
         goToSerie: function (event) {

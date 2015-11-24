@@ -2,8 +2,12 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
 
     var MovieView = Backbone.View.extend({
         tagName:'div',
+
+        userEmail: null,
+        userName: null,
+        userId: null,
+
         template: _.template($('#movie-page-template').html()),
-        token: null,
         watchLists: new WatchListCollection(),
         events: {
             "click  #addToWatchListButton": "loadWatchLists",
@@ -14,9 +18,10 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
             this.model.bind("sync", function () {
                 self.render();
             });
-            auth.GetUserAndTokenInfoWithCallback(function(token){
-                self.token = token ;
-                self.trigger("sync", this);});
+
+            this.userEmail = auth.GetEmail();
+            this.userName = auth.GetName()
+            this.userId = auth.GetId();
 
         },
         render: function(){
@@ -28,9 +33,11 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
         loadWatchLists:function(){
             $('#WatchListSelector').empty();
 
-            if(this.token != null){
-                var owner = {email: this.token.get("email"), name: this.token.get("name"),  id: this.token.id};
-            }
+            var owner = {
+                email: this.userEmail,
+                name: this.userName,
+                id: this.userId
+            };
             var self = this;
             this.watchLists.fetch().done(function (){
                 self.watchLists.filterByOwner(owner);
