@@ -90,6 +90,10 @@ define(['jquery', 'underscore', 'backbone', 'libraries/Authentification'], funct
             var watchListId = $(event.target).parent().attr("watchList-id");
             var watchList = this.collection.getWatchListById(watchListId);
             watchList.deleteMovie(movieId);
+        },
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
         }
     });
 

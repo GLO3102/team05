@@ -23,6 +23,10 @@ define(['jquery', 'underscore', 'backbone', 'views/welcome', 'views/home'], func
         showHomeView: function() {
             var homeView = new HomeView();
             this.$el.html(homeView.$el);
+        },
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
         }
     });
 

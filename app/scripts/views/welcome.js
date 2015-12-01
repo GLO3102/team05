@@ -26,6 +26,10 @@ define(['jquery', 'underscore', 'backbone', 'libraries/Authentification'], funct
         },
         goToLogin: function() {
             this.trigger('goto-login');
+        },
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
         }
     });
 

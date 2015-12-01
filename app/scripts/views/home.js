@@ -1,9 +1,10 @@
-define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/Authentification',  'libraries/crypto'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto) {
+define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/Authentification',  'libraries/crypto', 'views/searchMovies'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView) {
 
     var HomeView = Backbone.View.extend({
         tagName: 'div',
         menuEl: '#menu-content',
         bodyEl: '#app-content',
+        lastView : null,
         template: _.template($("#home-page-template").html()),
         events: {
             'click a.movie-page-link': 'goToMovie',
@@ -25,13 +26,21 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
                 emailHash:crypto.md5(Authentification.GetEmail())
             }));
         },
-
+        cleanView: function(){
+            if(this.lastView!=null)
+                this.lastView.cleanup();
+        },
         goToMovie: function (event) {
+            /*
             var movie_id = $(event.target).closest('a').data('movie-id');
             var movie = new Movie({'trackId': movie_id});
             var movieView = new MovieView({model: movie});
             movie.fetch();
-            this.$(this.bodyEl).html(movieView.$el);
+            this.$(this.bodyEl).html(movieView.$el);*/
+            searchMovies = new SearchMovies();
+            this.cleanView();
+            this.lastView = new SearchMoviesView({el:$('#app-content'), model:searchMovies});
+            this.lastView.render();
         },
 
         goToActor: function (event) {
@@ -63,6 +72,10 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             var watchListsView = new WatchListsView({collection: watchLists});
             watchLists.fetch();
             this.$(this.bodyEl).html(watchListsView.$el);
+        },
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
         }
     });
 
