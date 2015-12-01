@@ -17,6 +17,14 @@ require.config({
     }
 });
 
+(function () {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = 'http://umovie-team05.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+
 define('gapi', ['async!https://apis.google.com/js/client.js!onload'], function() {
     return gapi.client;
 });
