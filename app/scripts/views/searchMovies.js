@@ -40,7 +40,8 @@ define(['jquery', 'underscore', 'backbone','collections/searchMovies','libraries
             var movie_id = parseInt(ctrl.parent().attr('movieid'));
             console.log(movie_id);
             var movie = new Movie({'trackId': movie_id});
-            var movieView = new MovieView({model: movie, el:$('#app-content')});
+            if(typeof movieView !='undefined') movieView.cleanup();
+            movieView = new MovieView({model: movie, el:$('#app-content')});
             movie.fetch();
         },
         loadWatchLists:function(ev){
@@ -64,9 +65,10 @@ define(['jquery', 'underscore', 'backbone','collections/searchMovies','libraries
             setTimeout(function(){$('#myModal').modal();},50);
         },
         addMovieToWatchList: function(){
-            var id = $('#WatchListSelector :selected').attr("value");
-            var watchList = parseInt(this.watchLists.getWatchListById(id));
-            watchList.addMovie(this.model);
+            var id = $('#WatchListSelector-from-search :selected').attr("value");
+            var watchList = this.watchLists.getWatchListById(id);
+            poyo = this.watchLists;
+            watchList.addMovie(this.model.models.find(function(a){return a.get('trackId') == $('.selected').parent().attr('movieid');}));
             $('#myModal').modal('hide');
         },
         cleanup : function(){
