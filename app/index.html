@@ -417,6 +417,29 @@
                 </div>
             </div>
         </script>
+        <script type="text/template" id="search-actor-template">
+            <div>
+                <input type="text" id="in-search-actor" class="form-control" placeholder="Search">
+
+                <div type="submit" id="btn-search-actor" class="btn btn-default">Search</div>
+            </div>
+            <div>
+                <% if (models.length > 0) { %>
+                <table class="table table-striped">
+                    <tr>
+                        <td></td><td>Title</td><td>Genre</td><td></td>
+                    </tr>
+                    <% _.each(models, function(actor) { %>
+                    <tr actorid="<%=actor.get('artistId')%>">
+                        <td><img src="https://openclipart.org/image/2400px/svg_to_png/202776/pawn.png" width="30px" height="30px"></td>
+                        <td class="actor-link" ><%=actor.get('artistName')%></td>
+                        <td><%=actor.get('primaryGenreName')%></td>
+                    </tr>
+                    <%})%>
+                </table>
+                <%}%>
+            </div>
+            </script>
 
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
         <script data-main="scripts/app" src="lib/requirejs/require.js"></script>

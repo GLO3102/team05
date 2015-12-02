@@ -1,8 +1,8 @@
-define(['jquery', 'underscore', 'backbone','models/actor', 'libraries/Authentification'], function($, _,  Backbone, Actor) {
+define(['jquery', 'underscore', 'backbone','models/actorLight', 'libraries/Authentification'], function($, _,  Backbone, ActorLight) {
 
     SearchActors = Backbone.Collection.extend({
         baseUrl: 'https://umovie.herokuapp.com/unsecure/search/actors',
-        model: Actor,
+        model: ActorLight,
 
         parse: function(data){
             return data.results;

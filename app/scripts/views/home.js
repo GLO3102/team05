@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/Authentification',  'libraries/crypto', 'views/searchMovies'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView) {
+define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/Authentification',  'libraries/crypto', 'views/searchMovies', 'views/searchActors'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView, SearchActorsView) {
 
     var HomeView = Backbone.View.extend({
         tagName: 'div',
@@ -44,11 +44,17 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         },
 
         goToActor: function (event) {
+            /*
             var actor_id = $(event.target).closest('a').data('actor-id');
             var actor = new Actor({'artistId': actor_id});
             var actorView = new ActorView({model: actor});
             actor.fetch();
-            this.$(this.bodyEl).html(actorView.$el);
+            this.$(this.bodyEl).html(actorView.$el);*/
+
+            searchActors = new SearchActors();
+            this.cleanView();
+            this.lastView = new SearchActorsView({el:$('#app-content'), model:searchActors});
+            this.lastView.render();
         },
         logOut: function (event) {
             Authentification.Logout().SetHeaders();
