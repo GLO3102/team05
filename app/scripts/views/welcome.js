@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'libraries/Authentification'], function($, _,  Backbone, Authentification) {
+define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
 
     var WelcomeView = Backbone.View.extend({
         tagName: 'div',
@@ -7,25 +7,29 @@ define(['jquery', 'underscore', 'backbone', 'libraries/Authentification'], funct
 
         events: {
             'click #sign-in-button': 'Login',
-            'click #go-to-login': 'goToLogin'
+            'click #go-to-login': 'goToLogin',
+            'click #go-to-signup': 'goToSignup'
         },
+
         initialize: function() {
             this.render();
         },
+
         render: function() {
-            var isLoggedIn = Authentification.IsLoggedIn();
-            this.$el.html(this.template({isLoggedIn:isLoggedIn}));
+            this.$el.html(this.template());
         },
-        Login: function() {
-            var self=this;
-            var email = $("#email-input").val();
-            var password = $("#password-input").val();
-            Authentification.LoginUser(email,password, function() {
-                self.goToLogin();
-            });
-        },
+
         goToLogin: function() {
             this.trigger('goto-login');
+        },
+
+        goToSignup: function() {
+            this.trigger('goto-signup');
+        },
+
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
         }
     });
 

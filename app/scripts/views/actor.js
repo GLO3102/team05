@@ -16,6 +16,10 @@ define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
         render: function(){
             var data = this.model.toJSON();
             this.$el.html(this.template(data));
+        },
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
         }
     });
 

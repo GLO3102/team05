@@ -18,9 +18,38 @@
     <body>
 
         <div id="container">
-
+            <div id="disqus_thread" style="display: none;"></div>
         </div>
 
+        <div id = "error-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Oups, it looks like things went banana ...</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id ="error-modal-content"></p>
+                    </div>
+                </div>
+        </div>
+        <div id = "signup-success-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Hurray!!!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p> You have successfully joined the UMovie community. You will be redirected to the login page!</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script type="text/template" id="menu-template">
             <nav class="navbar navbar-default um-navbar-search">
                 <div class="navbar-header">
@@ -89,32 +118,63 @@
 
         <script type="text/template" id="welcome-page-template">
             <div id="welcome-carousel">
-                <div class="sign-in-box">
-
-                    <div class="form-inline">
-                        <% if (isLoggedIn) { %>
-                        <button  id="go-to-login" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Get in</button>
-                        <% } else { %>
-                        <div class="form-group">
-                            <label class="sr-only" for="email-input">Email address</label>
-                            <input type="email" class="form-control" id="email-input" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="password-input">Password</label>
-                            <input type="password" class="form-control" id="password-input" placeholder="Password">
-                        </div>
-                        <button  id="sign-in-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Sign in</button>
-                        <% } %>
-                    </div>
-
-
-                </div>
                 <div class="caption-box">
-                    <img class="logo" src="styles/images/logo.png" />
+                    <img class="logo" src="./images/logo.png" />
                     <h1> <span class="caption-u">U</span>r <span class="caption-m">M</span>ovie library </h1>
                 </div>
 
+                <div class="sign-in-box">
+                    <button  id="go-to-signup" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Sign up </button>
+                    <p> Or <a id="go-to-login" href="#" > Log in </a> if you already have an account</p>
+                </div>
+
             </div>
+        </script>
+
+        <script type="text/template" id="signup-page-template">
+            <div class="standalone-form-wrapper">
+                <img class="logo" src="./images/logo.png" />
+                <form class="form-horizontal" id="signup-form">
+                    <h3> Join UMovie!</h3>
+                    <div class="form-group">
+                        <input type = "text" name="name" class="form-control" placeHolder="What's your name?" required = "required">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Your email address? (We swear, no spams)" required = "required">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="And add a very very strong password" required ="required">
+                    </div>
+
+                    <button type="submit" id="sign-up-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Sign up</button>
+                    <p> Or <a class="go-to-login" href="#" > Log in </a> if you already have an account</p>
+                </form>
+            </div>
+        </script>
+
+
+        <script type="text/template" id="signin-page-template">
+            <div class="standalone-form-wrapper">
+                <img class="logo" src="./images/logo.png" />
+                <form class="form-horizontal" id="signin-form">
+                    <h3> Log in into UMovie!</h3>
+                    <div class="sign-in-alert alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <span>Wrong email/password combination </span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Email" required = "required">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Password" required ="required">
+                    </div>
+
+                    <button type="submit" id="sign-in-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect sign-in-button">Sign in</button>
+                    <p> Or <a class="go-to-signup" href="#" > Sign up </a> if you don't have an account</p>
+                </form>
+            </div>
+
         </script>
 
         <script type="text/template" id="actor-page-template">
@@ -177,6 +237,7 @@
                     </div>
                     <button id="addToWatchListButton" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Add To WatchList</button>
                 </div>
+
                 <div class="thumbnail movie-infos">
                     <div id="movie-info" class="container-fluid">
                         <div>
@@ -243,6 +304,8 @@
             </div>
 
             </div>
+            <div id="disqus_thread"></div>
+
         </script>
 
         <script type="text/template" id="serie-page-template">
@@ -302,6 +365,8 @@
                                 <% }); %>
                             </div>
                         </div>
+                        <div id="disqus_thread"></div>
+
                     </div>
                 </div>
             </div>
@@ -386,6 +451,107 @@
 
             <% }); %>
 
+        </script>
+
+        <script type="text/template" id="search-movie-template">
+            <div>
+                <input type="text" id="in-search-movie" class="form-control" placeholder="Search">
+
+                <div type="submit" id="btn-search-movie" class="btn btn-default">Search</div>
+            </div>
+            <div>
+                <% if (models.length > 0) { %>
+                <table class="table table-striped">
+                    <tr>
+                        <td></td><td>Title</td><td>Genre</td><td></td>
+                    </tr>
+                <% _.each(models, function(movie) { %>
+                    <tr movieid="<%=movie.get('trackId')%>">
+                        <td><img src="http://stickeramoi.com/7767-8578-large/autocollant-cinema-bobine-de-film.jpg" width="30px" height="30px"></td>
+                        <td class="movie-link" ><%=movie.get('trackName')%></td>
+                        <td><%=movie.get('primaryGenreName')%></td>
+                        <td class="add-to-watchlist"><a>add to watchlist</a></td>
+                    </tr>
+                <%})%>
+                </table>
+                <%}%>
+            </div>
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">WatchLists List</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    WatchLists
+                                </div>
+
+                                <div class="col-md-8">
+
+                                    <select id="WatchListSelector-from-search">
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" id ="SaveMovie-from-search" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <script type="text/template" id="search-actor-template">
+            <div>
+                <input type="text" id="in-search-actor" class="form-control" placeholder="Search">
+
+                <div type="submit" id="btn-search-actor" class="btn btn-default">Search</div>
+            </div>
+            <div>
+                <% if (models.length > 0) { %>
+                <table class="table table-striped">
+                    <tr>
+                        <td></td><td>Title</td><td>Genre</td><td></td>
+                    </tr>
+                    <% _.each(models, function(actor) { %>
+                    <tr actorid="<%=actor.get('artistId')%>">
+                        <td><img src="https://openclipart.org/image/2400px/svg_to_png/202776/pawn.png" width="30px" height="30px"></td>
+                        <td class="actor-link" ><%=actor.get('artistName')%></td>
+                        <td><%=actor.get('primaryGenreName')%></td>
+                    </tr>
+                    <%})%>
+                </table>
+                <%}%>
+            </div>
+        </script>
+
+        <script type="text/template" id="search-serie-template">
+            <div>
+                <input type="text" id="in-search-serie" class="form-control" placeholder="Search">
+
+                <div type="submit" id="btn-search-serie" class="btn btn-default">Search</div>
+            </div>
+            <div>
+                <% if (models.length > 0) { %>
+                <table class="table table-striped">
+                    <tr>
+                        <td></td><td>Title</td><td>Genre</td>
+                    </tr>
+                    <% _.each(models, function(serie) { %>
+                    <tr serieid="<%=serie.get('collectionId')%>">
+                        <td><img src="http://blog.slate.fr/tetes-de-series/files/2011/05/retro-tv-icon.jpg" width="30px" height="30px"></td>
+                        <td class="serie-link" ><%=serie.get('collectionName')%></td>
+                        <td><%=serie.get('primaryGenreName')%></td>
+                    </tr>
+                    <%})%>
+                </table>
+                <%}%>
+            </div>
         </script>
 
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>

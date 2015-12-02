@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'libraries/Authentification'], function($, _,  Backbone, auth) {
+define(['jquery', 'underscore', 'backbone', 'libraries/authentification'], function($, _,  Backbone, auth) {
 
     function getSelectedWatchList(event, collection) {
         var watchListId = $(event.target).parent().parent().attr("watchList-id");
@@ -91,6 +91,10 @@ define(['jquery', 'underscore', 'backbone', 'libraries/Authentification'], funct
             var watchListId = $(event.target).parent().attr("watchList-id");
             var watchList = this.collection.getWatchListById(watchListId);
             watchList.deleteMovie(movieId);
+        },
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
         }
     });
 

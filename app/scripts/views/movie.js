@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/Authentification'], function($, _,  Backbone, WatchListCollection, auth) {
+define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/authentification', 'libraries/disqus'], function($, _,  Backbone, WatchListCollection, auth, disqus) {
 
     var MovieView = Backbone.View.extend({
         tagName:'div',
@@ -13,6 +13,7 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
             "click  #addToWatchListButton": "loadWatchLists",
             "click  #SaveMovie": "addMovieToWatchList"
         },
+
         initialize: function () {
             var self = this;
             this.model.bind("sync", function () {
@@ -24,12 +25,15 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
             this.userId = auth.GetId();
 
         },
+
         render: function(){
             this.$el.empty();
             var data = this.model.toJSON();
             this.$el.html(this.template(data));
+            disqus.load('movie',this.model.trackId);
 
         },
+
         loadWatchLists:function(){
             $('#WatchListSelector').empty();
 
@@ -47,11 +51,16 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
             });
             setTimeout(function(){$('#myModal').modal();},50);
         },
+
         addMovieToWatchList: function(){
             var id = $('#WatchListSelector :selected').attr("value");
             var watchList = this.watchLists.getWatchListById(id);
             watchList.addMovie(this.model);
             $('#myModal').modal('hide');
+        },
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
         }
     });
 

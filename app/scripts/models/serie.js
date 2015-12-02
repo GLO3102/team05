@@ -56,7 +56,6 @@ define(['underscore', 'backbone', 'libraries/youtube'], function(_, Backbone, Yo
         },
         setSerieEpisodes: function (episodes) {
             this.set("episodes", episodes);
-            console.log(this);
             this.trigger("sync", this);
         },
         getEpisodeDetail(trackId){

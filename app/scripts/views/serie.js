@@ -36,6 +36,11 @@ define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
             $("#episodeReview").attr("src", episode.get("episodeReview"));
             $("#EpisodeDescription").html(episodeDescription);
             $("#EpisodeDuration").html(Math.floor((episodeDuration/1000/60) << 0)+ " Minutes");
+            disqus.load('series', this.model.trackId);
+        },
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
 
         }
     });

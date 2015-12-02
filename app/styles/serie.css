@@ -1,3 +1,7 @@
+.serie-link{
+    cursor: pointer;
+}
+
 #app-content #tvshow-image img{
    width: 100%;
 }
