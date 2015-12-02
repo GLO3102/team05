@@ -18,7 +18,7 @@
     <body>
 
         <div id="container">
-
+            <div id="disqus_thread" style="display: none;"></div>
         </div>
 
         <div id = "error-modal" class="modal fade" tabindex="-1" role="dialog">
@@ -236,6 +236,7 @@
                     </div>
                     <button id="addToWatchListButton" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Add To WatchList</button>
                 </div>
+
                 <div class="thumbnail movie-infos">
                     <div id="movie-info" class="container-fluid">
                         <div>
@@ -302,6 +303,8 @@
             </div>
 
             </div>
+            <div id="disqus_thread"></div>
+
         </script>
 
         <script type="text/template" id="serie-page-template">
@@ -360,6 +363,8 @@
                                 <% }); %>
                             </div>
                         </div>
+                        <div id="disqus_thread"></div>
+
                     </div>
                 </div>
             </div>
@@ -416,6 +421,107 @@
 
             <% }); %>
 
+        </script>
+
+        <script type="text/template" id="search-movie-template">
+            <div>
+                <input type="text" id="in-search-movie" class="form-control" placeholder="Search">
+
+                <div type="submit" id="btn-search-movie" class="btn btn-default">Search</div>
+            </div>
+            <div>
+                <% if (models.length > 0) { %>
+                <table class="table table-striped">
+                    <tr>
+                        <td></td><td>Title</td><td>Genre</td><td></td>
+                    </tr>
+                <% _.each(models, function(movie) { %>
+                    <tr movieid="<%=movie.get('trackId')%>">
+                        <td><img src="http://stickeramoi.com/7767-8578-large/autocollant-cinema-bobine-de-film.jpg" width="30px" height="30px"></td>
+                        <td class="movie-link" ><%=movie.get('trackName')%></td>
+                        <td><%=movie.get('primaryGenreName')%></td>
+                        <td class="add-to-watchlist"><a>add to watchlist</a></td>
+                    </tr>
+                <%})%>
+                </table>
+                <%}%>
+            </div>
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">WatchLists List</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    WatchLists
+                                </div>
+
+                                <div class="col-md-8">
+
+                                    <select id="WatchListSelector-from-search">
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" id ="SaveMovie-from-search" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <script type="text/template" id="search-actor-template">
+            <div>
+                <input type="text" id="in-search-actor" class="form-control" placeholder="Search">
+
+                <div type="submit" id="btn-search-actor" class="btn btn-default">Search</div>
+            </div>
+            <div>
+                <% if (models.length > 0) { %>
+                <table class="table table-striped">
+                    <tr>
+                        <td></td><td>Title</td><td>Genre</td><td></td>
+                    </tr>
+                    <% _.each(models, function(actor) { %>
+                    <tr actorid="<%=actor.get('artistId')%>">
+                        <td><img src="https://openclipart.org/image/2400px/svg_to_png/202776/pawn.png" width="30px" height="30px"></td>
+                        <td class="actor-link" ><%=actor.get('artistName')%></td>
+                        <td><%=actor.get('primaryGenreName')%></td>
+                    </tr>
+                    <%})%>
+                </table>
+                <%}%>
+            </div>
+        </script>
+
+        <script type="text/template" id="search-serie-template">
+            <div>
+                <input type="text" id="in-search-serie" class="form-control" placeholder="Search">
+
+                <div type="submit" id="btn-search-serie" class="btn btn-default">Search</div>
+            </div>
+            <div>
+                <% if (models.length > 0) { %>
+                <table class="table table-striped">
+                    <tr>
+                        <td></td><td>Title</td><td>Genre</td>
+                    </tr>
+                    <% _.each(models, function(serie) { %>
+                    <tr serieid="<%=serie.get('collectionId')%>">
+                        <td><img src="http://blog.slate.fr/tetes-de-series/files/2011/05/retro-tv-icon.jpg" width="30px" height="30px"></td>
+                        <td class="serie-link" ><%=serie.get('collectionName')%></td>
+                        <td><%=serie.get('primaryGenreName')%></td>
+                    </tr>
+                    <%})%>
+                </table>
+                <%}%>
+            </div>
         </script>
 
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>

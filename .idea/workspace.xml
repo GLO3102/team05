@@ -2,16 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc20c7c0-9745-458d-8a1a-46c7bbb1d0d4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/views/errorview.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/views/login.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/views/signup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/libraries/Authentification.js" afterPath="$PROJECT_DIR$/app/scripts/libraries/Authentification.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/models/actorLight.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/libraries/disqus.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/views/searchActors.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/views/searchMovies.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/collections/searchSeries.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/views/searchSeries.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/models/serieLight.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/actor.css" afterPath="$PROJECT_DIR$/app/styles/actor.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/views/actor.js" afterPath="$PROJECT_DIR$/app/scripts/views/actor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/app.js" afterPath="$PROJECT_DIR$/app/scripts/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/views/app.js" afterPath="$PROJECT_DIR$/app/scripts/views/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/views/home.js" afterPath="$PROJECT_DIR$/app/scripts/views/home.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/main.css" afterPath="$PROJECT_DIR$/app/styles/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/movie.css" afterPath="$PROJECT_DIR$/app/styles/movie.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/views/movie.js" afterPath="$PROJECT_DIR$/app/scripts/views/movie.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/collections/searchActors.js" afterPath="$PROJECT_DIR$/app/scripts/collections/searchActors.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/collections/searchMovies.js" afterPath="$PROJECT_DIR$/app/scripts/collections/searchMovies.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/serie.css" afterPath="$PROJECT_DIR$/app/styles/serie.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/models/serie.js" afterPath="$PROJECT_DIR$/app/scripts/models/serie.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/views/serie.js" afterPath="$PROJECT_DIR$/app/scripts/views/serie.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/collections/watchLists.js" afterPath="$PROJECT_DIR$/app/scripts/collections/watchLists.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/views/watchListsView.js" afterPath="$PROJECT_DIR$/app/scripts/views/watchListsView.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/views/welcome.js" afterPath="$PROJECT_DIR$/app/scripts/views/welcome.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -50,17 +62,27 @@
         <entry file="file://$PROJECT_DIR$/app/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-116.76471">
-              <caret line="420" column="26" selection-start-line="420" selection-start-column="26" selection-end-line="420" selection-end-column="26" />
+              <caret line="527" column="26" selection-start-line="527" selection-start-column="26" selection-end-line="527" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="welcome.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="welcome.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/views/welcome.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39291218">
-              <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+            <state vertical-scroll-proportion="-20.555555">
+              <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/scripts/views/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.30662557">
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -79,8 +101,8 @@
       <file leaf-file-name="movie.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/views/movie.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.592592">
-              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+            <state vertical-scroll-proportion="-15.148149">
+              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -119,8 +141,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.0">
-              <caret line="18" column="111" selection-start-line="18" selection-start-column="111" selection-end-line="18" selection-end-column="111" />
+            <state vertical-scroll-proportion="-15.0">
+              <caret line="27" column="108" selection-start-line="27" selection-start-column="108" selection-end-line="27" selection-end-column="108" />
               <folding />
             </state>
           </provider>
@@ -157,14 +179,14 @@
         <option value="$PROJECT_DIR$/app/scripts/collections/movies.js" />
         <option value="$PROJECT_DIR$/app/scripts/views/apierror.js" />
         <option value="$PROJECT_DIR$/app/scripts/views/movie.js" />
-        <option value="$PROJECT_DIR$/app/scripts/views/app.js" />
-        <option value="$PROJECT_DIR$/app/scripts/views/welcome.js" />
         <option value="$PROJECT_DIR$/app/styles/main.css" />
         <option value="$PROJECT_DIR$/app/scripts/libraries/Authentification.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/scripts/app.js" />
         <option value="$PROJECT_DIR$/app/scripts/views/login.js" />
         <option value="$PROJECT_DIR$/app/scripts/views/signup.js" />
+        <option value="$PROJECT_DIR$/app/scripts/views/welcome.js" />
+        <option value="$PROJECT_DIR$/app/scripts/views/app.js" />
       </list>
     </option>
   </component>
@@ -803,16 +825,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/views/movie.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.592592">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/views/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.2222223">
-          <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+        <state vertical-scroll-proportion="-15.148149">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -843,8 +857,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0">
-          <caret line="18" column="111" selection-start-line="18" selection-start-column="111" selection-end-line="18" selection-end-column="111" />
+        <state vertical-scroll-proportion="-15.0">
+          <caret line="27" column="108" selection-start-line="27" selection-start-column="108" selection-end-line="27" selection-end-column="108" />
           <folding />
         </state>
       </provider>
@@ -868,15 +882,23 @@
     <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-116.76471">
-          <caret line="420" column="26" selection-start-line="420" selection-start-column="26" selection-end-line="420" selection-end-column="26" />
+          <caret line="527" column="26" selection-start-line="527" selection-start-column="26" selection-end-line="527" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/views/welcome.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39291218">
-          <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+        <state vertical-scroll-proportion="-20.555555">
+          <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/views/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30662557">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>

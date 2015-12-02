@@ -45,6 +45,12 @@ define(['jquery', 'underscore', 'backbone', 'views/welcome', 'views/home', 'view
             this.listenTo(signupView, 'signup-success', this.showLoginView);
             this.$el.html(signupView.$el);
         },
+
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
+        }
+
     });
 
     return AppView;

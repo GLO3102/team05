@@ -1,8 +1,8 @@
-define(['jquery', 'underscore', 'backbone','models/movie', 'libraries/Authentification'], function($, _,  Backbone, Movie, auth) {
+define(['jquery', 'underscore', 'backbone','models/serieLight', 'libraries/Authentification'], function($, _,  Backbone, SerieLight, auth) {
 
-    SearchMovies = Backbone.Collection.extend({
-        baseUrl: 'https://umovie.herokuapp.com/search/movies',
-        model: Movie,
+    SearchSeries = Backbone.Collection.extend({
+        baseUrl: 'https://umovie.herokuapp.com/search/tvshows/seasons',
+        model: SerieLight,
 
         parse: function(data){
             return data.results;
@@ -20,5 +20,5 @@ define(['jquery', 'underscore', 'backbone','models/movie', 'libraries/Authentifi
         }
     });
 
-    return SearchMovies;
+    return SearchSeries;
 });

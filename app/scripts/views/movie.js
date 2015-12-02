@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/Authentification'], function($, _,  Backbone, WatchListCollection, auth) {
+define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/Authentification', 'libraries/disqus'], function($, _,  Backbone, WatchListCollection, auth, disqus) {
 
     var MovieView = Backbone.View.extend({
         tagName:'div',
@@ -30,6 +30,7 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
             this.$el.empty();
             var data = this.model.toJSON();
             this.$el.html(this.template(data));
+            disqus.load('movie',this.model.trackId);
 
         },
 
@@ -56,6 +57,10 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
             var watchList = this.watchLists.getWatchListById(id);
             watchList.addMovie(this.model);
             $('#myModal').modal('hide');
+        },
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
         }
     });
 

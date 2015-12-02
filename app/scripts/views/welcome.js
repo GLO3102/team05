@@ -31,6 +31,11 @@ define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone, Authentif
 
         goToSignup: function() {
             this.trigger('goto-signup');
+        },
+
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
         }
     });
 

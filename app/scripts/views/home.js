@@ -1,9 +1,10 @@
-define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/Authentification',  'libraries/crypto'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto) {
+define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/Authentification',  'libraries/crypto', 'views/searchMovies', 'views/searchActors', 'views/searchSeries'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView, SearchActorsView, SearchSeriesView) {
 
     var HomeView = Backbone.View.extend({
         tagName: 'div',
         menuEl: '#menu-content',
         bodyEl: '#app-content',
+        lastView : null,
         template: _.template($("#home-page-template").html()),
         events: {
             'click a.movie-page-link': 'goToMovie',
@@ -25,21 +26,35 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
                 emailHash:crypto.md5(Authentification.GetEmail())
             }));
         },
-
+        cleanView: function(){
+            if(this.lastView!=null)
+                this.lastView.cleanup();
+        },
         goToMovie: function (event) {
+            /*
             var movie_id = $(event.target).closest('a').data('movie-id');
             var movie = new Movie({'trackId': movie_id});
             var movieView = new MovieView({model: movie});
             movie.fetch();
-            this.$(this.bodyEl).html(movieView.$el);
+            this.$(this.bodyEl).html(movieView.$el);*/
+            searchMovies = new SearchMovies();
+            this.cleanView();
+            this.lastView = new SearchMoviesView({el:$('#app-content'), model:searchMovies});
+            this.lastView.render();
         },
 
         goToActor: function (event) {
+            /*
             var actor_id = $(event.target).closest('a').data('actor-id');
             var actor = new Actor({'artistId': actor_id});
             var actorView = new ActorView({model: actor});
             actor.fetch();
-            this.$(this.bodyEl).html(actorView.$el);
+            this.$(this.bodyEl).html(actorView.$el);*/
+
+            searchActors = new SearchActors();
+            this.cleanView();
+            this.lastView = new SearchActorsView({el:$('#app-content'), model:searchActors});
+            this.lastView.render();
         },
         logOut: function (event) {
             Authentification.Logout().SetHeaders();
@@ -47,11 +62,16 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         },
 
         goToSerie: function (event) {
+            /*
             var serie_id = $(event.target).closest('a').data('serie-id');
             var serie = new Serie({'collectionId': serie_id});
             var serieView = new SerieView({model: serie});
             serie.fetch();
-            this.$(this.bodyEl).html(serieView.$el);
+            this.$(this.bodyEl).html(serieView.$el);*/
+            searchSeries = new SearchSeries();
+            this.cleanView();
+            this.lastView = new SearchSeriesView({el:$('#app-content'), model:searchSeries});
+            this.lastView.render();
         },
 
         goToHome: function () {
@@ -63,6 +83,10 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             var watchListsView = new WatchListsView({collection: watchLists});
             watchLists.fetch();
             this.$(this.bodyEl).html(watchListsView.$el);
+        },
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
         }
     });
 
