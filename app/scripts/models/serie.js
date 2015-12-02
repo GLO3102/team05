@@ -8,6 +8,10 @@ define(['underscore', 'backbone', 'libraries/youtube'], function(_, Backbone, Yo
         model: SerieEpisode,
         parse: function (response) {
             return response.results;
+        },
+
+        findEpisode: function(trackId){
+        this.get(trackId);
         }
     });
 
@@ -54,6 +58,15 @@ define(['underscore', 'backbone', 'libraries/youtube'], function(_, Backbone, Yo
             this.set("episodes", episodes);
             console.log(this);
             this.trigger("sync", this);
+        },
+        getEpisodeDetail(trackId){
+            var myEpisodes = this.get("episodes");
+            var myEpisodesModels = myEpisodes.models;
+            for( var i = 0; i < myEpisodesModels.length; i++){
+                if (myEpisodesModels[i].get("trackId") == trackId){
+                    return myEpisodesModels[i];
+                }
+            }
         }
     });
 

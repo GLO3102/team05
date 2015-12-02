@@ -25,7 +25,7 @@
             <nav class="navbar navbar-default um-navbar-search">
                 <div class="navbar-header">
                     <a class="navbar-brand hidden-xs um-navbar-brand" href="./index.html">
-                        <img src="./images/logo.png"/>
+                        <img src="styles/images/logo.png"/>
                     </a>
                 </div>
 
@@ -110,7 +110,7 @@
 
                 </div>
                 <div class="caption-box">
-                    <img class="logo" src="./images/logo.png" />
+                    <img class="logo" src="styles/images/logo.png" />
                     <h1> <span class="caption-u">U</span>r <span class="caption-m">M</span>ovie library </h1>
                 </div>
 
@@ -294,8 +294,9 @@
                                         <img src="<%=episode.get('artworkUrl100')%>">
 
                                         <div class="caption">
-                                            <h3><%= episode.get('trackName' )%></h3>
+                                            <button class="link" episode-id="<%= episode.get('trackId') %>" data-toggle="modal" data-target="#serieEpisodeModal"><%= episode.get('trackName' )%></button>
                                         </div>
+
                                     </div>
                                 </div>
                                 <% }); %>
@@ -303,6 +304,34 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div id="serieEpisodeModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="EpisodeCollectionName"></h4>
+                    </div>
+                    <div class="modal-body" id="EpisodeInformation">
+                        <p id="EpisodeName"></p>
+                        <p id="EpisodeDuration"></p>
+                        <img src="#" class="img-thumbnail" id="episodeposter">
+                        <div class="thumbnail">
+                            <p id="EpisodeDescription" > </p>
+                        </div>
+                        <video autoplay loop class="embed-responsive-item">
+                            <source src="#" type="video/mp4" id="episodeReview">
+                        </video>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
             </div>
         </script>
 

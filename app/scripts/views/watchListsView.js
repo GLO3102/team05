@@ -13,6 +13,7 @@ define(['jquery', 'underscore', 'backbone', 'libraries/Authentification'], funct
         userName: null,
         userId: null,
 
+
         events: {
             "click .glyphicon-remove": "deleteWatchList",
             "click .glyphicon-pencil": "editWatchList",
