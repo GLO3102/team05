@@ -1,4 +1,7 @@
-define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
+define(['jquery', 'underscore'], function ($, _) {
+    var SIGNUP_ENDPOINT = "https://umovie.herokuapp.com/signup";
+    var SIGNIN_ENDPOINT = "https://umovie.herokuapp.com/login/";
+
     function Authentication() {
         this.GetTokenId = function () {
             return localStorage.getItem("token");
@@ -36,11 +39,22 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
             return this;
         }
 
+        this.login = function(email, password, success, failure) {
+            var self = this;
+            $.post(SIGNIN_ENDPOINT, {email: email, password: password}).success(function(result){
+                self.Login(result.token, result.email, result.name, result.id).SetHeaders();
+                success();
+
+            }).fail(function(jqxhr) {
+                failure(jqxhr.status, jqxhr.responseText);
+            });
+        }
+
         this.LoginUser= function(email,password, callback){
             var self = this;
             $.ajax({
                 type: "POST",
-                url: 'https://umovie.herokuapp.com/login/',
+                url: SIGNIN_ENDPOINT,
                 data: {
                     email: email,
                     password: password
@@ -54,6 +68,12 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
 
         }
 
+        this.signup = function(signUpValues, success, failure) {
+            $.post(SIGNUP_ENDPOINT, signUpValues).success(success).fail(function(jqxhr) {
+                failure(jqxhr.responseText);
+            });
+        }
+
         this.SetHeaders = function () {
             if (this.IsLoggedIn())
                 $.ajaxSetup({
@@ -65,8 +85,6 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
                 });
             return this;
         }
-
-        // constructor
 
         this.SetHeaders();
     }

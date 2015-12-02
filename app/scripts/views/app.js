@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'views/welcome', 'views/home'], function($, _,  Backbone, WelcomeView, HomeView) {
+define(['jquery', 'underscore', 'backbone', 'views/welcome', 'views/home', 'views/signup', 'views/login',  'libraries/Authentification'], function($, _,  Backbone, WelcomeView, HomeView, SignupView, LoginView, Authentication) {
 
     var AppView = Backbone.View.extend({
         el: '#container',
@@ -11,19 +11,40 @@ define(['jquery', 'underscore', 'backbone', 'views/welcome', 'views/home'], func
         },
 
         render: function() {
-            this.showWelcomeView();
+            if(Authentication.IsLoggedIn()) {
+                this.showHomeView();
+            }
+            else {
+                this.showWelcomeView();
+            }
+
         },
 
         showWelcomeView: function() {
             var welcomeView = new WelcomeView();
-            this.listenTo(welcomeView, 'goto-login', this.showHomeView);
+            this.listenTo(welcomeView, 'goto-login', this.showLoginView);
+            this.listenTo(welcomeView, 'goto-signup', this.showSignupView);
             this.$el.html(welcomeView.$el);
         },
 
         showHomeView: function() {
             var homeView = new HomeView();
             this.$el.html(homeView.$el);
-        }
+        },
+
+        showLoginView: function() {
+            var loginView = new LoginView(this.showHomeView);
+            this.listenTo(loginView, 'goto-signup', this.showSignupView);
+            this.listenTo(loginView, 'login-success', this.showHomeView);
+            this.$el.html(loginView.$el);
+        },
+
+        showSignupView: function() {
+            var signupView = new SignupView();
+            this.listenTo(signupView, 'goto-login', this.showLoginView);
+            this.listenTo(signupView, 'signup-success', this.showLoginView);
+            this.$el.html(signupView.$el);
+        },
     });
 
     return AppView;

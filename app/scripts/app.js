@@ -6,14 +6,17 @@ require.config({
         bootstrap: {
             deps: ['jquery'],
             exports: 'jquery'
-        }
+        },
+        "jquery.alpha": ["jquery"],
+
     },
     paths: {
         jquery: '../lib/jquery/dist/jquery',
         backbone: '../lib/backbone/backbone',
         underscore: '../lib/lodash/dist/lodash',
         bootstrap: '../lib/bootstrap/dist/js/bootstrap',
-        async: '../lib/requirejs-plugins/src/async'
+        async: '../lib/requirejs-plugins/src/async',
+        "jquery.blockUI": '//cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.66.0-2013.10.09/jquery.blockUI.min'
     }
 });
 

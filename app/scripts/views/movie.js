@@ -13,6 +13,7 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
             "click  #addToWatchListButton": "loadWatchLists",
             "click  #SaveMovie": "addMovieToWatchList"
         },
+
         initialize: function () {
             var self = this;
             this.model.bind("sync", function () {
@@ -24,12 +25,14 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
             this.userId = auth.GetId();
 
         },
+
         render: function(){
             this.$el.empty();
             var data = this.model.toJSON();
             this.$el.html(this.template(data));
 
         },
+
         loadWatchLists:function(){
             $('#WatchListSelector').empty();
 
@@ -47,6 +50,7 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/A
             });
             setTimeout(function(){$('#myModal').modal();},50);
         },
+
         addMovieToWatchList: function(){
             var id = $('#WatchListSelector :selected').attr("value");
             var watchList = this.watchLists.getWatchListById(id);
