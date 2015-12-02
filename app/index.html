@@ -439,7 +439,31 @@
                 </table>
                 <%}%>
             </div>
-            </script>
+        </script>
+
+        <script type="text/template" id="search-serie-template">
+            <div>
+                <input type="text" id="in-search-serie" class="form-control" placeholder="Search">
+
+                <div type="submit" id="btn-search-serie" class="btn btn-default">Search</div>
+            </div>
+            <div>
+                <% if (models.length > 0) { %>
+                <table class="table table-striped">
+                    <tr>
+                        <td></td><td>Title</td><td>Genre</td>
+                    </tr>
+                    <% _.each(models, function(serie) { %>
+                    <tr serieid="<%=serie.get('collectionId')%>">
+                        <td><img src="http://blog.slate.fr/tetes-de-series/files/2011/05/retro-tv-icon.jpg" width="30px" height="30px"></td>
+                        <td class="serie-link" ><%=serie.get('collectionName')%></td>
+                        <td><%=serie.get('primaryGenreName')%></td>
+                    </tr>
+                    <%})%>
+                </table>
+                <%}%>
+            </div>
+        </script>
 
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
         <script data-main="scripts/app" src="lib/requirejs/require.js"></script>

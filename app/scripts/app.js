@@ -30,8 +30,9 @@ define('gapi', ['async!https://apis.google.com/js/client.js!onload'], function()
 });
 
 require([
-    'backbone', 'views/app', 'bootstrap','views/searchMovies', 'views/searchActors'
-], function (Backbone, AppView, Bootstrap, SearchMoviesView, SearchActorsView) {
+    'backbone', 'views/app', 'bootstrap','views/searchMovies', 'views/searchActors','views/searchSeries'
+], function (Backbone, AppView, Bootstrap, SearchMoviesView, SearchActorsView, SearchSeriesView) {
+    console.log(SearchSeriesView);
     Backbone.history.start();
     new AppView();
 });

@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/Authentification',  'libraries/crypto', 'views/searchMovies', 'views/searchActors'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView, SearchActorsView) {
+define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/Authentification',  'libraries/crypto', 'views/searchMovies', 'views/searchActors', 'views/searchSeries'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView, SearchActorsView, SearchSeriesView) {
 
     var HomeView = Backbone.View.extend({
         tagName: 'div',
@@ -62,11 +62,16 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         },
 
         goToSerie: function (event) {
+            /*
             var serie_id = $(event.target).closest('a').data('serie-id');
             var serie = new Serie({'collectionId': serie_id});
             var serieView = new SerieView({model: serie});
             serie.fetch();
-            this.$(this.bodyEl).html(serieView.$el);
+            this.$(this.bodyEl).html(serieView.$el);*/
+            searchSeries = new SearchSeries();
+            this.cleanView();
+            this.lastView = new SearchSeriesView({el:$('#app-content'), model:searchSeries});
+            this.lastView.render();
         },
 
         goToHome: function () {
