@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone, Authentification) {
+define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
 
     var WelcomeView = Backbone.View.extend({
         tagName: 'div',
@@ -14,17 +14,11 @@ define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone, Authentif
         initialize: function() {
             this.render();
         },
+
         render: function() {
             this.$el.html(this.template());
         },
-        Login: function() {
-            var self=this;
-            var email = $("#email-input").val();
-            var password = $("#password-input").val();
-            Authentification.LoginUser(email,password, function() {
-                self.goToLogin();
-            });
-        },
+
         goToLogin: function() {
             this.trigger('goto-login');
         },

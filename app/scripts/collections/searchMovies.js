@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone','models/movie', 'libraries/Authentification'], function($, _,  Backbone, Movie, auth) {
+define(['jquery', 'underscore', 'backbone','models/movie', 'libraries/authentification'], function($, _,  Backbone, Movie, auth) {
 
     SearchMovies = Backbone.Collection.extend({
         baseUrl: 'https://umovie.herokuapp.com/search/movies',

@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'libraries/Authentification'], function($, _,  Backbone, auth) {
+define(['jquery', 'underscore', 'backbone', 'libraries/authentification'], function($, _,  Backbone, auth) {
 
     function getSelectedWatchList(event, collection) {
         var watchListId = $(event.target).parent().parent().attr("watchList-id");

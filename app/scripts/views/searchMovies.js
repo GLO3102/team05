@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone','collections/searchMovies','libraries/Authentification', 'models/movie', 'views/movie'], function($, _,  Backbone, SearchMovies, auth, Movie, MovieView) {
+define(['jquery', 'underscore', 'backbone','collections/searchMovies','libraries/authentification', 'models/movie', 'views/movie'], function($, _,  Backbone, SearchMovies, auth, Movie, MovieView) {
     var SearchMoviesView = Backbone.View.extend({
         tagName:'div',
 

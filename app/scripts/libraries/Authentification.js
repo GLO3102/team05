@@ -49,25 +49,7 @@ define(['jquery', 'underscore'], function ($, _) {
                 failure(jqxhr.status, jqxhr.responseText);
             });
         }
-
-        this.LoginUser= function(email,password, callback){
-            var self = this;
-            $.ajax({
-                type: "POST",
-                url: SIGNIN_ENDPOINT,
-                data: {
-                    email: email,
-                    password: password
-                },
-                success: function(result){
-                    self.Login(result.token, result.email, result.name, result.id).SetHeaders();
-                    callback();
-                },
-                dataType: "json"
-            }).fail(function(){alert("login failed");});
-
-        }
-
+        
         this.signup = function(signUpValues, success, failure) {
             $.post(SIGNUP_ENDPOINT, signUpValues).success(success).fail(function(jqxhr) {
                 failure(jqxhr.responseText);

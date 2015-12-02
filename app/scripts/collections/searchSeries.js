@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone','models/serieLight', 'libraries/Authentification'], function($, _,  Backbone, SerieLight, auth) {
+define(['jquery', 'underscore', 'backbone','models/serieLight', 'libraries/authentification'], function($, _,  Backbone, SerieLight, auth) {
 
     SearchSeries = Backbone.Collection.extend({
         baseUrl: 'https://umovie.herokuapp.com/search/tvshows/seasons',

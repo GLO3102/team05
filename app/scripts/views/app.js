@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'views/welcome', 'views/home', 'views/signup', 'views/login',  'libraries/Authentification'], function($, _,  Backbone, WelcomeView, HomeView, SignupView, LoginView, Authentication) {
+define(['jquery', 'underscore', 'backbone', 'views/welcome', 'views/home', 'views/signup', 'views/login',  'libraries/authentification'], function($, _,  Backbone, WelcomeView, HomeView, SignupView, LoginView, Authentication) {
 
     var AppView = Backbone.View.extend({
         el: '#container',

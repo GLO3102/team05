@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone','collections/searchSeries','libraries/Authentification', 'models/serie', 'views/serie'], function($, _,  Backbone, SearchSeries, auth, Serie, SerieView) {
+define(['jquery', 'underscore', 'backbone','collections/searchSeries','libraries/authentification', 'models/serie', 'views/serie'], function($, _,  Backbone, SearchSeries, auth, Serie, SerieView) {
     var SearchSeriesView = Backbone.View.extend({
         tagName:'div',
 

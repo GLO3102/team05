@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'libraries/Authentification', 'views/errorview', 'jquery.blockUI'], function($, _,  Backbone, Authentication, errorView) {
+define(['jquery', 'underscore', 'backbone', 'libraries/authentification', 'views/errorview', 'jquery.blockUI'], function($, _,  Backbone, Authentication, errorView) {
 
 
     var SignupView = Backbone.View.extend({

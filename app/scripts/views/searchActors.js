@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone','collections/searchActors','libraries/Authentification', 'models/actor', 'views/actor'], function($, _,  Backbone, SearchActors, auth, Actor, ActorView) {
+define(['jquery', 'underscore', 'backbone','collections/searchActors','libraries/authentification', 'models/actor', 'views/actor'], function($, _,  Backbone, SearchActors, auth, Actor, ActorView) {
     var SearchActorsView = Backbone.View.extend({
         tagName:'div',
 

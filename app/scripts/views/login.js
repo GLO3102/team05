@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'libraries/Authentification', 'views/errorview'], function($, _,  Backbone, Authentication, errorView) {
+define(['jquery', 'underscore', 'backbone', 'libraries/authentification', 'views/errorview'], function($, _,  Backbone, Authentication, errorView) {
 
     var UNAUTHORIZED = '401';
     var LoginView = Backbone.View.extend({

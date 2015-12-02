@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/Authentification', 'libraries/disqus'], function($, _,  Backbone, WatchListCollection, auth, disqus) {
+define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/authentification', 'libraries/disqus'], function($, _,  Backbone, WatchListCollection, auth, disqus) {
 
     var MovieView = Backbone.View.extend({
         tagName:'div',
