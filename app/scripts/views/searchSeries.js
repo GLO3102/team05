@@ -6,7 +6,7 @@ define(['jquery', 'underscore', 'backbone','collections/searchSeries','libraries
         watchLists: new WatchListCollection(),
         events: {
             "click  #btn-search-serie": "searchSerie",
-            "click  .serie-link": "showSerie"
+            //"click  .serie-link": "showSerie"
         },
         initialize: function () {
             var self = this;
@@ -22,18 +22,6 @@ define(['jquery', 'underscore', 'backbone','collections/searchSeries','libraries
         },
         searchSerie:function(){
             this.model.Search($('#in-search-serie').val());
-        },
-        showSerie:function(ev){
-            var ctrl = $(ev.currentTarget);
-
-            var serie_id = parseInt(ctrl.parent().attr('serieid'));
-
-
-            var serie = new Serie({'collectionId': serie_id});
-            if(typeof serieView != 'undefined') serieView.cleanup();
-            serieView = new SerieView({model: serie, el:$('#app-content')});
-            serie.fetch();
-
         },
         cleanup : function(){
             this.undelegateEvents();

@@ -7,7 +7,7 @@ define(['jquery', 'underscore', 'backbone','models/serieLight', 'libraries/authe
         parse: function(data){
             return data.results;
         },
-        Search: function (searchQuery, options) {
+        Search: function (searchQuery, options, onSuccess) {
             this.url = this.baseUrl+'?q='+encodeURI(searchQuery);
             if(typeof options != 'undefined') {
                 if (typeof options.limit == 'number')
@@ -16,7 +16,9 @@ define(['jquery', 'underscore', 'backbone','models/serieLight', 'libraries/authe
                     this.url += '&genre=' + Math.floor(options.genre);
             }
 
-            this.fetch();
+            if(typeof onSuccess !='function') onSuccess = function(){};
+
+            this.fetch({success:onSuccess});
         }
     });
 

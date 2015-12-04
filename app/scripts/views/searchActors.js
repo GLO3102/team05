@@ -6,7 +6,7 @@ define(['jquery', 'underscore', 'backbone','collections/searchActors','libraries
         watchLists: new WatchListCollection(),
         events: {
             "click  #btn-search-actor": "searchActor",
-            "click  .actor-link": "showActor"
+            //"click  .actor-link": "showActor"
         },
         initialize: function () {
             var self = this;
@@ -22,16 +22,6 @@ define(['jquery', 'underscore', 'backbone','collections/searchActors','libraries
         },
         searchActor:function(){
             this.model.Search($('#in-search-actor').val());
-        },
-        showActor:function(ev){
-            var ctrl = $(ev.currentTarget);
-
-            var actor_id = parseInt(ctrl.parent().attr('actorid'));
-
-            var actor = new Actor({'artistId': actor_id});
-            if(typeof actorView != 'undefined') actorView.cleanup();
-            actorView = new ActorView({model: actor, el:$('#app-content')});
-            actor.fetch();
         },
         cleanup : function(){
             this.undelegateEvents();

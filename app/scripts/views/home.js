@@ -1,10 +1,11 @@
-define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/authentification',  'libraries/crypto', 'views/searchMovies', 'views/searchActors', 'views/searchSeries'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView, SearchActorsView, SearchSeriesView) {
+define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/authentification',  'libraries/crypto', 'views/searchMovies', 'views/searchActors', 'views/searchSeries', 'views/searchGlobal'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView, SearchActorsView, SearchSeriesView, SearchGlobalView) {
 
     var HomeView = Backbone.View.extend({
         tagName: 'div',
         menuEl: '#menu-content',
         bodyEl: '#app-content',
         lastView : null,
+        watchLists: new WatchListCollection(),
         template: _.template($("#home-page-template").html()),
         events: {
             'click a.movie-page-link': 'goToMovie',
@@ -12,7 +13,13 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             'click a.serie-page-link': 'goToSerie',
             'click a.home-page-link': 'goToHome',
             'click a.watchlist-page-link': 'goToWatchList',
-            'click a#log-out': 'logOut'
+            'click a#log-out': 'logOut',
+            "click  .actor-link": "showActor",
+            "click  .movie-link": "showMovie",
+            "click  #SaveMovie-global": "addMovieToWatchList",
+            "click .add-to-watchlist-global":"loadWatchLists",
+            "click  .serie-link": "showSerie",
+            'click #btn-search-global':'searchGlobal'
         },
 
         initialize: function () {
@@ -39,7 +46,7 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             this.$(this.bodyEl).html(movieView.$el);*/
             searchMovies = new SearchMovies();
             this.cleanView();
-            this.lastView = new SearchMoviesView({el:$('#app-content'), model:searchMovies});
+            this.lastView = new SearchMoviesView({el:$(this.bodyEl), model:searchMovies});
             this.lastView.render();
         },
 
@@ -53,7 +60,7 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
 
             searchActors = new SearchActors();
             this.cleanView();
-            this.lastView = new SearchActorsView({el:$('#app-content'), model:searchActors});
+            this.lastView = new SearchActorsView({el:$(this.bodyEl), model:searchActors});
             this.lastView.render();
         },
         logOut: function (event) {
@@ -70,7 +77,7 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             this.$(this.bodyEl).html(serieView.$el);*/
             searchSeries = new SearchSeries();
             this.cleanView();
-            this.lastView = new SearchSeriesView({el:$('#app-content'), model:searchSeries});
+            this.lastView = new SearchSeriesView({el:$(this.bodyEl), model:searchSeries});
             this.lastView.render();
         },
 
@@ -83,6 +90,72 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             var watchListsView = new WatchListsView({collection: watchLists});
             watchLists.fetch();
             this.$(this.bodyEl).html(watchListsView.$el);
+        },
+        showActor:function(ev){
+            var ctrl = $(ev.currentTarget);
+
+            var actor_id = parseInt(ctrl.parent().attr('actorid'));
+
+            var actor = new Actor({'artistId': actor_id});
+            if(typeof actorView != 'undefined') actorView.cleanup();
+            actorView = new ActorView({model: actor, el:$(this.bodyEl)});
+            actor.fetch();
+        },
+        showMovie:function(ev){
+            var ctrl = $(ev.currentTarget);
+
+            var movie_id = parseInt(ctrl.parent().attr('movieid'));
+            console.log(movie_id);
+            var movie = new Movie({'trackId': movie_id});
+            if(typeof movieView !='undefined') movieView.cleanup();
+            movieView = new MovieView({model: movie, el:$(this.bodyEl)});
+            movie.fetch();
+        },
+        showSerie:function(ev){
+            var ctrl = $(ev.currentTarget);
+
+            var serie_id = parseInt(ctrl.parent().attr('serieid'));
+
+
+            var serie = new Serie({'collectionId': serie_id});
+            if(typeof serieView != 'undefined') serieView.cleanup();
+            serieView = new SerieView({model: serie, el:$(this.bodyEl)});
+            serie.fetch();
+
+        },
+        searchGlobal:function(){
+            if(typeof searchGlobalView != 'undefined') searchGlobalView.cleanup();
+            var searchGlobalModel = new SearchGlobal();
+            searchGlobalView = new SearchGlobalView({el:$(this.bodyEl), model:searchGlobalModel});
+            searchGlobalModel.Search($('#input-search-global').val());
+
+        },
+        loadWatchLists:function(ev){
+            $('#WatchListSelector-global').empty();
+
+            $('.add-to-watchlist-global').removeClass('selected');
+            $(ev.currentTarget).addClass('selected');
+
+            var owner = {
+                email: Authentification.GetEmail(),
+                name: Authentification.GetName(),
+                id: Authentification.GetId()
+            };
+            console.log(owner);
+            var self = this;
+            this.watchLists.fetch().done(function (){
+                self.watchLists.filterByOwner(owner);
+                self.watchLists.each(function(watchList){
+                    $('#WatchListSelector-global').append($('<option>', { value : watchList.id }).text(watchList.get("name")));
+                })
+            });
+            setTimeout(function(){$('#myModal').modal();},50);
+        },
+        addMovieToWatchList: function(){
+            var id = $('#WatchListSelector-global :selected').attr("value");
+            var watchList = this.watchLists.getWatchListById(id);
+            watchList.addMovie(searchGlobalView.model.movies.models.find(function(a){return a.get('trackId') == $('.selected').parent().attr('movieid');}));
+            $('#myModal').modal('hide');
         },
         cleanup : function(){
             this.undelegateEvents();

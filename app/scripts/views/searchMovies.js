@@ -12,7 +12,7 @@ define(['jquery', 'underscore', 'backbone','collections/searchMovies','libraries
         watchLists: new WatchListCollection(),
         events: {
            "click  #btn-search-movie": "searchMovie",
-           "click  .movie-link": "showMovie",
+           //"click  .movie-link": "showMovie",
            "click  #SaveMovie-from-search": "addMovieToWatchList",
            "click .add-to-watchlist":"loadWatchLists"
         },
@@ -33,16 +33,6 @@ define(['jquery', 'underscore', 'backbone','collections/searchMovies','libraries
         },
         searchMovie:function(){
             this.model.Search($('#in-search-movie').val());
-        },
-        showMovie:function(ev){
-            var ctrl = $(ev.currentTarget);
-
-            var movie_id = parseInt(ctrl.parent().attr('movieid'));
-            console.log(movie_id);
-            var movie = new Movie({'trackId': movie_id});
-            if(typeof movieView !='undefined') movieView.cleanup();
-            movieView = new MovieView({model: movie, el:$('#app-content')});
-            movie.fetch();
         },
         loadWatchLists:function(ev){
             $('#WatchListSelector-from-search').empty();
@@ -67,7 +57,6 @@ define(['jquery', 'underscore', 'backbone','collections/searchMovies','libraries
         addMovieToWatchList: function(){
             var id = $('#WatchListSelector-from-search :selected').attr("value");
             var watchList = this.watchLists.getWatchListById(id);
-            poyo = this.watchLists;
             watchList.addMovie(this.model.models.find(function(a){return a.get('trackId') == $('.selected').parent().attr('movieid');}));
             $('#myModal').modal('hide');
         },

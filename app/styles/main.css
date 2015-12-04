@@ -22,6 +22,14 @@
 
 }
 
+#btn-search-global{
+    cursor: pointer;
+}
+
+.add-to-watchlist-global{
+    cursor: pointer;
+}
+
 .sign-in-button {
     background-color: #8b0b65;
     color: #fff;
