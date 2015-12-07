@@ -16,10 +16,12 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             'click a#log-out': 'logOut',
             'click a.user-page-link':'goToUser',
             "click  .actor-link": "showActor",
+            "click  .user-link": "showUser",
             "click  .movie-link": "showMovie",
             "click  #SaveMovie-global": "addMovieToWatchList",
             "click .add-to-watchlist-global":"loadWatchLists",
             "click  .serie-link": "showSerie",
+            'click a.follow-link':'FollowUser',
             'click #btn-search-global':'searchGlobal'
         },
 
@@ -30,8 +32,8 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         render: function () {
             this.$el.html(this.template());
             this.$(this.menuEl).html(_.template($("#menu-template").html())({
-                name:Authentification.GetName(),
-                emailHash:crypto.md5(Authentification.GetEmail())
+                name:Authentification.getName(),
+                emailHash:crypto.md5(Authentification.getEmail())
             }));
         },
         cleanView: function(){
@@ -52,7 +54,7 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             this.lastView.render();
         },
         logOut: function (event) {
-            Authentification.Logout().SetHeaders();
+            Authentification.logout().SetHeaders();
             location.reload();
         },
 
@@ -161,9 +163,9 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             $(ev.currentTarget).addClass('selected');
 
             var owner = {
-                email: Authentification.GetEmail(),
-                name: Authentification.GetName(),
-                id: Authentification.GetId()
+                email: Authentification.getEmail(),
+                name: Authentification.getName(),
+                id: Authentification.getId()
             };
             console.log(owner);
             var self = this;
