@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/authentification',  'libraries/crypto', 'views/searchMovies', 'views/searchActors', 'views/searchSeries', 'views/searchGlobal'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView, SearchActorsView, SearchSeriesView, SearchGlobalView) {
+define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/authentification',  'libraries/crypto', 'views/searchMovies', 'views/searchActors', 'views/searchSeries', 'views/searchGlobal', 'models/user', 'views/user'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView, SearchActorsView, SearchSeriesView, SearchGlobalView, user, userView) {
 
     var HomeView = Backbone.View.extend({
         tagName: 'div',
@@ -14,6 +14,7 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             'click a.home-page-link': 'goToHome',
             'click a.watchlist-page-link': 'goToWatchList',
             'click a#log-out': 'logOut',
+            'click a.user-page-link':'goToUser',
             "click  .actor-link": "showActor",
             "click  .movie-link": "showMovie",
             "click  #SaveMovie-global": "addMovieToWatchList",
@@ -91,6 +92,14 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             watchLists.fetch();
             this.$(this.bodyEl).html(watchListsView.$el);
         },
+
+        goToUser: function(userId) {
+            var user = new UserModel({'id': "565fa491f7cc1803008fea0c"});
+            var userView = new UserView({model: user});
+            user.fetch();
+            this.$(this.bodyEl).html(userView.$el);
+        },
+
         showActor:function(ev){
             var ctrl = $(ev.currentTarget);
 

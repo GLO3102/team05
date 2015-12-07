@@ -1,0 +1,31 @@
+.alert-added-follower{
+    width: 500px;
+    display: none;
+}
+
+.alert-not-added-follower{
+    width: 500px;
+    display: none;
+}
+
+.alert-unfollow{
+    width: 500px;
+    display: none;
+}
+
+.alert-unfollow-fail{
+    width: 500px;
+    display: none;
+}
+
+.alert-follower{
+    width: 500px;
+}
+
+.friend-icon{
+    display: inline-block;
+}
+
+.panel-followers{
+    width: 800px;
+}
