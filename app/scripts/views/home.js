@@ -30,15 +30,15 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         render: function () {
             this.$el.html(this.template());
             this.$(this.menuEl).html(_.template($("#menu-template").html())({
-                name:Authentification.GetName(),
-                emailHash:crypto.md5(Authentification.GetEmail())
+                name: Authentification.getName(),
+                emailHash: crypto.md5(Authentification.getEmail())
             }));
         },
         cleanView: function(){
             if(this.lastView!=null)
                 this.lastView.cleanup();
         },
-        goToMovie: function (event) {
+        goToMovie: function () {
             /*
             var movie_id = $(event.target).closest('a').data('movie-id');
             var movie = new Movie({'trackId': movie_id});
@@ -51,7 +51,7 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             this.lastView.render();
         },
 
-        goToActor: function (event) {
+        goToActor: function () {
             /*
             var actor_id = $(event.target).closest('a').data('actor-id');
             var actor = new Actor({'artistId': actor_id});
@@ -64,12 +64,12 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             this.lastView = new SearchActorsView({el:$(this.bodyEl), model:searchActors});
             this.lastView.render();
         },
-        logOut: function (event) {
-            Authentification.Logout().SetHeaders();
-            location.reload();
+        logOut: function () {
+            Authentification.logout();
+            this.trigger('logout-success');
         },
 
-        goToSerie: function (event) {
+        goToSerie: function () {
             /*
             var serie_id = $(event.target).closest('a').data('serie-id');
             var serie = new Serie({'collectionId': serie_id});
@@ -144,9 +144,9 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             $(ev.currentTarget).addClass('selected');
 
             var owner = {
-                email: Authentification.GetEmail(),
-                name: Authentification.GetName(),
-                id: Authentification.GetId()
+                email: Authentification.getEmail(),
+                name: Authentification.getName(),
+                id: Authentification.getId()
             };
             console.log(owner);
             var self = this;

@@ -22,9 +22,9 @@ define(['jquery', 'underscore', 'backbone','collections/searchMovies','libraries
                 self.render();
             });
 
-            this.userEmail = auth.GetEmail();
-            this.userName = auth.GetName();
-            this.userId = auth.GetId();
+            this.userEmail = auth.getEmail();
+            this.userName = auth.getName();
+            this.userId = auth.getId();
         },
         render: function(){
             var data = this.model;

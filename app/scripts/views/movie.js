@@ -20,9 +20,9 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/a
                 self.render();
             });
 
-            this.userEmail = auth.GetEmail();
-            this.userName = auth.GetName()
-            this.userId = auth.GetId();
+            this.userEmail = auth.getEmail();
+            this.userName = auth.getName()
+            this.userId = auth.getId();
 
         },
 
