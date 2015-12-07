@@ -11,7 +11,7 @@ define(['jquery', 'underscore', 'backbone', 'views/welcome', 'views/home', 'view
         },
 
         render: function() {
-            if(Authentication.IsLoggedIn()) {
+            if(Authentication.isLoggedIn()) {
                 this.showHomeView();
             }
             else {
@@ -29,6 +29,7 @@ define(['jquery', 'underscore', 'backbone', 'views/welcome', 'views/home', 'view
 
         showHomeView: function() {
             var homeView = new HomeView();
+            this.listenTo(homeView, 'logout-success', this.showLoginView);
             this.$el.html(homeView.$el);
         },
 

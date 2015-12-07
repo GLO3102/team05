@@ -26,9 +26,9 @@ define(['jquery', 'underscore', 'backbone', 'libraries/authentification'], funct
             this.collection.bind("sync add remove", function () {
                 self.render();
             });
-            this.userEmail = auth.GetEmail();
-            this.userName = auth.GetName()
-            this.userId = auth.GetId();
+            this.userEmail = auth.getEmail();
+            this.userName = auth.getName()
+            this.userId = auth.getId();
         },
 
 

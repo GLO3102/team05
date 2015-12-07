@@ -20,9 +20,9 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/a
                 self.render();
             });
 
-            this.userEmail = auth.GetEmail();
-            this.userName = auth.GetName()
-            this.userId = auth.GetId();
+            this.userEmail = auth.getEmail();
+            this.userName = auth.getName()
+            this.userId = auth.getId();
 
         },
 
@@ -30,7 +30,7 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/a
             this.$el.empty();
             var data = this.model.toJSON();
             this.$el.html(this.template(data));
-            disqus.load('movie',this.model.trackId);
+            disqus.load('movie',this.model.get("trackId"));
 
         },
 

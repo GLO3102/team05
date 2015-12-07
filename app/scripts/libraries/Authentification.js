@@ -3,63 +3,81 @@ define(['jquery', 'underscore'], function ($, _) {
     var SIGNIN_ENDPOINT = "https://umovie.herokuapp.com/login/";
 
     function Authentication() {
-        this.GetTokenId = function () {
-            return localStorage.getItem("token");
+        var currentUser  = null;
+
+        function getCurrentUser() {
+            if(currentUser == null) {
+                currentUser = localStorage.getItem("current-user");
+            }
+            return currentUser;
+        }
+        this.getTokenId = function () {
+            var currentUser = getCurrentUser();
+            if(currentUser != null) {
+                return currentUser.token;
+            }
+            return null;
         }
 
-        this.GetEmail = function () {
-            return localStorage.getItem("email");
+        this.getEmail = function () {
+            var currentUser = getCurrentUser();
+            if(currentUser != null) {
+                return currentUser.email;
+            }
+            return null;
         }
 
-        this.GetId = function () {
-            return localStorage.getItem("id");
+        this.getId = function () {
+            var currentUser = getCurrentUser();
+            if(currentUser != null) {
+                return currentUser.id;
+            }
+            return null;
         }
 
-        this.GetName = function () {
-            return localStorage.getItem("name");
+        this.getName = function () {
+            var currentUser = getCurrentUser();
+            if(currentUser != null) {
+                return currentUser.name;
+            }
+            return null;
         }
 
-        this.IsLoggedIn = function () {
-            return this.GetTokenId() != null;
+        this.isLoggedIn = function () {
+            return getCurrentUser() != null;
         }
 
-        this.Login = function (token, email, name, id) {
-            localStorage.setItem("token", token);
-            localStorage.setItem("email", email);
-            localStorage.setItem("name", name);
-            localStorage.setItem("id", id);
-            return this;
-        }
 
-        this.Logout = function () {
-            localStorage.removeItem("token");
-            localStorage.removeItem("email");
-            localStorage.removeItem("name");
-            localStorage.removeItem("id");
+        this.logout = function () {
+            localStorage.removeItem("current-user");
+            currentUser = null;
+            this.setHeaders();
             return this;
         }
 
         this.login = function(email, password, success, failure) {
             var self = this;
             $.post(SIGNIN_ENDPOINT, {email: email, password: password}).success(function(result){
-                self.Login(result.token, result.email, result.name, result.id).SetHeaders();
+                currentUser = result;
+                localStorage.setItem("current-user", result);
+                self.setHeaders();
                 success();
 
             }).fail(function(jqxhr) {
                 failure(jqxhr.status, jqxhr.responseText);
             });
         }
-        
+
         this.signup = function(signUpValues, success, failure) {
             $.post(SIGNUP_ENDPOINT, signUpValues).success(success).fail(function(jqxhr) {
                 failure(jqxhr.responseText);
             });
         }
 
-        this.SetHeaders = function () {
-            if (this.IsLoggedIn())
+        this.setHeaders = function () {
+            if (this.isLoggedIn())
                 $.ajaxSetup({
-                    headers: {'Authorization': this.GetTokenId()}
+                    headers: {'Authorization': this.getTokenId()}
                 });
             else
                 $.ajaxSetup({
@@ -68,7 +86,7 @@ define(['jquery', 'underscore'], function ($, _) {
             return this;
         }
 
-        this.SetHeaders();
+        this.setHeaders();
     }
 
     return new Authentication();

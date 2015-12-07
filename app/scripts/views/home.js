@@ -11,18 +11,16 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             'click a.movie-page-link': 'goToMovie',
             'click a.actor-page-link': 'goToActor',
             'click a.serie-page-link': 'goToSerie',
-            'click a.user-page-link': 'goToUser',
             'click a.home-page-link': 'goToHome',
             'click a.watchlist-page-link': 'goToWatchList',
             'click a#log-out': 'logOut',
+            'click a.user-page-link':'goToUser',
             "click  .actor-link": "showActor",
-            "click  .user-link": "showUser",
             "click  .movie-link": "showMovie",
             "click  #SaveMovie-global": "addMovieToWatchList",
             "click .add-to-watchlist-global":"loadWatchLists",
             "click  .serie-link": "showSerie",
-            'click #btn-search-global':'searchGlobal',
-            'click a.follow-link':'FollowUser'
+            'click #btn-search-global':'searchGlobal'
         },
 
         initialize: function () {

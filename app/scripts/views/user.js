@@ -100,7 +100,7 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
             self = this;
             $.ajax({
                 type: "GET",
-                url: "https://umovie.herokuapp.com/users/"+auth.GetId(),
+                url: "https://umovie.herokuapp.com/users/"+auth.getId(),
             })
                 .done(function(data){
                     deteleUserFromFollowersList(data.following);
