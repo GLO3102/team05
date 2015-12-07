@@ -2,7 +2,7 @@
  * Created by didia on 15-11-03.
  */
 
-define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
+define(['jquery', 'underscore', 'backbone', 'libraries/youtube'], function($, _,  Backbone,  Youtube) {
 
     var SerieView = Backbone.View.extend({
         tagName:'div',
@@ -33,7 +33,7 @@ define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
             $("#EpisodeCollectionName").html(episodeSeason);
             $("#EpisodeName").html(episodeName);
             $("#episodeposter").attr("src", episode.get("artworkUrl100"));
-            $("#episodeReview").attr("src", episode.get("episodeReview"));
+            this.getEpisodeTrailer(episode.get('collectionName'));
             $("#EpisodeDescription").html(episodeDescription);
             $("#EpisodeDuration").html(Math.floor((episodeDuration/1000/60) << 0)+ " Minutes");
             disqus.load('series', this.model.trackId);
@@ -42,6 +42,13 @@ define(['jquery', 'underscore', 'backbone'], function($, _,  Backbone) {
             this.undelegateEvents();
             $(this.el).empty();
 
+        },
+        getEpisodeTrailer: function (episodeName) {
+            var self = this;
+            var query = episodeName + " preview";
+            Youtube.findFirstVideoUrl(query, function(url) {
+                $("#episodeReview").attr("src", url);
+            });
         }
     });
 
