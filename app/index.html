@@ -657,6 +657,39 @@
                 <%}%>
             </div>
         </script>
+        <script type="text/template" id="search-user-template">
+                <div>
+                    <h1>User Search</h1>
+                    <input type="text" id="in-search-user" class="form-control" placeholder="Search">
+
+                    <div type="submit" id="btn-search-user" class="btn btn-default">Search</div>
+                </div>
+                <div>
+                    <% if (models.length > 0) { %>
+                    <table class="table table-striped">
+                        <tr>
+                            <td></td><td>Name</td><td></td><td></td>
+                        </tr>
+                        <% _.each(models, function(user) { %>
+                        <tr userid="<%=user.get('id')%>">
+                            <td><img src="http://simpleicon.com/wp-content/uploads/account.svg" width="30px" height="30px"></td>
+                            <td class="user-link" ><%=user.get('name')%></td>
+                            <td></td>
+                            <td><a class="follow-link">Follow</a></td>
+                        </tr>
+                        <%})%>
+                    </table>
+                    <%}%>
+                </div>
+                <div class="alert alert-success alert-added-follower" role="alert">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    This user was added to your followers list.
+                </div>
+                <div class="alert alert-danger alert-not-added-follower" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    This user wasn't added to your followers list.
+                </div>
+            </script>
 
         <script type="text/template" id="search-global-template">
             <div>
@@ -688,7 +721,24 @@
                         <td></td>
                     </tr>
                     <%})%>
+                    <% _.each(users.models, function(user) { %>
+                    <tr userid="<%=user.get('id')%>">
+                        <td><img src="http://simpleicon.com/wp-content/uploads/account.svg" width="30px" height="30px"></td>
+                        <td class="user-link" ><%=user.get('name')%></td>
+                        <td></td>
+                        <td><a class="follow-link">Follow</a></td>
+                    </tr>
+                    <%})%>
                 </table>
+                <!--popups follow success/fail-->
+                <div class="alert alert-success alert-added-follower" role="alert">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    This user was added to your followers list.
+                </div>
+                <div class="alert alert-danger alert-not-added-follower" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    This user wasn't added to your followers list.
+                </div>
                 <!--add to watchlist global-->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">

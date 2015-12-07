@@ -106,6 +106,10 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
                     deteleUserFromFollowersList(data.following);
                 });
         },
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
+        }
 
     });
 

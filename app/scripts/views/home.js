@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/authentification',  'libraries/crypto', 'views/searchMovies', 'views/searchActors', 'views/searchSeries', 'views/searchGlobal', 'models/user', 'views/user'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView, SearchActorsView, SearchSeriesView, SearchGlobalView, user, userView) {
+define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/authentification',  'libraries/crypto', 'views/searchMovies', 'views/searchActors', 'views/searchSeries', 'views/searchGlobal', 'models/user', 'views/user', 'collections/searchUser', 'views/searchUsers'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView, SearchActorsView, SearchSeriesView, SearchGlobalView, user, UserView, SearchUser, SearchUsersView) {
 
     var HomeView = Backbone.View.extend({
         tagName: 'div',
@@ -11,16 +11,18 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             'click a.movie-page-link': 'goToMovie',
             'click a.actor-page-link': 'goToActor',
             'click a.serie-page-link': 'goToSerie',
+            'click a.user-page-link': 'goToUser',
             'click a.home-page-link': 'goToHome',
             'click a.watchlist-page-link': 'goToWatchList',
             'click a#log-out': 'logOut',
-            'click a.user-page-link':'goToUser',
             "click  .actor-link": "showActor",
+            "click  .user-link": "showUser",
             "click  .movie-link": "showMovie",
             "click  #SaveMovie-global": "addMovieToWatchList",
             "click .add-to-watchlist-global":"loadWatchLists",
             "click  .serie-link": "showSerie",
-            'click #btn-search-global':'searchGlobal'
+            'click #btn-search-global':'searchGlobal',
+            'click a.follow-link':'FollowUser'
         },
 
         initialize: function () {
@@ -39,12 +41,6 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
                 this.lastView.cleanup();
         },
         goToMovie: function (event) {
-            /*
-            var movie_id = $(event.target).closest('a').data('movie-id');
-            var movie = new Movie({'trackId': movie_id});
-            var movieView = new MovieView({model: movie});
-            movie.fetch();
-            this.$(this.bodyEl).html(movieView.$el);*/
             searchMovies = new SearchMovies();
             this.cleanView();
             this.lastView = new SearchMoviesView({el:$(this.bodyEl), model:searchMovies});
@@ -52,13 +48,6 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         },
 
         goToActor: function (event) {
-            /*
-            var actor_id = $(event.target).closest('a').data('actor-id');
-            var actor = new Actor({'artistId': actor_id});
-            var actorView = new ActorView({model: actor});
-            actor.fetch();
-            this.$(this.bodyEl).html(actorView.$el);*/
-
             searchActors = new SearchActors();
             this.cleanView();
             this.lastView = new SearchActorsView({el:$(this.bodyEl), model:searchActors});
@@ -70,16 +59,17 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         },
 
         goToSerie: function (event) {
-            /*
-            var serie_id = $(event.target).closest('a').data('serie-id');
-            var serie = new Serie({'collectionId': serie_id});
-            var serieView = new SerieView({model: serie});
-            serie.fetch();
-            this.$(this.bodyEl).html(serieView.$el);*/
             searchSeries = new SearchSeries();
             this.cleanView();
             this.lastView = new SearchSeriesView({el:$(this.bodyEl), model:searchSeries});
             this.lastView.render();
+        },
+
+        goToUser:function(event){
+            searchUsers = new SearchUsers();
+            this.cleanView();
+            this.LastView = new SearchUsersView({el:$(this.bodyEl), model: searchUsers});
+            this.LastView.render();
         },
 
         goToHome: function () {
@@ -93,11 +83,38 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             this.$(this.bodyEl).html(watchListsView.$el);
         },
 
-        goToUser: function(userId) {
-            var user = new UserModel({'id': "565fa491f7cc1803008fea0c"});
-            var userView = new UserView({model: user});
+        showUser: function(ev) {
+            var ctrl = $(ev.currentTarget);
+
+            var user_id = ctrl.parent().attr('userid');
+            var user = new UserModel({'id':user_id});
+            if(typeof userView != 'undefined') userView.cleanup();
+            userView = new UserView({model: user, el:$(this.bodyEl)});
             user.fetch();
-            this.$(this.bodyEl).html(userView.$el);
+
+        },
+        FollowUser: function(ev){
+            var ctrl = $(ev.currentTarget);
+            var user_id = ctrl.parent().parent().attr('userid');
+            var request = $.ajax({
+                type: "POST",
+                url: "https://umovie.herokuapp.com/follow",
+                data: {id: user_id},
+                dataType: "json"
+            });
+            request.done(function() {
+                $('.alert-added-follower').show("slow");
+                setTimeout(function () {
+                    $(".alert-added-follower").hide("slow");
+                }, 5000)
+            });
+            request.fail(function(){
+                alert(auth.Get);
+                $('.alert-not-added-follower').show("slow");
+                setTimeout(function () {
+                    $(".alert-not-added-follower").hide("slow");
+                }, 5000)
+            });
         },
 
         showActor:function(ev){
