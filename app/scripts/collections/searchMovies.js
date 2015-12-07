@@ -1,13 +1,13 @@
-define(['jquery', 'underscore', 'backbone','models/movie', 'libraries/Authentification'], function($, _,  Backbone, Movie) {
+define(['jquery', 'underscore', 'backbone','models/movie', 'libraries/authentification'], function($, _,  Backbone, Movie, auth) {
 
     SearchMovies = Backbone.Collection.extend({
-        baseUrl: 'https://umovie.herokuapp.com/unsecure/search/movies',
+        baseUrl: 'https://umovie.herokuapp.com/search/movies',
         model: Movie,
 
         parse: function(data){
             return data.results;
         },
-        Search: function (searchQuery, options) {
+        Search: function (searchQuery, options, onSuccess) {
             this.url = this.baseUrl+'?q='+encodeURI(searchQuery);
             if(typeof options != 'undefined') {
                 if (typeof options.limit == 'number')
@@ -16,7 +16,9 @@ define(['jquery', 'underscore', 'backbone','models/movie', 'libraries/Authentifi
                     this.url += '&genre=' + Math.floor(options.genre);
             }
 
-            this.fetch();
+            if(typeof onSuccess !='function') onSuccess = function(){};
+
+            this.fetch({success:onSuccess});
         }
     });
 

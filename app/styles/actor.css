@@ -1,3 +1,7 @@
+.actor-link{
+    cursor: pointer;
+}
+
 .actor-image-container {
     text-align: center;
 }

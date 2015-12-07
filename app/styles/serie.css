@@ -1,3 +1,7 @@
+.serie-link{
+    cursor: pointer;
+}
+
 #app-content #tvshow-image img{
    width: 100%;
 }
@@ -33,9 +37,24 @@
 
 #app-content .serie-episode-thumbnail{
     min-height: 180px;
-    max-height: 180px;
+    max-height: 250px;
     overflow-y: hidden;
 }
 .caption h3{
     font-size: 18px;
+}
+
+button.link {
+    background:none;
+    border:none;
+    color: deeppink;
+}
+#EpisodeName{
+    color: deeppink;
+}
+#EpisodeInformation{
+    max-width:600px;
+}
+#EpisodeDuration{
+    color: deeppink;
 }

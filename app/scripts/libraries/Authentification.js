@@ -1,4 +1,7 @@
-define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
+define(['jquery', 'underscore'], function ($, _) {
+    var SIGNUP_ENDPOINT = "https://umovie.herokuapp.com/signup";
+    var SIGNIN_ENDPOINT = "https://umovie.herokuapp.com/login/";
+
     function Authentication() {
         this.GetTokenId = function () {
             return localStorage.getItem("token");
@@ -36,22 +39,21 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
             return this;
         }
 
-        this.LoginUser= function(email,password, callback){
+        this.login = function(email, password, success, failure) {
             var self = this;
-            $.ajax({
-                type: "POST",
-                url: 'https://umovie.herokuapp.com/login/',
-                data: {
-                    email: email,
-                    password: password
-                },
-                success: function(result){
-                    self.Login(result.token, result.email, result.name, result.id).SetHeaders();
-                    callback();
-                },
-                dataType: "json"
-            }).fail(function(){alert("login failed");});
+            $.post(SIGNIN_ENDPOINT, {email: email, password: password}).success(function(result){
+                self.Login(result.token, result.email, result.name, result.id).SetHeaders();
+                success();
 
+            }).fail(function(jqxhr) {
+                failure(jqxhr.status, jqxhr.responseText);
+            });
+        }
+        
+        this.signup = function(signUpValues, success, failure) {
+            $.post(SIGNUP_ENDPOINT, signUpValues).success(success).fail(function(jqxhr) {
+                failure(jqxhr.responseText);
+            });
         }
 
         this.SetHeaders = function () {
@@ -65,8 +67,6 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
                 });
             return this;
         }
-
-        // constructor
 
         this.SetHeaders();
     }

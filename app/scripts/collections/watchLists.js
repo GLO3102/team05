@@ -17,7 +17,7 @@ define(['jquery', 'underscore', 'backbone','models/watchList'], function($, _,  
         },
         getWatchListById: function (id) {
             return this.findWhere({id: id});
-        },
+        }
 
     });
 
