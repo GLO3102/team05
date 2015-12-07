@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/Authentification',  'libraries/crypto'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto) {
+define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView', 'models/user', 'views/user',  'libraries/Authentification',  'libraries/crypto'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, user, userView, Authentification, crypto) {
 
     var HomeView = Backbone.View.extend({
         tagName: 'div',
@@ -11,7 +11,8 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             'click a.serie-page-link': 'goToSerie',
             'click a.home-page-link': 'goToHome',
             'click a.watchlist-page-link': 'goToWatchList',
-            'click a#log-out': 'logOut'
+            'click a#log-out': 'logOut',
+            'click a.user-page-link':'goToUser',
         },
 
         initialize: function () {
@@ -63,6 +64,13 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             var watchListsView = new WatchListsView({collection: watchLists});
             watchLists.fetch();
             this.$(this.bodyEl).html(watchListsView.$el);
+        },
+
+        goToUser: function(userId){
+            var user = new UserModel({'id': "565fa491f7cc1803008fea0c"});
+            var userView = new UserView({model:user});
+            user.fetch();
+            this.$(this.bodyEl).html(userView.$el);
         }
     });
 

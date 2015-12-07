@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="styles/movie.css">
         <link rel="stylesheet" href="styles/serie.css">
         <link rel="stylesheet" href="styles/actor.css">
-
+        <link rel="stylesheet" href="styles/user.css">
     </head>
     <body>
 
@@ -65,6 +65,8 @@
                             class="um-navbar-label"> Movies Stars </span></a></li>
                         <li><a href="#" class="serie-page-link" data-serie-id="279175900"><span class="glyphicon glyphicon-film um-navbar-icon"> </span> <span
                             class="um-navbar-label"> Series </span></a></li>
+                        <li><a href="#" class="user-page-link" data-user-id="279175900"><span class="glyphicon glyphicon-user um-navbar-icon"> </span> <span
+                            class="um-navbar-label"> Users </span></a></li>
                         <li class="um-navbar-user-more">
                             <a href="#" data-toggle="collapse" data-target="#um-user-navigation-menu" aria-expanded="false">
                                 <span class="glyphicon glyphicon-user um-navbar-icon"></span>
@@ -136,6 +138,7 @@
 
                     </div>
                 </div>
+
                 <div class="actor-movie-list row">
                     <% _.each(movies.models, function(movie) { %><!--to modify-->
                     <div class="movie-item col-md-12 col-lg-6">
@@ -359,10 +362,105 @@
 
         </script>
 
+        <script type="text/template" id="user-template">
+
+            <div class="alert alert-danger alert-not-added-follower" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                This user wasn't added to your followers list.
+            </div>
+
+            <div class="alert alert-success alert-added-follower" role="alert">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                This user was added to your followers list.
+            </div>
+
+            <div class="alert alert-success alert-unfollow" role="alert">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                This user was deleted from your followers list.
+            </div>
+
+            <div class="alert alert-danger alert-unfollow-fail" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                This user wasn't deleted from your followers list.
+            </div>
+
+            <div class="userInformations">
+                <h4><%= user.get('name') %></h4>
+                <p><%= user.get('email') %></p>
+            </div>
+
+
+            <div class="panel panel-primary panel-followers">
+                <div class="panel-heading">WatchLists</div>
+                <div class="panel-body">
+
+
+                    <% if (watchLists.models.length == 0) { %>
+                        <div class="alert alert-danger alert-follower" role="alert">
+                            This user doesn't have any follower.
+                        </div>
+                    <%}%>
+
+                    <% _.each(watchLists.models, function(watchList) { %>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"  role="tab" >
+                            <h4 class="panel-title">
+                                <div>
+                                    <% if (watchList.get("name").length != 0) { %>
+                                    <%= watchList.get("name") %>
+                                    <% } %>
+                                </div>
+
+                                <div class="watchListOptions" >
+                                    <a class="glyphicon glyphicon-collapse-down" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= watchList.id %>" aria-expanded="false" aria-controls="collapse<%= watchList.id %>">Open</a>
+                                </div>
+                            </h4>
+                        </div>
+                        <div id="collapse<%= watchList.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= watchList.id %>">
+                            <div class="panel-body">
+                                <% if (watchList.get("movies").length == 0) { %>
+                                <div class="alert alert-danger" role="alert">This WatchList doesn't contain any movies.</div>
+                                <% } %>
+
+                                <% if (watchList.get("movies").length != 0) { %>
+                                <div class ="movies">
+                                    <% _.each(watchList.get("movies"), function(movie) { %>
+                                    <div class ="movie" >
+                                        <img src="<%= movie.artworkUrl100 %>" width="180px" height="200px">
+                                    </div>
+                                    <% }); %>
+                                </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+
+            <div class="panel panel-primary panel-followers">
+                <div class="panel-heading">Followers list</div>
+                <div class="panel-body">
+                    <% if(user.get('following').length == 0) { %>
+                    <div class="alert alert-danger alert-follower" role="alert">
+                        This user doesn't have any follower.
+                    </div>
+                    <%}%>
+
+                    <% _.each(user.get('following'), function(follower) { %>
+                        <img class="media-object friend-icon" data-toggle="tooltip" title="<%= follower.name %>" src="images/user-placeholder.jpg" width="64px" height="64px">
+                    <% }); %>
+                </div>
+            </div>
+
+
+            <button type="button" class="btn btn-default follow-user">Follow</button>
+            <button type="button" class="btn btn-danger unfollow-user">Unfollow</button>
+
+        </script>
+
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
         <script data-main="scripts/app" src="lib/requirejs/require.js"></script>
-
-
 
 </body>
 </html>
