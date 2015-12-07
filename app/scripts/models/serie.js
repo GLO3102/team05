@@ -58,7 +58,7 @@ define(['underscore', 'backbone', 'libraries/youtube'], function(_, Backbone, Yo
             this.set("episodes", episodes);
             this.trigger("sync", this);
         },
-        getEpisodeDetail(trackId){
+        getEpisodeDetail:function(trackId){
             var myEpisodes = this.get("episodes");
             var myEpisodesModels = myEpisodes.models;
             for( var i = 0; i < myEpisodesModels.length; i++){

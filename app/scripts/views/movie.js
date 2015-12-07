@@ -30,7 +30,7 @@ define(['jquery', 'underscore', 'backbone','collections/watchLists','libraries/a
             this.$el.empty();
             var data = this.model.toJSON();
             this.$el.html(this.template(data));
-            disqus.load('movie',this.model.trackId);
+            disqus.load('movie',this.model.get("trackId"));
 
         },
 

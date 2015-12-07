@@ -2,7 +2,7 @@
  * Created by didia on 15-11-03.
  */
 
-define(['jquery', 'underscore', 'backbone', 'libraries/youtube'], function($, _,  Backbone,  Youtube) {
+define(['jquery', 'underscore', 'backbone', 'libraries/youtube', 'libraries/disqus'], function($, _,  Backbone,  Youtube,disqus) {
 
     var SerieView = Backbone.View.extend({
         tagName:'div',
@@ -20,6 +20,7 @@ define(['jquery', 'underscore', 'backbone', 'libraries/youtube'], function($, _,
         render: function() {
             var data = this.model.toJSON();
             this.$el.html(this.template(data));
+            disqus.load('series', this.model.get("collectionId"));
         },
 
         showEpisodeDetails: function(event){
@@ -36,7 +37,6 @@ define(['jquery', 'underscore', 'backbone', 'libraries/youtube'], function($, _,
             this.getEpisodeTrailer(episode.get('collectionName'));
             $("#EpisodeDescription").html(episodeDescription);
             $("#EpisodeDuration").html(Math.floor((episodeDuration/1000/60) << 0)+ " Minutes");
-            disqus.load('series', this.model.trackId);
         },
         cleanup : function(){
             this.undelegateEvents();

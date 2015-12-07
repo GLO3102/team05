@@ -103,9 +103,7 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         },
         showMovie:function(ev){
             var ctrl = $(ev.currentTarget);
-
             var movie_id = parseInt(ctrl.parent().attr('movieid'));
-            console.log(movie_id);
             var movie = new Movie({'trackId': movie_id});
             if(typeof movieView !='undefined') movieView.cleanup();
             movieView = new MovieView({model: movie, el:$(this.bodyEl)});
