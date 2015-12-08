@@ -1,7 +1,7 @@
 /**
  * Created by mohamed on 2015-11-30.
  */
-define(['underscore', 'backbone'], function(_, Backbone) {
+define(['underscore', 'backbone', 'libraries/authentification'], function(_, Backbone, auth) {
 
     UserModel = Backbone.Model.extend({
         urlRoot: 'https://umovie.herokuapp.com/users/',

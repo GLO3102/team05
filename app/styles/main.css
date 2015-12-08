@@ -30,6 +30,13 @@
     cursor: pointer;
 }
 
+.user-link{
+    cursor: pointer;
+}
+a.follow-link{
+    cursor: pointer;
+}
+
 .sign-in-button {
     background-color: #8b0b65;
     color: #fff;
