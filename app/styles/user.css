@@ -29,3 +29,30 @@
 .panel-followers{
     width: 800px;
 }
+
+.user-image-section img{
+    width: 70px;
+    margin-bottom: 20px;
+}
+
+.user-image-section{
+    float: left;
+}
+
+.user-informations{
+    margin-bottom: 30px;
+}
+
+.user-information-section{
+    margin-left: 90px;
+}
+
+.user-information-section h4{
+    color:#8E8B8B;
+    margin-bottom: 5px;
+}
+
+.user-information-section p{
+    color:#101010;
+}
+

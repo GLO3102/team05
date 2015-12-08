@@ -163,9 +163,9 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             $(ev.currentTarget).addClass('selected');
 
             var owner = {
-                email: Authentification.getEmail(),
-                name: Authentification.getName(),
-                id: Authentification.getId()
+                email: Authentification.GetEmail(),
+                name: Authentification.GetName(),
+                id: Authentification.GetId()
             };
             console.log(owner);
             var self = this;

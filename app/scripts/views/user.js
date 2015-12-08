@@ -1,7 +1,7 @@
 /**
  * Created by mohamed on 2015-11-30.
  */
-define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries/Authentification'], function($, _,  Backbone, WatchListCollections, auth) {
+define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries/Authentification', 'libraries/crypto'], function($, _,  Backbone, WatchListCollections, auth, crypto) {
 
     function deteleUserFromFollowersList(data) {
         var followerId = getUserId(data);
@@ -35,6 +35,12 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
         return id;
     }
 
+    function hasFollowingList(following){
+        for(i=0; i<following.length; i++){
+            following[i].email= crypto.md5(following[i].email);
+        }
+    }
+
     UserView = Backbone.View.extend({
 
         template: _.template($('#user-template').html()),
@@ -42,6 +48,7 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
         userId: null,
         userEmail: null,
         userName: null,
+        hashEmail:null,
         followersList: null,
         followedId: null,
 
@@ -64,12 +71,14 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
             this.userId = self.model.id;
             this.userEmail = self.model.get('email');
             this.userName = self.model.get('name');
+            this.hashEmail = crypto.md5(this.userEmail);
 
             var watchLists = new WatchListCollection();
             watchLists.fetch().done(function(data){
                 watchLists.filterByOwner({email: self.model.get('email'), name: self.model.get('name'), id: self.model.id});
                 var data = self.model;
-                self.$el.html(self.template({user:self.model, watchLists:watchLists}));
+                hasFollowingList(self.model.get('following'));
+                self.$el.html(self.template({user:self.model, watchLists:watchLists, hashEmail: self.hashEmail}));
             })
         },
 
