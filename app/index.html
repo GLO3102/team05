@@ -713,20 +713,21 @@
                     </tr>
                     <%})%>
                     <% _.each(movies.models, function(movie) { %>
-                    <tr movieid="<%=movie.get('trackId')%>">
-                        <td><img src="http://stickeramoi.com/7767-8578-large/autocollant-cinema-bobine-de-film.jpg" width="30px" height="30px"></td>
-                        <td class="movie-link" ><%=movie.get('trackName')%></td>
-                        <td><%=movie.get('primaryGenreName')%></td>
-                        <td class="add-to-watchlist-global"><a>add to watchlist</a></td>
-                    </tr>
+                        <tr movieid="<%=movie.get('trackId')%>">
+                            <td><img src="http://stickeramoi.com/7767-8578-large/autocollant-cinema-bobine-de-film.jpg" width="30px" height="30px"></td>
+                            <td class="movie-link" ><%=movie.get('trackName')%></td>
+                            <td><%=movie.get('primaryGenreName')%></td>
+                            <td class="add-to-watchlist-global"><a>add to watchlist</a></td>
+                        </tr>
                     <%})%>
                     <% _.each(series.models, function(serie) { %>
-                    <tr serieid="<%=serie.get('collectionId')%>">
-                        <td><img src="http://blog.slate.fr/tetes-de-series/files/2011/05/retro-tv-icon.jpg" width="30px" height="30px"></td>
-                        <td class="serie-link" ><%=serie.get('collectionName')%></td>
-                        <td><%=serie.get('primaryGenreName')%></td>
-                        <td></td>
-                    </tr>
+                        <tr serieid="<%=serie.get('collectionId')%>">
+                            <td><img src="http://blog.slate.fr/tetes-de-series/files/2011/05/retro-tv-icon.jpg" width="30px" height="30px"></td>
+                            <td class="serie-link" ><%=serie.get('collectionName')%></td>
+                            <td><%=serie.get('primaryGenreName')%></td>
+                            <td></td>
+                        </tr>
+
                     <%})%>
                     <% _.each(users.models, function(user) { %>
                     <tr userid="<%=user.get('id')%>">
