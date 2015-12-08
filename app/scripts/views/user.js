@@ -35,6 +35,12 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
         return id;
     }
 
+    function hasFollowingList(following){
+        for(i=0; i<following.length; i++){
+            following[i].email= crypto.md5(following[i].email);
+        }
+    }
+
     UserView = Backbone.View.extend({
 
         template: _.template($('#user-template').html()),
@@ -71,6 +77,7 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
             watchLists.fetch().done(function(data){
                 watchLists.filterByOwner({email: self.model.get('email'), name: self.model.get('name'), id: self.model.id});
                 var data = self.model;
+                hasFollowingList(self.model.get('following'));
                 self.$el.html(self.template({user:self.model, watchLists:watchLists, hashEmail: self.hashEmail}));
             })
         },
@@ -102,7 +109,7 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
             self = this;
             $.ajax({
                 type: "GET",
-                url: "https://umovie.herokuapp.com/users/"+auth.GetId(),
+                url: "https://umovie.herokuapp.com/users/"+auth.getId(),
             })
                 .done(function(data){
                     deteleUserFromFollowersList(data.following);
