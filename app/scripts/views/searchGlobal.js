@@ -6,7 +6,7 @@ define(['jquery', 'underscore', 'backbone','models/searchGlobal','libraries/auth
         watchLists: new WatchListCollection(),
         selectedGenres: [],
         events: {
-            "click .checkbox":  "filterWithGenre"
+            "click .genre":  "filterWithGenre"
 
         },
         initialize: function () {
@@ -26,7 +26,10 @@ define(['jquery', 'underscore', 'backbone','models/searchGlobal','libraries/auth
         },
 
         filterWithGenre: function(event){
-            event.tar
+            var genre = $(event.target).attr("value");
+            if($('#'+genre).is(":checked")){
+            this.selectedGenres.push(genre);
+            }
         }
     });
 

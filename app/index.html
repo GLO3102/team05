@@ -695,7 +695,7 @@
             <% _.each(genres , function(genre) { %>
             <% if (typeof(genre) !== "undefined") { %>
                 <div class="checkbox">
-                    <label><input type="checkbox" value=""><%= genre %></label>
+                    <label><input type="checkbox" class ="genre" id="<%= genre %>" value="<%= genre %>"><%= genre %></label>
                 </div>
             <% } %>
             <%})%>
