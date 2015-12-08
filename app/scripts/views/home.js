@@ -54,7 +54,7 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             this.lastView.render();
         },
         logOut: function (event) {
-            Authentification.logout().SetHeaders();
+            Authentification.logout();
             location.reload();
         },
 
