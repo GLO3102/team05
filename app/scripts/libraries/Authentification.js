@@ -7,7 +7,7 @@ define(['jquery', 'underscore'], function ($, _) {
 
         function getCurrentUser() {
             if(currentUser == null) {
-                currentUser = localStorage.getItem("current-user");
+                currentUser = JSON.parse(localStorage.getItem("current-user"));
             }
             return currentUser;
         }
@@ -59,7 +59,7 @@ define(['jquery', 'underscore'], function ($, _) {
             var self = this;
             $.post(SIGNIN_ENDPOINT, {email: email, password: password}).success(function(result){
                 currentUser = result;
-                localStorage.setItem("current-user", result);
+                localStorage.setItem("current-user", JSON.stringify(result));
                 self.setHeaders();
                 success();
 

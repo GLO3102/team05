@@ -4,7 +4,9 @@ define(['jquery', 'underscore', 'backbone','models/searchGlobal','libraries/auth
 
         template: _.template($('#search-global-template').html()),
         watchLists: new WatchListCollection(),
+        selectedGenres: [],
         events: {
+            "click .checkbox":  "filterWithGenre"
 
         },
         initialize: function () {
@@ -12,7 +14,6 @@ define(['jquery', 'underscore', 'backbone','models/searchGlobal','libraries/auth
             this.model.bind("sync", function () {
                 self.render();
             });
-
         },
         render: function(){
             var data = this.model;
@@ -22,6 +23,10 @@ define(['jquery', 'underscore', 'backbone','models/searchGlobal','libraries/auth
         cleanup : function(){
             this.undelegateEvents();
             $(this.el).empty();
+        },
+
+        filterWithGenre: function(event){
+            event.tar
         }
     });
 
