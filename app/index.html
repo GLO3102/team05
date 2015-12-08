@@ -155,7 +155,6 @@
             </div>
         </script>
 
-
         <script type="text/template" id="signin-page-template">
             <div class="standalone-form-wrapper">
                 <img class="logo" src="./images/logo.png" />
@@ -479,16 +478,27 @@
                 This user wasn't deleted from your followers list.
             </div>
 
-            <div class="userInformations">
-                <h4><%= user.get('name') %></h4>
-                <p><%= user.get('email') %></p>
+            <div class="user-informations">
+
+                <div class="user-image-section">
+                    <img src="https://www.gravatar.com/avatar/<%= hashEmail %>?d=identicon&s=40" class="img-circle">
+                </div>
+
+                <div class="user-information-section">
+                    <h4><%= user.get('name') %></h4>
+                    <p><%= user.get('email') %></p>
+                </div>
+
             </div>
 
 
             <div class="panel panel-primary panel-followers">
-                <div class="panel-heading">WatchLists</div>
-                <div class="panel-body">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
+                    <span>WatchLists</span>
+                </div>
 
+                <div class="panel-body">
 
                     <% if (watchLists.models.length == 0) { %>
                         <div class="alert alert-danger alert-follower" role="alert">
@@ -534,7 +544,12 @@
             </div>
 
             <div class="panel panel-primary panel-followers">
-                <div class="panel-heading">Followers list</div>
+
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <span>Followers list</span>
+                </div>
+
                 <div class="panel-body">
                     <% if(user.get('following').length == 0) { %>
                     <div class="alert alert-danger alert-follower" role="alert">
@@ -543,7 +558,7 @@
                     <%}%>
 
                     <% _.each(user.get('following'), function(follower) { %>
-                    <img class="media-object friend-icon" data-toggle="tooltip" title="<%= follower.name %>" src="images/user-placeholder.jpg" width="64px" height="64px">
+                    <img class="media-object friend-icon" src="https://www.gravatar.com/avatar/<%= follower.email %>?d=identicon&s=40" data-toggle="tooltip" title="<%= follower.name %>" width="64px" height="64px">
                     <% }); %>
                 </div>
             </div>
@@ -608,6 +623,7 @@
                 </div>
             </div>
         </script>
+
         <script type="text/template" id="search-actor-template">
             <div>
                 <h1>Actor Search</h1>

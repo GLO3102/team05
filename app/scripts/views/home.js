@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/authentification',  'libraries/crypto', 'views/searchMovies', 'views/searchActors', 'views/searchSeries', 'views/searchGlobal', 'models/user', 'views/user'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView, SearchActorsView, SearchSeriesView, SearchGlobalView, user, userView) {
+define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'models/serie', 'views/serie', 'models/actor', 'views/actor', 'collections/watchLists', 'views/watchListsView',  'libraries/authentification',  'libraries/crypto', 'views/searchMovies', 'views/searchActors', 'views/searchSeries', 'views/searchGlobal', 'models/user', 'views/user'], function ($, _, Backbone, Movie, MovieView, Serie, SerieView, Actor, ActorView, WatchLists, WatchListsView, Authentification, crypto, SearchMoviesView, SearchActorsView, SearchSeriesView, SearchGlobalView, User, UserView) {
 
     var HomeView = Backbone.View.extend({
         tagName: 'div',
@@ -30,15 +30,15 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         render: function () {
             this.$el.html(this.template());
             this.$(this.menuEl).html(_.template($("#menu-template").html())({
-                name: Authentification.getName(),
-                emailHash: crypto.md5(Authentification.getEmail())
+                name:Authentification.GetName(),
+                emailHash:crypto.md5(Authentification.GetEmail())
             }));
         },
         cleanView: function(){
             if(this.lastView!=null)
                 this.lastView.cleanup();
         },
-        goToMovie: function () {
+        goToMovie: function (event) {
             /*
             var movie_id = $(event.target).closest('a').data('movie-id');
             var movie = new Movie({'trackId': movie_id});
@@ -51,7 +51,7 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             this.lastView.render();
         },
 
-        goToActor: function () {
+        goToActor: function (event) {
             /*
             var actor_id = $(event.target).closest('a').data('actor-id');
             var actor = new Actor({'artistId': actor_id});
@@ -64,12 +64,12 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             this.lastView = new SearchActorsView({el:$(this.bodyEl), model:searchActors});
             this.lastView.render();
         },
-        logOut: function () {
-            Authentification.logout();
-            this.trigger('logout-success');
+        logOut: function (event) {
+            Authentification.Logout().SetHeaders();
+            location.reload();
         },
 
-        goToSerie: function () {
+        goToSerie: function (event) {
             /*
             var serie_id = $(event.target).closest('a').data('serie-id');
             var serie = new Serie({'collectionId': serie_id});
@@ -112,7 +112,9 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         },
         showMovie:function(ev){
             var ctrl = $(ev.currentTarget);
+
             var movie_id = parseInt(ctrl.parent().attr('movieid'));
+            console.log(movie_id);
             var movie = new Movie({'trackId': movie_id});
             if(typeof movieView !='undefined') movieView.cleanup();
             movieView = new MovieView({model: movie, el:$(this.bodyEl)});
@@ -144,9 +146,9 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             $(ev.currentTarget).addClass('selected');
 
             var owner = {
-                email: Authentification.getEmail(),
-                name: Authentification.getName(),
-                id: Authentification.getId()
+                email: Authentification.GetEmail(),
+                name: Authentification.GetName(),
+                id: Authentification.GetId()
             };
             console.log(owner);
             var self = this;
