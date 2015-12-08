@@ -556,6 +556,13 @@
         </script>
 
         <script type="text/template" id="search-global-template">
+            <% _.each(genres , function(genre) { %>
+            <% if (typeof(genre) !== "undefined") { %>
+                <div class="checkbox">
+                    <label><input type="checkbox" value=""><%= genre %></label>
+                </div>
+            <% } %>
+            <%})%>
             <div>
                 <table class="table table-striped">
                     <tr>
