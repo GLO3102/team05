@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone','collections/searchActors','collections/searchMovies','collections/searchSeries', 'libraries/authentification'], function($, _,  Backbone, SearchActors, SearchMovies, SearchSeries, auth) {
+define(['jquery', 'underscore', 'backbone','collections/searchActors','collections/searchMovies','collections/searchSeries', 'collections/searchUser', 'libraries/authentification'], function($, _,  Backbone, SearchActors, SearchMovies, SearchSeries, SearchUser, auth) {
 
 
     SearchGlobal = Backbone.Model.extend({
@@ -6,9 +6,9 @@ define(['jquery', 'underscore', 'backbone','collections/searchActors','collectio
         actors: new SearchActors(),
         movies: new SearchMovies(),
         series: new SearchSeries(),
+        users:  new SearchUser(),
+
         genres: [],
-
-
         parse: function(data){
             return data.results;
         },
@@ -28,6 +28,7 @@ define(['jquery', 'underscore', 'backbone','collections/searchActors','collectio
             this.actors.Search(searchQuery, options, function(){onSuccess("actors")});
             this.movies.Search(searchQuery, options, function(){onSuccess("movies")});
             this.series.Search(searchQuery, options,  function(){onSuccess("series")});
+            this.users.Search(searchQuery, options, onSuccess);
 
 
         },
