@@ -117,6 +117,7 @@
         <script type="text/template" id="home-page-template">
             <div id="menu-content"></div>
             <div id="app-content"></div>
+
         </script>
 
         <script type="text/template" id="welcome-page-template">
@@ -708,10 +709,10 @@
             </script>
 
         <script type="text/template" id="search-global-template">
-            <% _.each(genres , function(genre) { %>
+            <% _.each(searchData.genres , function(genre) { %>
             <% if (typeof(genre) !== "undefined") { %>
                 <div class="checkbox">
-                    <label><input type="checkbox" class ="genre" id="<%= genre %>" value="<%= genre %>"><%= genre %></label>
+                    <label><input type="checkbox" class ="genre" value="<%= genre %>"><%= genre %></label>
                 </div>
             <% } %>
             <%})%>
@@ -720,7 +721,7 @@
                     <tr>
                         <td></td><td>Title</td><td>Genre</td><td></td>
                     </tr>
-                    <% _.each(actors.models, function(actor) { %>
+                    <% _.each(searchData.actors.models, function(actor) { %>
                     <tr actorid="<%=actor.get('artistId')%>">
                         <td><img src="https://openclipart.org/image/2400px/svg_to_png/202776/pawn.png" width="30px" height="30px"></td>
                         <td class="actor-link" ><%=actor.get('artistName')%></td>
@@ -728,24 +729,24 @@
                         <td></td>
                     </tr>
                     <%})%>
-                    <% _.each(movies.models, function(movie) { %>
-                        <tr movieid="<%=movie.get('trackId')%>">
-                            <td><img src="http://stickeramoi.com/7767-8578-large/autocollant-cinema-bobine-de-film.jpg" width="30px" height="30px"></td>
-                            <td class="movie-link" ><%=movie.get('trackName')%></td>
-                            <td><%=movie.get('primaryGenreName')%></td>
-                            <td class="add-to-watchlist-global"><a>add to watchlist</a></td>
-                        </tr>
-                    <%})%>
-                    <% _.each(series.models, function(serie) { %>
-                        <tr serieid="<%=serie.get('collectionId')%>">
-                            <td><img src="http://blog.slate.fr/tetes-de-series/files/2011/05/retro-tv-icon.jpg" width="30px" height="30px"></td>
-                            <td class="serie-link" ><%=serie.get('collectionName')%></td>
-                            <td><%=serie.get('primaryGenreName')%></td>
-                            <td></td>
-                        </tr>
+                        <% _.each(filteredMovies, function(movie) { %>
+                                <tr movieid="<%=movie.get('trackId')%>">
+                                    <td><img src="http://stickeramoi.com/7767-8578-large/autocollant-cinema-bobine-de-film.jpg" width="30px" height="30px"></td>
+                                    <td class="movie-link" ><%=movie.get('trackName')%></td>
+                                    <td><%=movie.get('primaryGenreName')%></td>
+                                    <td class="add-to-watchlist-global"><a>add to watchlist</a></td>
+                                </tr>
+                        <%})%>
+                    <% _.each(filteredSeries, function(serie) { %>
+                            <tr serieid="<%=serie.get('collectionId')%>">
+                                <td><img src="http://blog.slate.fr/tetes-de-series/files/2011/05/retro-tv-icon.jpg" width="30px" height="30px"></td>
+                                <td class="serie-link" ><%=serie.get('collectionName')%></td>
+                                <td><%=serie.get('primaryGenreName')%></td>
+                                <td></td>
+                            </tr>
 
                     <%})%>
-                    <% _.each(users.models, function(user) { %>
+                    <% _.each(searchData.users.models, function(user) { %>
                     <tr userid="<%=user.get('id')%>">
                         <td><img src="http://simpleicon.com/wp-content/uploads/account.svg" width="30px" height="30px"></td>
                         <td class="user-link" ><%=user.get('name')%></td>

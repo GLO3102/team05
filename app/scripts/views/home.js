@@ -152,7 +152,7 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         searchGlobal:function(){
             if(typeof searchGlobalView != 'undefined') searchGlobalView.cleanup();
             var searchGlobalModel = new SearchGlobal();
-            searchGlobalView = new SearchGlobalView({el:$(this.bodyEl), model:searchGlobalModel});
+            searchGlobalView = new SearchGlobalView({el:$(this.bodyEl),checkbox: $(this.checkbox), model:searchGlobalModel});
             searchGlobalModel.Search($('#input-search-global').val());
 
         },
