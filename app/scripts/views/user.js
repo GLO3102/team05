@@ -107,14 +107,34 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
 
         deleteFromFollowedUsersList: function(){
             self = this;
+            
+            var request = $.ajax({
+                type: "DELETE",
+                url: "https://umovie.herokuapp.com/follow/"+this.userId,
+                dataType: "json"
+            });
+            request.done(function() {
+                $('.alert-unfollow').show("slow");
+                setTimeout(function () {
+                    $(".alert-unfollow").hide("slow");
+                }, 5000)
+            });
+            request.fail(function(){
+                $('.alert-unfollow-fail').show("slow");
+                setTimeout(function () {
+                    $(".alert-unfollow-fail").hide("slow");
+                }, 5000)
+            });
+            /*
             $.ajax({
                 type: "GET",
                 url: "https://umovie.herokuapp.com/users/"+auth.getId(),
             })
                 .done(function(data){
                     deteleUserFromFollowersList(data.following);
-                });
+                });*/
         },
+
         cleanup : function(){
             this.undelegateEvents();
             $(this.el).empty();
