@@ -1,6 +1,9 @@
 define(['jquery', 'underscore', 'backbone','collections/searchActors','collections/searchMovies','collections/searchSeries', 'collections/searchUser', 'libraries/authentification'], function($, _,  Backbone, SearchActors, SearchMovies, SearchSeries, SearchUser, auth) {
 
 
+
+
+
     SearchGlobal = Backbone.Model.extend({
 
         actors: new SearchActors(),
@@ -17,11 +20,9 @@ define(['jquery', 'underscore', 'backbone','collections/searchActors','collectio
 
             if(typeof options == 'undefined') options = {};
             var onSuccess = function(type){
-                self.trigger('sync', self);
                 self.getListOfGenres(type);
-
+                self.trigger('sync', self);
             }
-            this.actors = new SearchActors();
             this.movies = new SearchMovies();
             this.series = new SearchSeries();
             this.genres = [];
@@ -34,23 +35,19 @@ define(['jquery', 'underscore', 'backbone','collections/searchActors','collectio
         },
 
         getListOfGenres: function(type){
-            if(type == "actors"){
-                var actorGenres = this.actors.map(function(model){
-                    return model.get('primaryGenreName');
-                });
-                this.genres = this.genres.concat(actorGenres);
-            }
             if(type == "movies"){
                 var moviesGenres = this.movies.map(function(model){
                     return model.get('primaryGenreName');
                 });
                 this.genres = this.genres.concat(moviesGenres);
+                this.filteredMovies = this.movies.models;
             }
             if(type == "series"){
                 var seriesGenres = this.series.map(function(model){
-                    return model.get("primaryGenreName")
+                    return model.get('primaryGenreName');
                 });
                 this.genres = this.genres.concat(seriesGenres);
+                this.filteredSeries = this.series.models;
             }
 
             this.getGenresWithoutDuplicates();

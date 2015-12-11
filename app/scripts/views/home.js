@@ -55,7 +55,8 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         },
         logOut: function (event) {
             Authentification.logout();
-            location.reload();
+            this.cleanup();
+            this.trigger('logout-success');
         },
 
         goToSerie: function (event) {
@@ -152,7 +153,7 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         searchGlobal:function(){
             if(typeof searchGlobalView != 'undefined') searchGlobalView.cleanup();
             var searchGlobalModel = new SearchGlobal();
-            searchGlobalView = new SearchGlobalView({el:$(this.bodyEl), model:searchGlobalModel});
+            searchGlobalView = new SearchGlobalView({el:$(this.bodyEl),checkbox: $(this.checkbox), model:searchGlobalModel});
             searchGlobalModel.Search($('#input-search-global').val());
 
         },
