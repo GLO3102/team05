@@ -3,56 +3,6 @@
  */
 define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries/Authentification', 'libraries/crypto'], function($, _,  Backbone, WatchListCollections, auth, crypto) {
 
-    function deteleUserFromFollowersList(data) {
-        var followerId = getUserId(data);
-
-        var request = $.ajax({
-            type: "DELETE",
-            url: "https://umovie.herokuapp.com/follow/"+followerId,
-            dataType: "json"
-        });
-        request.done(function() {
-            $('.alert-unfollow').show("slow");
-            setTimeout(function () {
-                $(".alert-unfollow").hide("slow");
-            }, 5000)
-        });
-        request.fail(function(){
-            $('.alert-unfollow-fail').show("slow");
-            setTimeout(function () {
-                $(".alert-unfollow-fail").hide("slow");
-            }, 5000)
-        });
-    }
-
-    function getUserId(data){
-        var id;
-        for(i=0; i<data.length; i++){
-            if(data[i].email == self.userEmail && data[i].name == self.userName){
-                id = data[i]._id;
-            }
-        }
-        return id;
-    }
-
-    function isFollowed(userId){
-        var exist = false;
-
-        $.ajax({
-            type: "GET",
-            url: "https://umovie.herokuapp.com/users/"+auth.getId(),
-        })
-            .done(function(data){
-
-                for(i=0; i<data.length; i++){
-                    if(data[i].id == userId){
-                        return true;
-                    }
-                }
-                return false;
-            });
-    }
-
     function hasFollowingList(following){
         for(i=0; i<following.length; i++){
             following[i].email= crypto.md5(following[i].email);
@@ -144,14 +94,6 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
                     $(".alert-unfollow-fail").hide("slow");
                 }, 5000)
             });
-            /*
-            $.ajax({
-                type: "GET",
-                url: "https://umovie.herokuapp.com/users/"+auth.getId(),
-            })
-                .done(function(data){
-                    deteleUserFromFollowersList(data.following);
-                });*/
         },
 
         cleanup : function(){
