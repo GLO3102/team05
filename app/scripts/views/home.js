@@ -22,7 +22,8 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             "click .add-to-watchlist-global":"loadWatchLists",
             "click  .serie-link": "showSerie",
             'click a.follow-link':'FollowUser',
-            'click #btn-search-global':'searchGlobal'
+            'click #btn-search-global':'searchGlobal',
+            'click #profil-current-user':'showCurrentUserProfil'
         },
 
         initialize: function () {
@@ -82,6 +83,14 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             var watchListsView = new WatchListsView({collection: watchLists});
             watchLists.fetch();
             this.$(this.bodyEl).html(watchListsView.$el);
+        },
+
+        showCurrentUserProfil:function(){
+
+            var currentUser = new UserModel({'id':Authentification.getId()});
+            if(typeof userView != 'undefined') userView.cleanup();
+            userView = new UserView({model: currentUser, el:$(this.bodyEl)});
+            currentUser.fetch();
         },
 
         showUser: function(ev) {

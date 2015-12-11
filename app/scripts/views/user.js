@@ -47,6 +47,10 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
                 var data = self.model;
                 hasFollowingList(self.model.get('following'));
                 self.$el.html(self.template({user:self.model, watchLists:watchLists, hashEmail: self.hashEmail}));
+                if(self.model.id == auth.getId()){
+                    $(".follow-user").hide();
+                    $(".unfollow-user").hide();
+                }
             })
         },
 
@@ -71,7 +75,6 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
                     $(".alert-not-added-follower").hide("slow");
                 }, 5000)
             });
-
         },
 
         deleteFromFollowedUsersList: function(){
