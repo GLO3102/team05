@@ -35,6 +35,24 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
         return id;
     }
 
+    function isFollowed(userId){
+        var exist = false;
+
+        $.ajax({
+            type: "GET",
+            url: "https://umovie.herokuapp.com/users/"+auth.getId(),
+        })
+            .done(function(data){
+
+                for(i=0; i<data.length; i++){
+                    if(data[i].id == userId){
+                        return true;
+                    }
+                }
+                return false;
+            });
+    }
+
     function hasFollowingList(following){
         for(i=0; i<following.length; i++){
             following[i].email= crypto.md5(following[i].email);
@@ -83,6 +101,7 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
         },
 
         addToFollowedUsersList: function(){
+            self = this;
 
             var request = $.ajax({
                 type: "POST",
@@ -97,17 +116,17 @@ define(['jquery', 'underscore', 'backbone', 'collections/watchLists' ,'libraries
                 }, 5000)
             });
             request.fail(function(){
-                alert(auth.Get);
                 $('.alert-not-added-follower').show("slow");
                 setTimeout(function () {
                     $(".alert-not-added-follower").hide("slow");
                 }, 5000)
             });
+
         },
 
         deleteFromFollowedUsersList: function(){
             self = this;
-            
+
             var request = $.ajax({
                 type: "DELETE",
                 url: "https://umovie.herokuapp.com/follow/"+this.userId,
