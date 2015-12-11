@@ -55,7 +55,8 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
         },
         logOut: function (event) {
             Authentification.logout();
-            location.reload();
+            this.cleanup();
+            this.trigger('logout-success');
         },
 
         goToSerie: function (event) {
