@@ -119,7 +119,7 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
                 }, 5000)
             });
             request.fail(function(){
-                alert(auth.Get);
+                alert("Impossible d'ajouter "+Authentification.getName()+". L'avez-vous déjà ajouté?");
                 $('.alert-not-added-follower').show("slow");
                 setTimeout(function () {
                     $(".alert-not-added-follower").hide("slow");
@@ -141,7 +141,6 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
             var ctrl = $(ev.currentTarget);
 
             var movie_id = parseInt(ctrl.parent().attr('movieid'));
-            console.log(movie_id);
             var movie = new Movie({'trackId': movie_id});
             if(typeof movieView !='undefined') movieView.cleanup();
             movieView = new MovieView({model: movie, el:$(this.bodyEl)});
@@ -177,7 +176,6 @@ define(['jquery', 'underscore', 'backbone', 'models/movie', 'views/movie', 'mode
                 name: Authentification.GetName(),
                 id: Authentification.GetId()
             };
-            console.log(owner);
             var self = this;
             this.watchLists.fetch().done(function (){
                 self.watchLists.filterByOwner(owner);

@@ -488,7 +488,7 @@
             <div class="user-informations">
 
                 <div class="user-image-section">
-                    <img src="https://www.gravatar.com/avatar/<%= hashEmail %>?d=identicon&s=40" class="img-circle">
+                    <img src="<%= user.get('gravatarUrl') %>&s=70" class="img-circle">
                 </div>
 
                 <div class="user-information-section">
@@ -695,7 +695,7 @@
                         </tr>
                         <% _.each(models, function(user) { %>
                         <tr userid="<%=user.get('id')%>">
-                            <td><img src="http://simpleicon.com/wp-content/uploads/account.svg" width="30px" height="30px"></td>
+                            <td><img src="<%=user.get('gravatarUrl')%>&s=30" width="30px" height="30px"></td>
                             <td class="user-link" ><%=user.get('name')%></td>
                             <td></td>
                             <td><a class="follow-link">Follow</a></td>
