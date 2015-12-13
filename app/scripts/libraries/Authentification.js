@@ -70,7 +70,7 @@ define(['jquery', 'underscore'], function ($, _) {
 
         this.signup = function(signUpValues, success, failure) {
             $.post(SIGNUP_ENDPOINT, signUpValues).success(success).fail(function(jqxhr) {
-                failure(jqxhr.responseText);
+                failure(jqxhr.status, jqxhr.responseText);
             });
         }
 

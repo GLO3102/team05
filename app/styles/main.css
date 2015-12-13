@@ -42,9 +42,10 @@ a.follow-link{
     color: #fff;
 }
 
-.sign-in-alert, .signup-success-alert {
+.sign-in-alert, .sign-up-alert, .signup-success-alert {
     display: none;
 }
+
 
 .mdl-card_media img {
     width: 100%;

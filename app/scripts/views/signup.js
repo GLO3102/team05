@@ -11,17 +11,16 @@ define(['jquery', 'underscore', 'backbone', 'libraries/authentification', 'views
         },
 
         initialize: function() {
+            self = this;
             $('#signup-success-modal').on('hidden.bs.modal', function (e) {
-               self.trigger('signup-successs');
+                self.trigger('signup-success');
             });
             this.render();
         },
 
         render: function() {
             this.$el.html(this.template());
-            $('#signup-success-modal').on('hidden.bs.modal', function (e) {
-                self.trigger('signup-successs');
-            });
+
         },
 
         signup: function(e) {
@@ -38,9 +37,14 @@ define(['jquery', 'underscore', 'backbone', 'libraries/authentification', 'views
                     self.$el.unblock();
                     $("#signup-success-modal").modal('show');
                 },
-                function(error){
+                function(errorCode, error){
                     self.$el.unblock();
-                    errorView.showError(error);
+                    if( errorCode == 500) {
+                        self.$el.find('.sign-up-alert').show();
+                    }else {
+                        errorView.showError(error);
+                    }
+
                 }
             );
 
@@ -48,6 +52,12 @@ define(['jquery', 'underscore', 'backbone', 'libraries/authentification', 'views
 
         goToLogin: function() {
             this.trigger('goto-login');
+        },
+
+        cleanup : function(){
+            this.undelegateEvents();
+            $(this.el).empty();
+
         }
     });
 
